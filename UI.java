@@ -36,22 +36,11 @@ public class UI
 	protected static int UserChooser=1;
 	protected static int NumOfUsers=1;
 	protected static JLabel lblA = new JLabel("A");
-	
-	
-	
-	void randNumAddition()
-	{
-		 Switch SW=new Switch();
-		 switch(UserChooser)
-	     {
-	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
-	     case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
-	     case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
-	     case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
-	     case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
-	     case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
-	     }
-	}
+	protected static JLabel lblB = new JLabel("B");
+	protected static JLabel lblC = new JLabel("C");
+	protected static JLabel lblX = new JLabel("X");
+	protected static JLabel lblY = new JLabel("Y");
+	protected static JLabel lblZ = new JLabel("Z");
 	
 	public void initialize() {
 		frame = new JFrame();
@@ -97,10 +86,34 @@ public class UI
 		textField.setColumns(20);
 		
 		lblA.setForeground(Color.RED);
-		lblA.setBounds(600, 655, 10, 10);
+		lblA.setBounds(614, 661, 10, 10);
 		frame.getContentPane().add(lblA);
 		lblA.setVisible(true);
 		
+		lblB.setForeground(Color.RED);
+		lblB.setBounds(625, 661, 10, 10);
+		frame.getContentPane().add(lblB);
+		lblB.setVisible(true);
+		
+		lblC.setForeground(Color.RED);
+		lblC.setBounds(636, 661, 10, 10);
+		frame.getContentPane().add(lblC);
+		lblC.setVisible(true);
+		
+		lblX.setForeground(Color.RED);
+		lblX.setBounds(614, 612, 10, 10);
+		frame.getContentPane().add(lblX);
+		lblX.setVisible(true);
+		
+		lblY.setForeground(Color.RED);
+		lblY.setBounds(625, 612, 10, 10);
+		frame.getContentPane().add(lblY);
+		lblY.setVisible(true);
+		
+		lblZ.setForeground(Color.RED);
+		lblZ.setBounds(636, 612, 10, 10);
+		frame.getContentPane().add(lblZ);
+		lblZ.setVisible(true);
 		
 		JLabel label = new JLabel();
 		label.setBounds(0, 0, 660, 731);
@@ -111,11 +124,11 @@ public class UI
 		label.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
 		
-//		JRadioButton btnUser1 = new JRadioButton("test");
-//		btnUser1.setMnemonic(KeyEvent.VK_B);
-//		btnUser1.setActionCommand("test2");
-//		btnUser1.setSelected(true);
-//		internalFrame.getContentPane().add(btnUser1);
+		JRadioButton btnUser1 = new JRadioButton("test");
+		btnUser1.setMnemonic(KeyEvent.VK_B);
+		btnUser1.setActionCommand("test2");
+		btnUser1.setSelected(true);
+		internalFrame.getContentPane().add(btnUser1);
 		
 		JButton btnEndTurn=new JButton("End Turn");
 		internalFrame.getContentPane().add(btnEndTurn,BorderLayout.EAST);
@@ -123,35 +136,33 @@ public class UI
 		JButton btnRollDice = new JButton("Roll Dice");
 		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
 		
-		btnEndTurn.addActionListener( new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent e)
-		    {
-		    	UserChooser++;
-		    	if(UserChooser>NumOfUsers)
-		    	{
-		    		UserChooser%=6;
-		    	}
-		    }
-		});
 		
 		//random num generator
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	Random rand = new Random();
-				randomNum=rand.nextInt(6)+1;
-				int randomNum2=rand.nextInt(6)+1;
-		    	randomNum+=randomNum2;
-		        textField.setText(Integer.toString(randomNum));
-		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-		        txtpnItIsNow.setText(command);
-		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
-		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-		        
-		       randNumAddition();
-		    	
+//		    	Random rand = new Random();
+//				randomNum=rand.nextInt(6)+1;
+//				int randomNum2=rand.nextInt(6)+1;
+//				randomNum+=randomNum2;
+//		        textField.setText(Integer.toString(randomNum));
+//		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+//		        txtpnItIsNow.setText(command);
+//		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
+//		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+//		        
+		    	Switch SW=new Switch();
+//		        switch(UserChooser)
+//		        {
+//		        case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
+//		        case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
+//		        case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
+//		        case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
+//		        case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
+//		        case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
+//		        }
+		    	SW.switchUser(UserA++);
 		    }
 		});
 		
@@ -169,18 +180,43 @@ public class UI
 					int randomNum2=rand.nextInt(6)+1;
 					randomNum+=randomNum2;
 			        textField.setText(Integer.toString(randomNum));
-			        command="User "+UserChooser+" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+			        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 			        txtpnItIsNow.setText(command);
 			        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			        
-			        randNumAddition();
-
+			        
+			        Switch SW=new Switch();
+			        switch(UserChooser)
+			        {
+			        case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
+			        case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
+			        case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
+			        case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
+			        case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
+			        case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
+			        }
+			        
+		    		 
+		    		
+			       
 		    		}
 			}
 			
 			
 		});
+		btnEndTurn.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	UserChooser++;
+		    	if(UserChooser>NumOfUsers)
+		    	{
+		    		UserChooser-=NumOfUsers;
+		    	}
+		    }
+		});
+		
 	}
 	
 }
