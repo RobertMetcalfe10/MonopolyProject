@@ -37,6 +37,22 @@ public class UI
 	protected static int NumOfUsers=1;
 	protected static JLabel lblA = new JLabel("A");
 	
+	
+	
+	void randNumAddition()
+	{
+		 Switch SW=new Switch();
+		 switch(UserChooser)
+	     {
+	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
+	     case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
+	     case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
+	     case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
+	     case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
+	     case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
+	     }
+	}
+	
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -95,11 +111,11 @@ public class UI
 		label.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
 		
-		JRadioButton btnUser1 = new JRadioButton("test");
-		btnUser1.setMnemonic(KeyEvent.VK_B);
-		btnUser1.setActionCommand("test2");
-		btnUser1.setSelected(true);
-		internalFrame.getContentPane().add(btnUser1);
+//		JRadioButton btnUser1 = new JRadioButton("test");
+//		btnUser1.setMnemonic(KeyEvent.VK_B);
+//		btnUser1.setActionCommand("test2");
+//		btnUser1.setSelected(true);
+//		internalFrame.getContentPane().add(btnUser1);
 		
 		JButton btnEndTurn=new JButton("End Turn");
 		internalFrame.getContentPane().add(btnEndTurn,BorderLayout.EAST);
@@ -107,6 +123,17 @@ public class UI
 		JButton btnRollDice = new JButton("Roll Dice");
 		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
 		
+		btnEndTurn.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	UserChooser++;
+		    	if(UserChooser>NumOfUsers)
+		    	{
+		    		UserChooser%=6;
+		    	}
+		    }
+		});
 		
 		//random num generator
 		btnRollDice.addActionListener( new ActionListener()
@@ -116,23 +143,15 @@ public class UI
 		    	Random rand = new Random();
 				randomNum=rand.nextInt(6)+1;
 				int randomNum2=rand.nextInt(6)+1;
-				randomNum+=randomNum2;
+		    	randomNum+=randomNum2;
 		        textField.setText(Integer.toString(randomNum));
 		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 		        txtpnItIsNow.setText(command);
 		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
 		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		        
-		        Switch SW=new Switch();
-		        switch(UserChooser)
-		        {
-		        case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
-		        case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
-		        case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
-		        case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
-		        case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
-		        case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
-		        }
+		       randNumAddition();
+		    	
 		    }
 		});
 		
@@ -150,43 +169,18 @@ public class UI
 					int randomNum2=rand.nextInt(6)+1;
 					randomNum+=randomNum2;
 			        textField.setText(Integer.toString(randomNum));
-			        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+			        command="User "+UserChooser+" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 			        txtpnItIsNow.setText(command);
 			        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			        
-			        
-			        Switch SW=new Switch();
-			        switch(UserChooser)
-			        {
-			        case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
-			        case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
-			        case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
-			        case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
-			        case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
-			        case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
-			        }
-			        
-		    		 
-		    		
-			       
+			        randNumAddition();
+
 		    		}
 			}
 			
 			
 		});
-		btnEndTurn.addActionListener( new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent e)
-		    {
-		    	UserChooser++;
-		    	if(UserChooser>NumOfUsers)
-		    	{
-		    		UserChooser-=NumOfUsers;
-		    	}
-		    }
-		});
-		
 	}
 	
 }
