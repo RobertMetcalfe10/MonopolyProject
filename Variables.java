@@ -18,6 +18,13 @@ public class Variables {
 	protected static int UserX=1;
 	protected static int UserY=1;
 	protected static int UserZ=1;
+	protected static String UserNameA;
+	protected static String UserNameB;
+	protected static String UserNameC;
+	protected static String UserNameX;
+	protected static String UserNameY;
+	protected static String UserNameZ;
+	protected static String print;
 	protected static int randomNum;
 	protected static int UserChooser=1;
 	protected static int NumOfUsers=1;

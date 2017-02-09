@@ -40,6 +40,53 @@ public class UI extends Variables
 	     }
 	}
 	
+	void addUser()
+	{
+	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
+	while(NumOfUsers<2||NumOfUsers>6)
+	{
+		JOptionPane.showMessageDialog(null, "Error\nInvalid number of users\nEnter a number between 2-6");
+		NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
+	}
+		for(int i=1;i<=NumOfUsers;i++)
+		{
+			
+			switch(UserChooser)
+			{
+			case 1:UserNameA=JOptionPane.showInputDialog("Enter Username");break;
+			case 2:UserNameB=JOptionPane.showInputDialog("Enter Username");
+			while(UserNameB.equals(UserNameA)){
+				JOptionPane.showMessageDialog(null,"Username taken");
+				UserNameB=JOptionPane.showInputDialog("Enter Username");
+				}
+			break;
+			case 3:UserNameC=JOptionPane.showInputDialog("Enter Username");
+			while(UserNameC.equals(UserNameA)||UserNameC.equals(UserNameB)){
+				JOptionPane.showMessageDialog(null,"Username taken");
+				UserNameC=JOptionPane.showInputDialog("Enter Username");
+				}break;
+			case 4:UserNameX=JOptionPane.showInputDialog("Enter Username");
+			while(UserNameX.equals(UserNameA)||UserNameX.equals(UserNameB)||UserNameX.equals(UserNameC)){
+				JOptionPane.showMessageDialog(null,"Username taken");
+				UserNameX=JOptionPane.showInputDialog("Enter Username");
+				}break;
+			case 5:UserNameY=JOptionPane.showInputDialog("Enter Username");
+			while(UserNameY.equals(UserNameA)||UserNameY.equals(UserNameB)||UserNameY.equals(UserNameC)||UserNameY.equals(UserNameX)){
+				JOptionPane.showMessageDialog(null,"Username taken");
+				UserNameY=JOptionPane.showInputDialog("Enter Username");
+				}break;
+			case 6:UserNameZ=JOptionPane.showInputDialog("Enter Username");
+			while(UserNameZ.equals(UserNameA)||UserNameZ.equals(UserNameB)||UserNameZ.equals(UserNameC)||UserNameZ.equals(UserNameX)||UserNameZ.equals(UserNameY)){
+				JOptionPane.showMessageDialog(null,"Username taken");
+				UserNameZ=JOptionPane.showInputDialog("Enter Username");
+				}break;
+			}
+			UserChooser++;
+			
+		}
+		UserChooser=1;
+	}
+	
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -48,15 +95,13 @@ public class UI extends Variables
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.getContentPane().setLayout(null);
 		
+		addUser();
+		
 		Icon monopoly=new ImageIcon(getClass().getResource("monopoly.png"));
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
 		infoFrame.setBounds(675, 347, 299, 332);
 		frame.getContentPane().add(infoFrame);
-		
-		command += "It is now player X's turn\n";
-		command += "Enter roll dice into the command panel to roll your dice";
-		
 		
 		txtpnItIsNow.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnItIsNow.setText(command);
@@ -137,20 +182,34 @@ public class UI extends Variables
 		
 		btnEndTurn.addActionListener( new ActionListener()
 		{
+			
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	UserChooser++;
 		    	if(UserChooser>NumOfUsers)
 		    	{
-		    		UserChooser%=6;
+		    		UserChooser%=NumOfUsers;
 		    	}
 		    	try {
 					HelpFrame.setClosed(true);
 				} catch (PropertyVetoException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+		    	switch(UserChooser)
+		    	{
+		    	case 1:print=UserNameA;break;
+		    	case 2:print=UserNameB;break;
+		    	case 3:print=UserNameC;break;
+		    	case 4:print=UserNameX;break;
+		    	case 5:print=UserNameY;break;
+		    	case 6:print=UserNameZ;break;
+		    	}
+		    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+		        txtpnItIsNow.setText(command);
+		    	
+		    	
 		    }
+		    
 		});
 		
 		//random num generator
@@ -158,17 +217,22 @@ public class UI extends Variables
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	Random rand = new Random();
-				randomNum=rand.nextInt(6)+1;
-				int randomNum2=rand.nextInt(6)+1;
-		    	randomNum+=randomNum2;
-		        textField.setText(Integer.toString(randomNum));
-		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-		        txtpnItIsNow.setText(command);
-		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
-		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-		        
-		       randNumAddition();
+//		    	Random rand = new Random();
+//				randomNum=rand.nextInt(6)+1;
+//				int randomNum2=rand.nextInt(6)+1;
+//		    	randomNum+=randomNum2;
+//		        textField.setText(Integer.toString(randomNum));
+//		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+//		        txtpnItIsNow.setText(command);
+//		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
+//		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+//		        
+//		       randNumAddition();
+		    	Switch SW=new Switch();
+		    	UserChooser++;
+		    	SW.switchUser(2);
+		    	
+		 
 		    	
 		    }
 		});
@@ -176,7 +240,7 @@ public class UI extends Variables
 		
 		EnterText.addActionListener( new ActionListener()
 		{
-			String RD="roll dice";
+			String RD="roll";
 			String HELP="help";
 			public void actionPerformed(ActionEvent e)
 		    {
@@ -200,9 +264,16 @@ public class UI extends Variables
 		    	
 		    	if(HELP.equals(EnterText.getText()))
 		    	{
-		    		String HelpInfo="roll dice=Dice are rolled\nend turn=Finishes your turn and goes to the nextplayer";
+			    		String HelpInfo="'roll' = Die are rolled \n\n"
+			    				+ "'done' = Finishes your turn and goes to the next player \n\n"
+			    				+ "'balance' = displays the current users balance \n\n"
+			    				+ "'pay rent' = Pay rent for the current property \n\n"
+			    				+ "'buy' = Buy an unowned property you have landed on \n\n"
+			    				+ "'property' = See all your owned property \n\n"
+			    				+ "'quit' = Enter this command to finish the game \n\n"
+			    				+ "**Click End Turn to close the Info Panel**";
 		    		
-		    		HelpFrame.setBounds(1000, 0, 268, 155);
+		    		HelpFrame.setBounds(1000, 0, 350, 500);
 		    		frame.getContentPane().add(HelpFrame);
 		    		HelpFrame.setVisible(true);
 		    		try {
@@ -219,12 +290,12 @@ public class UI extends Variables
 		    		HelpFrame.getContentPane().add(HelpPane);
 		    		
 		    	}
-		    	if("end turn".equals(EnterText.getText()))
+		    	if("done".equals(EnterText.getText()))
 		    	{
 		    		UserChooser++;
 			    	if(UserChooser>NumOfUsers)
 			    	{
-			    		UserChooser%=6;
+			    		UserChooser%=NumOfUsers;
 			    	}
 			    	try {
 						HelpFrame.setClosed(true);
