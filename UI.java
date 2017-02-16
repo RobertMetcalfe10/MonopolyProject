@@ -160,22 +160,41 @@ public class UI extends Variables
 		lblC.setForeground(Color.RED);
 		lblC.setBounds(636, 661, 10, 10);
 		frame.getContentPane().add(lblC);
-		lblC.setVisible(true);
+		if(NumOfUsers>2){
+			lblC.setVisible(true);
+		}else{
+			lblC.setVisible(false);
+		}
 		
 		lblX.setForeground(Color.RED);
 		lblX.setBounds(614, 612, 10, 10);
 		frame.getContentPane().add(lblX);
-		lblX.setVisible(true);
+		
+		if(NumOfUsers>3){
+			lblX.setVisible(true);
+		}else{
+			lblX.setVisible(false);
+		}
 		
 		lblY.setForeground(Color.RED);
 		lblY.setBounds(625, 612, 10, 10);
 		frame.getContentPane().add(lblY);
-		lblY.setVisible(true);
+		
+		if(NumOfUsers>4){
+			lblY.setVisible(true);
+		}else{
+			lblY.setVisible(false);
+		}
 		
 		lblZ.setForeground(Color.RED);
 		lblZ.setBounds(636, 612, 10, 10);
 		frame.getContentPane().add(lblZ);
-		lblZ.setVisible(true);
+		
+		if(NumOfUsers == 6){
+			lblZ.setVisible(true);
+		}else{
+			lblZ.setVisible(false);
+		}
 		
 		JButton btnEndTurn=new JButton("End Turn");
 		internalFrame.getContentPane().add(btnEndTurn,BorderLayout.EAST);
@@ -214,6 +233,7 @@ public class UI extends Variables
 		    	}
 		    	try {
 					HelpFrame.setClosed(true);
+					PropertyFrame.setClosed(true);
 				} catch (PropertyVetoException e1) {
 					e1.printStackTrace();
 				}
@@ -260,6 +280,7 @@ public class UI extends Variables
 		{
 			String RD="roll";
 			String HELP="help";
+			String PROPERTY="property";
 			public void actionPerformed(ActionEvent e)
 		    {
 		    	EnterText.setText(EnterText.getText());
@@ -309,6 +330,26 @@ public class UI extends Variables
 		    		HelpFrame.getContentPane().add(HelpPane);
 		    		
 		    	}
+			if(PROPERTY.equals(EnterText.getText()))
+		    	{
+			    		
+		    		PropertyFrame.setBounds(1000, 0, 350, 500);
+		    		frame.getContentPane().add(PropertyFrame);
+		    		PropertyFrame.setVisible(true);
+		    		try {
+		    			PropertyFrame.setClosed(false);
+					} catch (PropertyVetoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		    		
+		    		JTextPane HelpPane=new JTextPane();
+		    		HelpPane.setFont(new Font("Verdana", Font.BOLD, 14));
+		    		HelpPane.setText(propertyDets);
+		    		HelpPane.setEditable(false);
+		    		PropertyFrame.getContentPane().add(HelpPane);
+		    		
+		    	}
 		    	if("done".equals(EnterText.getText()))
 		    	{
 		    		
@@ -320,6 +361,7 @@ public class UI extends Variables
 			    	}
 			    	try {
 						HelpFrame.setClosed(true);
+						PropertyFrame.setClosed(true);
 					} catch (PropertyVetoException e1) {
 						e1.printStackTrace();
 					}
