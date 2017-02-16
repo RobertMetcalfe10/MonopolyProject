@@ -1,5 +1,7 @@
 package Monopoly;
 
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -26,6 +28,7 @@ public class Variables {
 	protected static String UserNameZ;
 	protected static String print;
 	protected static int randomNum;
+	protected static int colour;
 	protected static int UserChooser=1;
 	protected static int NumOfUsers=1;
 	protected static JLabel lblA = new JLabel("A");
@@ -34,7 +37,11 @@ public class Variables {
 	protected static JLabel lblX = new JLabel("X");
 	protected static JLabel lblY = new JLabel("Y");
 	protected static JLabel lblZ = new JLabel("Z");
-	protected static JTextPane txtpnItIsNow = new JTextPane();
+	protected static JTextPane txtpnInfo = new JTextPane();
 	protected static JButton btnRollDice = new JButton("Roll Dice");
 	protected static JInternalFrame HelpFrame = new JInternalFrame("List Of Commands");
+	protected static ArrayList<property> properties = new ArrayList<property>();
+	protected static property propertyA=new property();
+	//properties.add(property(15,avenue,500))
 }
+
