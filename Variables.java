@@ -14,6 +14,7 @@ public class Variables {
 	protected JFrame frame;
 	protected JTextField textField;
 	protected static String command="";
+	protected static String propertyDets ="";
 	protected static int UserA=1;
 	protected static int UserB=1;
 	protected static int UserC=1;
@@ -40,6 +41,8 @@ public class Variables {
 	protected static JTextPane txtpnInfo = new JTextPane();
 	protected static JButton btnRollDice = new JButton("Roll Dice");
 	protected static JInternalFrame HelpFrame = new JInternalFrame("List Of Commands");
+	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
+	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
 	protected static ArrayList<property> properties = new ArrayList<property>();
 	protected static property propertyA=new property();
 	//properties.add(property(15,avenue,500))
