@@ -43,8 +43,8 @@ public class Variables {
 	protected static JInternalFrame HelpFrame = new JInternalFrame("List Of Commands");
 	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
 	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
-	protected static ArrayList<property> properties = new ArrayList<property>();
-	protected static property propertyA=new property();
+	protected static ArrayList<Property> properties = new ArrayList<Property>();
+	protected static Property propertyA=new Property();
 	//properties.add(property(15,avenue,500))
 }
 
