@@ -4,13 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -26,23 +25,7 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Variables
 {
-	Color randColour()
-	{
-		Random rand = new Random();
-		colour=rand.nextInt(6)+1;
-		Color SWColour = null;
-		switch(colour)
-		{
-		case 1:SWColour=Color.BLUE;break;
-		case 2:SWColour=Color.RED;break;
-		case 3:SWColour=Color.YELLOW;break;
-		case 4:SWColour=Color.CYAN;break;
-		case 5:SWColour=Color.GREEN;break;
-		case 6:SWColour=Color.ORANGE;break;
-		}
-		return SWColour;
-		
-	}
+	
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
@@ -114,39 +97,37 @@ public class UI extends Variables
 		
 		addUser();
 		
+		Icon monopoly=new ImageIcon(getClass().getResource("monopoly.png"));
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
-		infoFrame.setBounds(660, 0, 300, 500);
+		infoFrame.setBounds(675, 347, 299, 332);
 		frame.getContentPane().add(infoFrame);
-		infoFrame.setFrameIcon(null); 
 		
-		txtpnInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtpnInfo.setText(command);
-		txtpnInfo.setEditable(false);
-		txtpnInfo.setBackground(Color.BLACK);
+		txtpnItIsNow.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnItIsNow.setText(command);
+		txtpnItIsNow.setEditable(false);
 	
-		infoFrame.getContentPane().add(txtpnInfo, BorderLayout.CENTER);
+		infoFrame.getContentPane().add(txtpnItIsNow, BorderLayout.CENTER);
 		infoFrame.setVisible(true);
 		
-		JScrollPane scrollBar = new JScrollPane(txtpnInfo);
+		JScrollPane scrollBar = new JScrollPane(txtpnItIsNow);
 		infoFrame.getContentPane().add(scrollBar, BorderLayout.CENTER);
 		
 		
 		JInternalFrame internalFrame = new JInternalFrame("User Panel");
-		internalFrame.setBounds(660, 500, 300, 177);
+		internalFrame.setBounds(716, 0, 268, 155);
 		frame.getContentPane().add(internalFrame);
 		internalFrame.setVisible(true);
-		internalFrame.setFrameIcon(null); 
 				
 
-		JTextField EnterText = new JTextField();
+		JTextField EnterText = new JTextField("");
 		EnterText.setToolTipText("Enter Command Here");
-		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
-		EnterText.setBackground(Color.BLACK);
-		EnterText.setForeground(randColour());
+		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);	
 		
+		textField = new JTextField("");
+		internalFrame.getContentPane().add(textField, BorderLayout.SOUTH);
+		textField.setColumns(20);
 		
-
 		lblA.setForeground(Color.RED);
 		lblA.setBounds(614, 661, 10, 10);
 		frame.getContentPane().add(lblA);
@@ -160,50 +141,24 @@ public class UI extends Variables
 		lblC.setForeground(Color.RED);
 		lblC.setBounds(636, 661, 10, 10);
 		frame.getContentPane().add(lblC);
-		if(NumOfUsers>2){
-			lblC.setVisible(true);
-		}else{
-			lblC.setVisible(false);
-		}
+		lblC.setVisible(true);
 		
 		lblX.setForeground(Color.RED);
 		lblX.setBounds(614, 612, 10, 10);
 		frame.getContentPane().add(lblX);
-		
-		if(NumOfUsers>3){
-			lblX.setVisible(true);
-		}else{
-			lblX.setVisible(false);
-		}
+		lblX.setVisible(true);
 		
 		lblY.setForeground(Color.RED);
 		lblY.setBounds(625, 612, 10, 10);
 		frame.getContentPane().add(lblY);
-		
-		if(NumOfUsers>4){
-			lblY.setVisible(true);
-		}else{
-			lblY.setVisible(false);
-		}
+		lblY.setVisible(true);
 		
 		lblZ.setForeground(Color.RED);
 		lblZ.setBounds(636, 612, 10, 10);
 		frame.getContentPane().add(lblZ);
-		
-		if(NumOfUsers == 6){
-			lblZ.setVisible(true);
-		}else{
-			lblZ.setVisible(false);
-		}
-		
-		JButton btnEndTurn=new JButton("End Turn");
-		internalFrame.getContentPane().add(btnEndTurn,BorderLayout.EAST);
-		
-		JButton btnRollDice = new JButton("Roll Dice");
-		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
+		lblZ.setVisible(true);
 		
 		
-		Icon monopoly=new ImageIcon(getClass().getResource("monopoly.png"));
 		JLabel label = new JLabel();
 		label.setBounds(0, 0, 660, 731);
 		frame.getContentPane().add(label);
@@ -212,14 +167,23 @@ public class UI extends Variables
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
-		Icon monopoly2=new ImageIcon(getClass().getResource("background.jpg"));
-		JLabel label2 = new JLabel();
-		label2.setBounds(0, 0, 1920, 1080);
-		frame.getContentPane().add(label2);
-		label2.setIcon(monopoly2);//add icon to JLabel
-		label2.setHorizontalTextPosition(SwingConstants.CENTER);
-		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
+	
 		
+		
+		
+		
+		
+//		JRadioButton btnUser1 = new JRadioButton("test");
+//		btnUser1.setMnemonic(KeyEvent.VK_B);
+//		btnUser1.setActionCommand("test2");
+//		btnUser1.setSelected(true);
+//		internalFrame.getContentPane().add(btnUser1);
+		
+		JButton btnEndTurn=new JButton("End Turn");
+		internalFrame.getContentPane().add(btnEndTurn,BorderLayout.EAST);
+		
+		JButton btnRollDice = new JButton("Roll Dice");
+		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
 		
 		btnEndTurn.addActionListener( new ActionListener()
 		{
@@ -233,7 +197,6 @@ public class UI extends Variables
 		    	}
 		    	try {
 					HelpFrame.setClosed(true);
-					PropertyFrame.setClosed(true);
 				} catch (PropertyVetoException e1) {
 					e1.printStackTrace();
 				}
@@ -247,7 +210,7 @@ public class UI extends Variables
 		    	case 6:print=UserNameZ;break;
 		    	}
 		    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
-		        txtpnInfo.setText(command);
+		        txtpnItIsNow.setText(command);
 		    	
 		    	
 		    }
@@ -259,19 +222,23 @@ public class UI extends Variables
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	Random rand = new Random();
-				randomNum=rand.nextInt(6)+1;
-				int randomNum2=rand.nextInt(6)+1;
-		    	randomNum+=randomNum2;
-		    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-		        txtpnInfo.setForeground(randColour());
-		        EnterText.setForeground(randColour());
-		        command="User "+UserChooser+command;
-		        txtpnInfo.setText(command);
-		        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
-		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-		        
-		       randNumAddition();  	
+//		    	Random rand = new Random();
+//				randomNum=rand.nextInt(6)+1;
+//				int randomNum2=rand.nextInt(6)+1;
+//		    	randomNum+=randomNum2;
+//		        textField.setText(Integer.toString(randomNum));
+//		        command="User X rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+//		        txtpnItIsNow.setText(command);
+//		        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
+//		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+//		        
+//		       randNumAddition();
+		    	Switch SW=new Switch();
+		    	UserChooser++;
+		    	SW.switchUser(2);
+		    	
+		 
+		    	
 		    }
 		});
 		
@@ -280,7 +247,7 @@ public class UI extends Variables
 		{
 			String RD="roll";
 			String HELP="help";
-			String PROPERTY="property";
+			String Balance = "balance";
 			public void actionPerformed(ActionEvent e)
 		    {
 		    	EnterText.setText(EnterText.getText());
@@ -290,12 +257,10 @@ public class UI extends Variables
 					randomNum=rand.nextInt(6)+1;
 					int randomNum2=rand.nextInt(6)+1;
 					randomNum+=randomNum2;
-			        command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-			        txtpnInfo.setForeground(randColour());
-			        EnterText.setForeground(randColour());
-			        command="User "+UserChooser+command;
-			        txtpnInfo.setText(command);
-			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+			        textField.setText(Integer.toString(randomNum));
+			        command="User "+UserChooser+" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+			        txtpnItIsNow.setText(command);
+			        DefaultCaret caret = (DefaultCaret) txtpnItIsNow.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			        
 			        randNumAddition();
@@ -320,6 +285,7 @@ public class UI extends Variables
 		    		try {
 						HelpFrame.setClosed(false);
 					} catch (PropertyVetoException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 		    		
@@ -330,30 +296,8 @@ public class UI extends Variables
 		    		HelpFrame.getContentPane().add(HelpPane);
 		    		
 		    	}
-			if(PROPERTY.equals(EnterText.getText()))
-		    	{
-			    		
-		    		PropertyFrame.setBounds(1000, 0, 350, 500);
-		    		frame.getContentPane().add(PropertyFrame);
-		    		PropertyFrame.setVisible(true);
-		    		try {
-		    			PropertyFrame.setClosed(false);
-					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-		    		
-		    		JTextPane HelpPane=new JTextPane();
-		    		HelpPane.setFont(new Font("Verdana", Font.BOLD, 14));
-		    		HelpPane.setText(propertyDets);
-		    		HelpPane.setEditable(false);
-		    		PropertyFrame.getContentPane().add(HelpPane);
-		    		
-		    	}
 		    	if("done".equals(EnterText.getText()))
 		    	{
-		    		
-			    	
 		    		UserChooser++;
 			    	if(UserChooser>NumOfUsers)
 			    	{
@@ -361,23 +305,40 @@ public class UI extends Variables
 			    	}
 			    	try {
 						HelpFrame.setClosed(true);
-						PropertyFrame.setClosed(true);
 					} catch (PropertyVetoException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-			    	switch(UserChooser)
-			    	{
-			    	case 1:print=UserNameA;break;
-			    	case 2:print=UserNameB;break;
-			    	case 3:print=UserNameC;break;
-			    	case 4:print=UserNameX;break;
-			    	case 5:print=UserNameY;break;
-			    	case 6:print=UserNameZ;break;
-			    	}
-			    	txtpnInfo.setForeground(Color.RED);
-			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
-			        txtpnInfo.setText(command);
 		    	}
+		    	
+		    	if("balance".equals(EnterText.getText())){
+		    		
+		    		
+			    	if(UserChooser>NumOfUsers)
+			    	{
+			    		UserChooser%=NumOfUsers;
+			    	}
+			    	
+		    		switch(UserChooser){
+		    		
+		    		case 1:display = BankAccountUserA.getBalance();break;
+		    		case 2:display = BankAccountUserB.getBalance();break;
+		    		case 3:display = BankAccountUserC.getBalance();break;
+		    		case 4:display = BankAccountUserX.getBalance();break;
+		    		case 5:display = BankAccountUserY.getBalance();break;
+		    		case 6:display = BankAccountUserZ.getBalance();break;
+		    		
+		    		}
+		    		command= "Your balance is "+ display + "\n\n"+command;
+			        txtpnItIsNow.setText(command);
+		    	}
+		    	
+		    	
+
+
+
+		    	
+		    	
 		    	
 			}
 			

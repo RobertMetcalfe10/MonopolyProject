@@ -1,7 +1,5 @@
 package Monopoly;
 
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -14,7 +12,6 @@ public class Variables {
 	protected JFrame frame;
 	protected JTextField textField;
 	protected static String command="";
-	protected static String propertyDets ="";
 	protected static int UserA=1;
 	protected static int UserB=1;
 	protected static int UserC=1;
@@ -28,8 +25,8 @@ public class Variables {
 	protected static String UserNameY;
 	protected static String UserNameZ;
 	protected static String print;
+	protected static double display;
 	protected static int randomNum;
-	protected static int colour;
 	protected static int UserChooser=1;
 	protected static int NumOfUsers=1;
 	protected static JLabel lblA = new JLabel("A");
@@ -38,13 +35,22 @@ public class Variables {
 	protected static JLabel lblX = new JLabel("X");
 	protected static JLabel lblY = new JLabel("Y");
 	protected static JLabel lblZ = new JLabel("Z");
-	protected static JTextPane txtpnInfo = new JTextPane();
+	protected static JTextPane txtpnItIsNow = new JTextPane();
 	protected static JButton btnRollDice = new JButton("Roll Dice");
 	protected static JInternalFrame HelpFrame = new JInternalFrame("List Of Commands");
-	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
-	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
-	protected static ArrayList<Property> properties = new ArrayList<Property>();
-	protected static Property propertyA=new Property();
-	//properties.add(property(15,avenue,500))
+	protected static BankAccount BankAccountUserA = new BankAccount(1500);
+	protected static BankAccount BankAccountUserB = new BankAccount(2500);
+	protected static BankAccount BankAccountUserC = new BankAccount(3500);
+	protected static BankAccount BankAccountUserX = new BankAccount(4500);
+	protected static BankAccount BankAccountUserY = new BankAccount(5500);
+	protected static BankAccount BankAccountUserZ = new BankAccount(6500);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-
