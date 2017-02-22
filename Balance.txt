@@ -1,0 +1,21 @@
+if("balance".equals(EnterText.getText())){
+		    		
+		    		
+			    	if(UserChooser>NumOfUsers)
+			    	{
+			    		UserChooser%=NumOfUsers;
+			    	}
+			    	
+		    		switch(UserChooser){
+		    		
+		    		case 1:display = BankAccountUserA.getBalance();break;
+		    		case 2:display = BankAccountUserB.getBalance();break;
+		    		case 3:display = BankAccountUserC.getBalance();break;
+		    		case 4:display = BankAccountUserX.getBalance();break;
+		    		case 5:display = BankAccountUserY.getBalance();break;
+		    		case 6:display = BankAccountUserZ.getBalance();break;
+		    		
+		    		}
+		    		command= "Your balance is "+ display + "\n\n"+command;
+			        txtpnItIsNow.setText(command);
+		    	}
