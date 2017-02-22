@@ -24,12 +24,30 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.text.DefaultCaret;
 
-public class UI extends Variables
+public class UI extends Property
 {
 	
+	Color randColour()
+	{
+		Random rand = new Random();
+		colour=rand.nextInt(6)+1;
+		Color SWColour = null;
+		switch(colour)
+		{
+		case 1:SWColour=Color.BLUE;break;
+		case 2:SWColour=Color.RED;break;
+		case 3:SWColour=Color.YELLOW;break;
+		case 4:SWColour=Color.CYAN;break;
+		case 5:SWColour=Color.GREEN;break;
+		case 6:SWColour=Color.ORANGE;break;
+		}
+		return SWColour;
+		
+	}
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
+		
 		 switch(UserChooser)
 	     {
 	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
@@ -87,20 +105,53 @@ public class UI extends Variables
 		}
 		UserChooser=1;
 	}
-	Color randColour()
+	
+	void firstRoll()
 	{
-		Color SWColour = null;
-		switch(UserChooser)
-		{
-		case 1:SWColour=Color.BLUE;break;
-		case 2:SWColour=Color.RED;break;
-		case 3:SWColour=Color.YELLOW;break;
-		case 4:SWColour=Color.CYAN;break;
-		case 5:SWColour=Color.GREEN;break;
-		case 6:SWColour=Color.ORANGE;break;
-		}
-		return SWColour;
+		int highN;
+		Random rand = new Random();
+		int a = randomNum=rand.nextInt(6)+1;
+		int b = randomNum=rand.nextInt(6)+1;
+		int c = randomNum=rand.nextInt(6)+1;
+		int x = randomNum=rand.nextInt(6)+1;
+		int y = randomNum=rand.nextInt(6)+1;
+		int z = randomNum=rand.nextInt(6)+1;
 		
+		highN = a;
+		
+		if (b > highN)
+		{
+			highN = b;
+		}
+		if (c > highN)
+		{
+			highN = c;
+		}
+		
+		if (x > highN)
+		{
+			highN = x;
+		}
+		
+		if (y > highN)
+		{
+			highN = y;
+		}
+		
+		if (z > highN)
+		{
+			highN = z;
+		}
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println(c);
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(z);
+		System.out.println(highN);
+		
+		
+			
 	}
 	
 	public void initialize() {
@@ -112,6 +163,7 @@ public class UI extends Variables
 		frame.getContentPane().setLayout(null);
 		
 		addUser();
+		firstRoll();
 		
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
@@ -123,6 +175,7 @@ public class UI extends Variables
 		txtpnInfo.setText(command);
 		txtpnInfo.setEditable(false);
 		txtpnInfo.setBackground(Color.BLACK);
+		txtpnInfo.setForeground(randColour());
 	
 		infoFrame.getContentPane().add(txtpnInfo, BorderLayout.CENTER);
 		infoFrame.setVisible(true);
@@ -142,7 +195,7 @@ public class UI extends Variables
 		EnterText.setToolTipText("Enter Command Here");
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
-		EnterText.setForeground(Color.WHITE);
+		EnterText.setForeground(randColour());
 		
 		
 
@@ -202,7 +255,7 @@ public class UI extends Variables
 		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
 		
 		
-		Icon monopoly=new ImageIcon(getClass().getResource("Monopoly.png"));
+		Icon monopoly=new ImageIcon(getClass().getResource("monopoly.png"));
 		JLabel label = new JLabel();
 		label.setBounds(0, 0, 660, 731);
 		frame.getContentPane().add(label);
@@ -225,7 +278,9 @@ public class UI extends Variables
 			
 		    public void actionPerformed(ActionEvent e)
 		    {
+		    	
 		    	UserChooser++;
+		    	LoseGame();
 		    	if(UserChooser>NumOfUsers)
 		    	{
 		    		UserChooser%=NumOfUsers;
@@ -258,23 +313,10 @@ public class UI extends Variables
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
+		    	
 		    	Random rand = new Random();
-				 randomNum=rand.nextInt(6)+1;
+				randomNum=rand.nextInt(6)+1;
 				int randomNum2=rand.nextInt(6)+1;
-				
-				if(randomNum==randomNum2){
-					command=" looks like you rolled a double please re-roll again ";
-			        txtpnInfo.setForeground(randColour());
-			        EnterText.setForeground(randColour());
-			        command="User "+UserChooser+command;
-			        txtpnInfo.setText(command);
-			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
-			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-			        
-			        randNumAddition();
-					}
-				
-				else{
 		    	randomNum+=randomNum2;
 		    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 		        txtpnInfo.setForeground(randColour());
@@ -284,70 +326,66 @@ public class UI extends Variables
 		        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		        
-		        randNumAddition();
-				}
+		       randNumAddition();  	
 		    }
 		});
 		
 		
 		EnterText.addActionListener( new ActionListener()
 		{
-			String RD="roll";
-			String HELP="help";
-			String PROPERTY="property";
+			
 			public void actionPerformed(ActionEvent e)
 		    {
-		    	EnterText.setText(EnterText.getText());
-		    	if(RD.equals(EnterText.getText()))
-		    		{
-		    		Random rand = new Random();
+				switch(EnterText.getText())
+				{
+				case "roll":
+					
+					Random rand = new Random();
 					randomNum=rand.nextInt(6)+1;
 					int randomNum2=rand.nextInt(6)+1;
 					randomNum+=randomNum2;
-			        command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-			        //txtpnInfo.setForeground(randColour());
-			        //EnterText.setForeground(randColour());
-			        command="User "+UserChooser+command;
-			        txtpnInfo.setText(command);
-			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
-			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-			        
-			        randNumAddition();
-
-		    		}
-		    	
-		    	
-		    	if(HELP.equals(EnterText.getText()))
-		    	{
-			    		String HelpInfo="'roll' = Die are rolled \n\n"
-			    				+ "'done' = Finishes your turn and goes to the next player \n\n"
-			    				+ "'balance' = displays the current users balance \n\n"
-			    				+ "'pay rent' = Pay rent for the current property \n\n"
-			    				+ "'buy' = Buy an unowned property you have landed on \n\n"
-			    				+ "'property' = See all your owned property \n\n"
-			    				+ "'quit' = Enter this command to finish the game \n\n"
-			    				+ "**Click End Turn to close the Info Panel**";
-		    		
-		    		HelpFrame.setBounds(1000, 0, 350, 500);
-		    		frame.getContentPane().add(HelpFrame);
-		    		HelpFrame.setVisible(true);
-		    		try {
+					command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+					txtpnInfo.setForeground(randColour());
+					EnterText.setForeground(randColour());
+					command="User "+UserChooser+command;
+					txtpnInfo.setText(command);
+					DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+					caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+					randNumAddition();
+					break;
+					
+				case "help":
+					
+					String HelpInfo="'roll' = Die are rolled \n\n"
+		    				+ "'done' = Finishes your turn and goes to the next player \n\n"
+		    				+ "'balance' = displays the current users balance \n\n"
+		    				+ "'pay rent' = Pay rent for the current property \n\n"
+		    				+ "'buy' = Buy an unowned property you have landed on \n\n"
+		    				+ "'property' = See all your owned property \n\n"
+		    				+ "'quit' = Enter this command to finish the game \n\n"
+		    				+ "**Click End Turn to close the Info Panel**";
+	    		
+					HelpFrame.setBounds(1000, 0, 350, 500);
+					frame.getContentPane().add(HelpFrame);
+					HelpFrame.setVisible(true);
+					try
+					{
 						HelpFrame.setClosed(false);
-					} catch (PropertyVetoException e1) {
+					} catch (PropertyVetoException e1)
+					{
 						e1.printStackTrace();
 					}
-		    		
-		    		JTextPane HelpPane=new JTextPane();
-		    		HelpPane.setFont(new Font("Verdana", Font.BOLD, 14));
-		    		HelpPane.setText(HelpInfo);
-		    		HelpPane.setEditable(false);
-		    		HelpFrame.getContentPane().add(HelpPane);
-		    		
-		    	}
-			if(PROPERTY.equals(EnterText.getText()))
-		    	{
-			    		
-		    		PropertyFrame.setBounds(1000, 0, 350, 500);
+	    		
+	    		JTextPane HelpPane=new JTextPane();
+	    		HelpPane.setFont(new Font("Verdana", Font.BOLD, 14));
+	    		HelpPane.setText(HelpInfo);
+	    		HelpPane.setEditable(false);
+	    		HelpFrame.getContentPane().add(HelpPane);
+	    		break;
+	    		
+				case "property":
+					
+					PropertyFrame.setBounds(1000, 0, 350, 500);
 		    		frame.getContentPane().add(PropertyFrame);
 		    		PropertyFrame.setVisible(true);
 		    		try {
@@ -357,18 +395,28 @@ public class UI extends Variables
 						e1.printStackTrace();
 					}
 		    		
-		    		JTextPane HelpPane=new JTextPane();
-		    		HelpPane.setFont(new Font("Verdana", Font.BOLD, 14));
-		    		HelpPane.setText(propertyDets);
-		    		HelpPane.setEditable(false);
-		    		PropertyFrame.getContentPane().add(HelpPane);
 		    		
-		    	}
-		    	if("done".equals(EnterText.getText()))
-		    	{
+		    		PropertyPane.setFont(new Font("Verdana", Font.BOLD, 14));
+		    		//HelpPane.setText(propertyDisplayCurrent());
+		    		propertyDets="";
+		    		PropertyPane.setEditable(false);
+		    		PropertyFrame.getContentPane().add(PropertyPane);
 		    		
-			    	
+		    		switch(UserChooser)
+		    		{
+		    		case 1:propertyDisplayAll(propertiesUserA);break;
+		    		case 2:propertyDisplayAll(propertiesUserB);break;
+		    		case 3:propertyDisplayAll(propertiesUserC);break;
+		    		case 4:propertyDisplayAll(propertiesUserX);break;
+		    		case 5:propertyDisplayAll(propertiesUserY);break;
+		    		case 6:propertyDisplayAll(propertiesUserZ);break;
+		    		}
+		    		break;
+		    		
+				case "done":
+					
 		    		UserChooser++;
+		    		LoseGame();
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
@@ -391,11 +439,46 @@ public class UI extends Variables
 			    	txtpnInfo.setForeground(Color.RED);
 			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 			        txtpnInfo.setText(command);
-		    	}
-		    	
+					break;
+					
+				case "buy":
+					
+					buyProperty(randomNum);
+					break;
+					
+				case "quit":
+					
+					frame.setVisible(false);
+					frame.dispose();
+					break;
+					
+				case "balance": 
+					
+					int display = 0;
+					if(UserChooser>NumOfUsers)
+			    	{
+			    		UserChooser%=NumOfUsers;
+			    	}
+			    	
+		    		switch(UserChooser){
+		    		
+		    		case 1:display = balanceA.getBalance();break;
+		    		case 2:display = balanceB.getBalance();break;
+		    		case 3:display = balanceC.getBalance();break;
+		    		case 4:display = balanceX.getBalance();break;
+		    		case 5:display = balanceY.getBalance();break;
+		    		case 6:display = balanceZ.getBalance();break;
+		    		
+		    		}
+		    		command= "Your balance is "+ display + "\n\n"+command;
+			        txtpnInfo.setText(command);
+			        break;
+					
+				default:
+					command+="Error, Invalid command\n";
+					txtpnInfo.setText(command);
+				} 	
 			}
-			
-			
 		});
 	}
 	
