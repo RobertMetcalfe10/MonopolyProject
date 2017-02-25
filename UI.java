@@ -50,7 +50,9 @@ public class UI extends Property
 		
 		 switch(UserChooser)
 	     {
-	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;SW.switchUser(UserA);break;
+	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;
+	     MovesA+=randomNum;if(MovesA>40)MovesA-=40;
+	     SW.switchUser(UserA);break;
 	     case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
 	     case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
 	     case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
@@ -106,53 +108,41 @@ public class UI extends Property
 		UserChooser=1;
 	}
 	
-	void firstRoll()
-	{
-		int highN;
-		Random rand = new Random();
-		int a = randomNum=rand.nextInt(6)+1;
-		int b = randomNum=rand.nextInt(6)+1;
-		int c = randomNum=rand.nextInt(6)+1;
-		int x = randomNum=rand.nextInt(6)+1;
-		int y = randomNum=rand.nextInt(6)+1;
-		int z = randomNum=rand.nextInt(6)+1;
-		
-		highN = a;
-		
-		if (b > highN)
-		{
-			highN = b;
-		}
-		if (c > highN)
-		{
-			highN = c;
-		}
-		
-		if (x > highN)
-		{
-			highN = x;
-		}
-		
-		if (y > highN)
-		{
-			highN = y;
-		}
-		
-		if (z > highN)
-		{
-			highN = z;
-		}
-		System.out.println(a);
-		System.out.println(b);
-		System.out.println(c);
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println(z);
-		System.out.println(highN);
-		
-		
-			
-	}
+//	void firstRoll()
+//	{
+//		Random rand = new Random();
+//		int a = 0,b = 0,c = 0,x = 0,y = 0,z = 0;
+//		int highN = 0;
+//		for(UserChooser = 1;UserChooser<=NumOfUsers;UserChooser++){
+//	    	switch(UserChooser)
+//	    	{
+//	    	case 1: a = randomNum=rand.nextInt(6)+1;a = highN;UserChooser=1;
+//			break;
+//	    	case 2: b = randomNum=rand.nextInt(6)+1;if (b > highN)UserChooser=2;
+//	    	break;
+//	    	case 3: c = randomNum=rand.nextInt(6)+1;if (c > highN)UserChooser=3;
+//	    	break;
+//	    	case 4: x = randomNum=rand.nextInt(6)+1;if (x > highN)UserChooser=4;
+//	    	break;
+//	    	case 5: y = randomNum=rand.nextInt(6)+1;if (y > highN)UserChooser=5;
+//	    	break;
+//	    	case 6: z = randomNum=rand.nextInt(6)+1;if (z > highN)UserChooser=6;
+//	    	break;
+//	    	}
+//		}
+//		
+//		System.out.println(UserChooser);
+//		System.out.println(a);
+//		System.out.println(b);
+//		System.out.println(c);
+//		System.out.println(x);
+//		System.out.println(y);
+//		System.out.println(z);
+//		System.out.println(highN);
+//		
+//		
+//			
+//	}
 	
 	public void initialize() {
 		frame = new JFrame();
@@ -163,7 +153,8 @@ public class UI extends Property
 		frame.getContentPane().setLayout(null);
 		
 		addUser();
-		firstRoll();
+		fillProperties();
+		//firstRoll();
 		
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
@@ -326,7 +317,8 @@ public class UI extends Property
 		        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		        
-		       randNumAddition();  	
+				randNumAddition();  
+		    	
 		    }
 		});
 		
@@ -395,6 +387,8 @@ public class UI extends Property
 						e1.printStackTrace();
 					}
 		    		
+		    		JScrollPane scrollBar2 = new JScrollPane(PropertyPane);
+		    		PropertyFrame.getContentPane().add(scrollBar2, BorderLayout.CENTER);
 		    		
 		    		PropertyPane.setFont(new Font("Verdana", Font.BOLD, 14));
 		    		//HelpPane.setText(propertyDisplayCurrent());
@@ -411,6 +405,7 @@ public class UI extends Property
 		    		case 5:propertyDisplayAll(propertiesUserY);break;
 		    		case 6:propertyDisplayAll(propertiesUserZ);break;
 		    		}
+		    		
 		    		break;
 		    		
 				case "done":
@@ -443,7 +438,18 @@ public class UI extends Property
 					
 				case "buy":
 					
-					buyProperty(randomNum);
+					switch(UserChooser)
+					{
+					case 1:// MovesA+=randomNum;if(MovesA>40)MovesA-=40;
+					System.out.println(MovesA);
+					buyProperty(MovesA);break;
+					case 2: MovesB+=randomNum;if(MovesA>40)MovesB-=40;buyProperty(MovesB);break;
+					case 3: MovesC+=randomNum;if(MovesA>40)MovesC-=40;buyProperty(MovesC);break;
+					case 4: MovesX+=randomNum;if(MovesA>40)MovesX-=40;buyProperty(MovesX);break;
+					case 5: MovesY+=randomNum;if(MovesA>40)MovesY-=40;buyProperty(MovesY);break;
+					case 6: MovesZ+=randomNum;if(MovesA>40)MovesZ-=40;buyProperty(MovesZ);break;
+					}
+					
 					break;
 					
 				case "quit":
