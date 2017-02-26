@@ -379,7 +379,7 @@ public class UI extends Property
 			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			        randNumAddition();
-			        payRent();
+			        //payRent();
 			        
 			        switch(UserChooser)
 					{
@@ -539,6 +539,17 @@ public class UI extends Property
 		    		command= "Your balance is "+ display + "\n\n"+command;
 			        txtpnInfo.setText(command);
 			        break;
+			        
+				case "pay rent":
+					switch(UserChooser)
+					{
+					case 1:payRent(MovesA);
+						break;
+					case 2:payRent(MovesB);
+						break;
+					}
+					
+					break;
 					
 				default:
 					command+="Error, Invalid command\n";
