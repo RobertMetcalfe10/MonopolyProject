@@ -366,46 +366,34 @@ public class UI extends Property
 				{
 				case "roll":
 					Random rand = new Random();
-					randomNum=rand.nextInt(6)+1;
+					 randomNum=rand.nextInt(6)+1;
 					int randomNum2=rand.nextInt(6)+1;
-					randomNum+=randomNum2;
 					
+					if(randomNum==randomNum2){
+						randomNum+=randomNum2;
+						command=" looks like you rolled a double, go ahead and roll again!\n"+command;
+				        txtpnInfo.setForeground(randColour());
+				        EnterText.setForeground(randColour());
+				        command="User "+ UserChooser+ command;
+				        txtpnInfo.setText(command);
+				        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+				        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+				        
+				        randNumAddition();
+						}
 					
-			        command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+					else{
+			    	randomNum+=randomNum2;
+			    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 			        txtpnInfo.setForeground(randColour());
 			        EnterText.setForeground(randColour());
 			        command="User "+UserChooser+command;
-			        
+			        txtpnInfo.setText(command);
 			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+			        
 			        randNumAddition();
-			        //payRent();
-			        
-			        switch(UserChooser)
-					{
-					case 1: propertyDisplayCurrent(MovesA);break;
-					case 2: propertyDisplayCurrent(MovesB);break;
-					case 3: propertyDisplayCurrent(MovesC);break;
-					case 4: propertyDisplayCurrent(MovesX);break;
-					case 5: propertyDisplayCurrent(MovesY);break;
-					case 6: propertyDisplayCurrent(MovesZ);break;
 					}
-			        txtpnInfo.setText(command);
-			        
-			        
-//			        randomNum-=randomNum2;
-//			        if(randomNum==randomNum2)
-//			        {
-//			        	randomNum=0;
-//			        	randomNum2=0;
-//			        	randomNum=rand.nextInt(6)+1;
-//			        	randomNum2=rand.nextInt(6)+1;
-//			        	randomNum+=randomNum2;
-//			        	command=" a double has been rolled, the dice have been rolled again"+command;
-//			        	command="User "+UserChooser+command;
-//			        	randNumAddition();
-//			        	
-//			        }
 					break;
 					
 				case "help":
@@ -512,11 +500,7 @@ public class UI extends Property
 					
 					break;
 					
-				case "quit":
-					
-					frame.setVisible(false);
-					frame.dispose();
-					break;
+				
 					
 				case "balance": 
 					
@@ -550,6 +534,60 @@ public class UI extends Property
 					}
 					
 					break;
+					
+				case "quit":
+					
+					
+					int maxbal=0;
+					
+					if(balanceA.getBalance()>balanceB.getBalance() && balanceA.getBalance()>balanceC.getBalance() && balanceA.getBalance()>balanceX.getBalance() && balanceA.getBalance()>balanceY.getBalance() && balanceA.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceA.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameA + " has won the game");
+					}
+					
+					else if(balanceB.getBalance()>balanceA.getBalance() && balanceB.getBalance()>balanceC.getBalance() && balanceB.getBalance()>balanceX.getBalance() && balanceB.getBalance()>balanceY.getBalance() && balanceB.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceB.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameB + " has won the game");
+					}
+					
+					else if(balanceC.getBalance()>balanceA.getBalance() && balanceC.getBalance()>balanceB.getBalance() && balanceC.getBalance()>balanceX.getBalance() && balanceC.getBalance()>balanceY.getBalance() && balanceC.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceC.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameC + " has won the game");
+					}
+					
+					else if(balanceX.getBalance()>balanceA.getBalance() && balanceX.getBalance()>balanceB.getBalance() && balanceX.getBalance()>balanceC.getBalance() && balanceX.getBalance()>balanceY.getBalance() && balanceX.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceX.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameX + " has won the game");
+					}
+					
+					else if(balanceY.getBalance()>balanceA.getBalance() && balanceY.getBalance()>balanceB.getBalance() && balanceY.getBalance()>balanceC.getBalance() && balanceY.getBalance()>balanceX.getBalance() && balanceY.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceY.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameY + " has won the game");
+					}
+					
+					else if(balanceZ.getBalance()>balanceA.getBalance() && balanceZ.getBalance()>balanceB.getBalance() && balanceZ.getBalance()>balanceC.getBalance() && balanceZ.getBalance()>balanceX.getBalance() && balanceZ.getBalance()>balanceY.getBalance() )
+					{
+						maxbal = balanceZ.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameZ + " has won the game");
+					}
+					
+					else
+					{
+						JOptionPane.showMessageDialog(null,"One or more users have the same balance. No winner has been declared");
+					}
+					
+					
+					
+					frame.setVisible(false);
+					frame.dispose();
+					break;
+					
+					
 					
 				default:
 					command+="Error, Invalid command\n";

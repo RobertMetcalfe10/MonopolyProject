@@ -13,7 +13,7 @@ public class Property extends BankAccount{
 	protected int propertyRent4;
 	protected int propertyRent5;
 	protected int propertyRent6;
-	protected int propertyUser=1;
+	protected int propertyUser=0;
 	protected boolean propertyOwned=false;
 	protected int housePrice;
 	protected int mortgageValue;
@@ -79,16 +79,12 @@ public class Property extends BankAccount{
 		propertyNo++;
 		switch(UserChooser)
 		{
-		case 1:balanceA.withdraw(properties.get(rand).propertyPrice); properties.get(rand).propertyOwned=true; command=("You have just bought "+properties.get(rand).propertyName+"\n\n")+command;
-		properties.get(rand).propertyUser=1;
-		txtpnInfo.setText(command);
-		propertiesUserA.add(properties.get(rand));
+		case 1:balanceA.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=1;propertiesUserA.add(properties.get(rand));break;
 
-		break;
 		case 2: balanceB.withdraw(propertyPrice); properties.get(rand).propertyOwned=true;command=("You have just bought "+properties.get(rand).propertyName+"\n\n")+command;
+		properties.get(rand).propertyUser=2;
 		txtpnInfo.setText(command);
 		propertiesUserB.add(properties.get(rand));
-		
 		break;
 		case 3: balanceC.withdraw(propertyPrice);
 		break;
@@ -99,20 +95,23 @@ public class Property extends BankAccount{
 		case 6: balanceZ.withdraw(propertyPrice);
 		break;
 		}
-		System.out.println(properties.get(rand).propertyUser);
+		
+		command=("You have just bought "+properties.get(rand).propertyName+"\n\n")+command;
+		txtpnInfo.setText(command);
+		System.out.println(balanceA.getBalance());
 		
 		}
 		else
 		{
-			command="Property already owned"+command;
+			command="Property already owned\n"+command;
 			txtpnInfo.setText(command);
 		}
 		
 	}
 	
 	void payRent(int rand){
-		if(properties.get(rand).propertyUser==1||properties.get(rand).propertyUser==2||properties.get(rand).propertyUser==3||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==5||properties.get(rand).propertyUser==6)
-		{
+		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser)
+		{//properties.get(rand).propertyUser==1||properties.get(rand).propertyUser==2||properties.get(rand).propertyUser==3||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==5||properties.get(rand).propertyUser==6
 			int positionToRent=rand;
 			System.out.println(properties.get(UserA).propertyPrice);
 			System.out.println(properties.get(UserB).propertyPrice);
@@ -126,7 +125,7 @@ public class Property extends BankAccount{
 			case 6:balanceZ.withdraw(properties.get(MovesZ).propertyPrice);positionToRent=MovesZ;break;
 			}
 			
-			switch(propertyUser)
+			switch(properties.get(rand).propertyUser)
 			{
 			case 1:balanceA.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameA+"\n\n"+command;break;
 			case 2:balanceB.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameB+"\n\n"+command;break;
@@ -135,6 +134,11 @@ public class Property extends BankAccount{
 			case 5:balanceY.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameY+"\n\n"+command;break;
 			case 6:balanceZ.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameZ+"\n\n"+command;break;
 			}
+			txtpnInfo.setText(command);
+		}
+		else
+		{
+			command="You dont't owe rent\n"+command;
 			txtpnInfo.setText(command);
 		}
 		

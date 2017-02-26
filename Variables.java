@@ -1,8 +1,6 @@
 package Monopoly;
 
 import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -52,7 +50,7 @@ public class Variables {
 	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
 	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
 	protected static int propertyNo=0;
-	protected static BankAccount balanceA=new BankAccount(1500);
+	protected static BankAccount balanceA=new BankAccount(1200);
 	protected static BankAccount balanceB=new BankAccount(1500);
 	protected static BankAccount balanceC=new BankAccount(1500);
 	protected static BankAccount balanceX=new BankAccount(1500);
@@ -108,7 +106,7 @@ public class Variables {
 		properties.add(new Property(39,"Mayfair",400,50,200,600,1400,1700,2000));
 	}	
 	
-	protected ArrayList<Property> propertiesUserA = new ArrayList<Property>(0);
+	protected static ArrayList<Property> propertiesUserA = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserB = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserC = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserX = new ArrayList<Property>();
