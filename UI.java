@@ -50,14 +50,24 @@ public class UI extends Property
 		
 		 switch(UserChooser)
 	     {
-	     case 1:UserA+=randomNum;if(UserA>40)UserA-=40;
+	     case 1:UserA+=randomNum;if(UserA>40){UserA-=40;balanceA.deposit(200);}
 	     MovesA+=randomNum;if(MovesA>40)MovesA-=40;
 	     SW.switchUser(UserA);break;
-	     case 2:UserB+=randomNum;if(UserB>40)UserB-=40;SW.switchUser(UserB);break;
-	     case 3:UserC+=randomNum;if(UserC>40)UserC-=40;SW.switchUser(UserC);break;
-	     case 4:UserX+=randomNum;if(UserX>40)UserX-=40;SW.switchUser(UserX);break;
-	     case 5:UserY+=randomNum;if(UserY>40)UserY-=40;SW.switchUser(UserY);break;
-	     case 6:UserZ+=randomNum;if(UserZ>40)UserZ-=40;SW.switchUser(UserZ);break;
+	     case 2:UserB+=randomNum;if(UserB>40){UserB-=40;balanceB.deposit(200);}
+	     MovesB+=randomNum;if(MovesB>40)MovesB-=40;
+	     SW.switchUser(UserB);break;
+	     case 3:UserC+=randomNum;if(UserC>40){UserC-=40;balanceC.deposit(200);}
+	     MovesC+=randomNum;if(MovesC>40)MovesC-=40;
+	     SW.switchUser(UserC);break;
+	     case 4:UserX+=randomNum;if(UserX>40){UserX-=40;balanceX.deposit(200);}
+	     MovesX+=randomNum;if(MovesX>40)MovesX-=40;
+	     SW.switchUser(UserX);break;
+	     case 5:UserY+=randomNum;if(UserY>40){UserY-=40;balanceY.deposit(200);}
+	     MovesY+=randomNum;if(MovesY>40)MovesY-=40;
+	     SW.switchUser(UserY);break;
+	     case 6:UserZ+=randomNum;if(UserZ>40){UserZ-=40;balanceZ.deposit(200);}
+	     MovesZ+=randomNum;if(MovesZ>40)MovesZ-=40;
+	     SW.switchUser(UserZ);break;
 	     }
 	}
 	
@@ -107,42 +117,63 @@ public class UI extends Property
 		}
 		UserChooser=1;
 	}
-	
-//	void firstRoll()
-//	{
-//		Random rand = new Random();
-//		int a = 0,b = 0,c = 0,x = 0,y = 0,z = 0;
-//		int highN = 0;
-//		for(UserChooser = 1;UserChooser<=NumOfUsers;UserChooser++){
-//	    	switch(UserChooser)
-//	    	{
-//	    	case 1: a = randomNum=rand.nextInt(6)+1;a = highN;UserChooser=1;
-//			break;
-//	    	case 2: b = randomNum=rand.nextInt(6)+1;if (b > highN)UserChooser=2;
-//	    	break;
-//	    	case 3: c = randomNum=rand.nextInt(6)+1;if (c > highN)UserChooser=3;
-//	    	break;
-//	    	case 4: x = randomNum=rand.nextInt(6)+1;if (x > highN)UserChooser=4;
-//	    	break;
-//	    	case 5: y = randomNum=rand.nextInt(6)+1;if (y > highN)UserChooser=5;
-//	    	break;
-//	    	case 6: z = randomNum=rand.nextInt(6)+1;if (z > highN)UserChooser=6;
-//	    	break;
-//	    	}
-//		}
-//		
-//		System.out.println(UserChooser);
-//		System.out.println(a);
-//		System.out.println(b);
-//		System.out.println(c);
-//		System.out.println(x);
-//		System.out.println(y);
-//		System.out.println(z);
-//		System.out.println(highN);
-//		
-//		
-//			
-//	}
+	void firstRoll()
+	{
+		Random rand = new Random();
+		int a = 0,b = 0,c = 0,x = 0,y = 0,z = 0;
+		int max = 0;
+		for(UserChooser = 1;UserChooser<=NumOfUsers;UserChooser++){
+	    	switch(UserChooser)
+	    	{
+	    	case 1: a = randomNum=rand.nextInt(11)+2;max = a;
+			break;
+	    	case 2: b = randomNum=rand.nextInt(11)+2;if (b > max)max = b;
+	    	break;
+	    	case 3: c = randomNum=rand.nextInt(11)+2;if (c > max)max = c;
+	    	break;
+	    	case 4: x = randomNum=rand.nextInt(11)+2;if (x > max)max = x;
+	    	break;
+	    	case 5: y = randomNum=rand.nextInt(11)+2;if (y > max)max = y;
+	    	break;
+	    	case 6: z = randomNum=rand.nextInt(11)+2;if (z > max)max = z;
+	    	break;
+	    	}
+		}
+		if (max==a && max==b || max==a && max==c || max==a && max==x || max==a && max==y || max==a && max==z || max==b && max==c || max==b && max==x || max==b && max==y || max==b && max==z || max==c && max==x || max==c && max==y || max==c && max==z || max==x && max==y || max==x && max==z || max==y && max==z){
+			firstRoll();
+		}
+		
+		else if (max == a)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameA + " Got the highest number and rolls first");
+			UserChooser = 1;
+		}
+		else if (max == b)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameB + " Got the highest number and rolls first");
+			UserChooser = 2;
+		}
+		else if (max == c)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameC + " Got the highest number and rolls first");
+			UserChooser = 3;
+		}
+		else if (max == x)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameX + " Got the highest number and rolls first");
+			UserChooser = 4;
+		}
+		else if (max == y)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameY + " Got the highest number and rolls first");
+			UserChooser = 5;
+		}
+		else if (max == z)
+		{
+    JOptionPane.showMessageDialog(null,"User "+ UserNameZ + " Got the highest number and rolls first");
+			UserChooser = 6;
+		}
+	}
 	
 	public void initialize() {
 		frame = new JFrame();
@@ -153,8 +184,9 @@ public class UI extends Property
 		frame.getContentPane().setLayout(null);
 		
 		addUser();
+		firstRoll();
 		fillProperties();
-		//firstRoll();
+		
 		
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
@@ -262,6 +294,7 @@ public class UI extends Property
 		label2.setIcon(monopoly2);//add icon to JLabel
 		label2.setHorizontalTextPosition(SwingConstants.CENTER);
 		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
 		
 		
 		btnEndTurn.addActionListener( new ActionListener()
@@ -441,13 +474,12 @@ public class UI extends Property
 					switch(UserChooser)
 					{
 					case 1:// MovesA+=randomNum;if(MovesA>40)MovesA-=40;
-					System.out.println(MovesA);
 					buyProperty(MovesA);break;
-					case 2: MovesB+=randomNum;if(MovesA>40)MovesB-=40;buyProperty(MovesB);break;
-					case 3: MovesC+=randomNum;if(MovesA>40)MovesC-=40;buyProperty(MovesC);break;
-					case 4: MovesX+=randomNum;if(MovesA>40)MovesX-=40;buyProperty(MovesX);break;
-					case 5: MovesY+=randomNum;if(MovesA>40)MovesY-=40;buyProperty(MovesY);break;
-					case 6: MovesZ+=randomNum;if(MovesA>40)MovesZ-=40;buyProperty(MovesZ);break;
+					case 2: buyProperty(MovesB);break;
+					case 3: buyProperty(MovesC);break;
+					case 4: buyProperty(MovesX);break;
+					case 5: buyProperty(MovesY);break;
+					case 6: buyProperty(MovesZ);break;
 					}
 					
 					break;
