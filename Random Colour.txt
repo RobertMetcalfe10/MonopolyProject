@@ -1,0 +1,87 @@
+Color randColour()
+	{
+		Color SWColour = null;
+		switch(UserChooser)
+		{
+		case 1:SWColour=Color.BLUE;break;
+		case 2:SWColour=Color.RED;break;
+		case 3:SWColour=Color.YELLOW;break;
+		case 4:SWColour=Color.CYAN;break;
+		case 5:SWColour=Color.GREEN;break;
+		case 6:SWColour=Color.ORANGE;break;
+		}
+		return SWColour;
+		
+	}
+	
+	public void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setBounds(100, 100, 1000, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.getContentPane().setLayout(null);
+		
+		addUser();
+		
+		
+		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
+		infoFrame.setBounds(660, 0, 300, 500);
+		frame.getContentPane().add(infoFrame);
+		infoFrame.setFrameIcon(null); 
+		
+		txtpnInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtpnInfo.setText(command);
+		txtpnInfo.setEditable(false);
+		txtpnInfo.setBackground(Color.BLACK);
+	
+		infoFrame.getContentPane().add(txtpnInfo, BorderLayout.CENTER);
+		infoFrame.setVisible(true);
+		
+		JScrollPane scrollBar = new JScrollPane(txtpnInfo);
+		infoFrame.getContentPane().add(scrollBar, BorderLayout.CENTER);
+		
+		
+		JInternalFrame internalFrame = new JInternalFrame("User Panel");
+		internalFrame.setBounds(660, 500, 300, 177);
+		frame.getContentPane().add(internalFrame);
+		internalFrame.setVisible(true);
+		internalFrame.setFrameIcon(null); 
+				
+
+		JTextField EnterText = new JTextField();
+		EnterText.setToolTipText("Enter Command Here");
+		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
+		EnterText.setBackground(Color.BLACK);
+		EnterText.setForeground(Color.WHITE);
+		
+		
+
+		lblA.setForeground(Color.RED);
+		lblA.setBounds(614, 661, 10, 10);
+		frame.getContentPane().add(lblA);
+		lblA.setVisible(true);
+		
+		lblB.setForeground(Color.RED);
+		lblB.setBounds(625, 661, 10, 10);
+		frame.getContentPane().add(lblB);
+		lblB.setVisible(true);
+		
+		lblC.setForeground(Color.RED);
+		lblC.setBounds(636, 661, 10, 10);
+		frame.getContentPane().add(lblC);
+		if(NumOfUsers>2){
+			lblC.setVisible(true);
+		}else{
+			lblC.setVisible(false);
+		}
+		
+		lblX.setForeground(Color.RED);
+		lblX.setBounds(614, 612, 10, 10);
+		frame.getContentPane().add(lblX);
+		
+		if(NumOfUsers>3){
+			lblX.setVisible(true);
+		}else{
+			lblX.setVisible(false);
+		}

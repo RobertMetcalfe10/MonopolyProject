@@ -1,0 +1,35 @@
+	//random num generator
+		btnRollDice.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	Random rand = new Random();
+				 randomNum=rand.nextInt(6)+1;
+				int randomNum2=rand.nextInt(6)+1;
+				
+				if(randomNum==randomNum2){
+					command=" looks like you rolled a double please re-roll again ";
+			        txtpnInfo.setForeground(randColour());
+			        EnterText.setForeground(randColour());
+			        command="User "+UserChooser+command;
+			        txtpnInfo.setText(command);
+			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+			        
+			        randNumAddition();
+					}
+				
+				else{
+		    	randomNum+=randomNum2;
+		    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
+		        txtpnInfo.setForeground(randColour());
+		        EnterText.setForeground(randColour());
+		        command="User "+UserChooser+command;
+		        txtpnInfo.setText(command);
+		        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		        
+		        randNumAddition();
+				}
+		    }
+		});
