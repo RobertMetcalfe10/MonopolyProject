@@ -486,6 +486,53 @@ public class UI extends Property
 					
 				case "quit":
 					
+					@SuppressWarnings("unused") 
+					int maxbal;
+					
+					if(balanceA.getBalance()>balanceB.getBalance() && balanceA.getBalance()>balanceC.getBalance() && balanceA.getBalance()>balanceX.getBalance() && balanceA.getBalance()>balanceY.getBalance() && balanceA.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceA.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameA + " has won the game");
+					}
+					
+					else if(balanceB.getBalance()>balanceA.getBalance() && balanceB.getBalance()>balanceC.getBalance() && balanceB.getBalance()>balanceX.getBalance() && balanceB.getBalance()>balanceY.getBalance() && balanceB.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceB.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameB + " has won the game");
+					}
+					
+					else if(balanceC.getBalance()>balanceA.getBalance() && balanceC.getBalance()>balanceB.getBalance() && balanceC.getBalance()>balanceX.getBalance() && balanceC.getBalance()>balanceY.getBalance() && balanceC.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceC.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameC + " has won the game");
+					}
+					
+					else if(balanceX.getBalance()>balanceA.getBalance() && balanceX.getBalance()>balanceB.getBalance() && balanceX.getBalance()>balanceC.getBalance() && balanceX.getBalance()>balanceY.getBalance() && balanceX.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceX.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameX + " has won the game");
+					}
+					
+					else if(balanceY.getBalance()>balanceA.getBalance() && balanceY.getBalance()>balanceB.getBalance() && balanceY.getBalance()>balanceC.getBalance() && balanceY.getBalance()>balanceX.getBalance() && balanceY.getBalance()>balanceZ.getBalance() )
+					{
+						maxbal = balanceY.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameY + " has won the game");
+					}
+					
+					else if(balanceZ.getBalance()>balanceA.getBalance() && balanceZ.getBalance()>balanceB.getBalance() && balanceZ.getBalance()>balanceC.getBalance() && balanceZ.getBalance()>balanceX.getBalance() && balanceZ.getBalance()>balanceY.getBalance() )
+					{
+						maxbal = balanceZ.getBalance();
+						JOptionPane.showMessageDialog(null,"User "+ UserNameZ + " has won the game");
+					}
+					
+					else
+					{
+						JOptionPane.showMessageDialog(null,"One or more users have the same balance. No winner has been declared");
+					}
+					
+					
+					
+					
 					frame.setVisible(false);
 					frame.dispose();
 					break;
