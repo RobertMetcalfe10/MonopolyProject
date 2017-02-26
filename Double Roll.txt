@@ -1,4 +1,4 @@
-	//random num generator
+//random num generator
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -8,10 +8,11 @@
 				int randomNum2=rand.nextInt(6)+1;
 				
 				if(randomNum==randomNum2){
-					command=" looks like you rolled a double please re-roll again ";
+					randomNum+=randomNum2;
+					command=" looks like you rolled a double " + randomNum2 +" go ahead and roll again!";
 			        txtpnInfo.setForeground(randColour());
 			        EnterText.setForeground(randColour());
-			        command="User "+UserChooser+command;
+			        command="User "+ UserChooser+ command;
 			        txtpnInfo.setText(command);
 			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
