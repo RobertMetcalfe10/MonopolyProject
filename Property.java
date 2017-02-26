@@ -13,8 +13,8 @@ public class Property extends BankAccount{
 	protected int propertyRent4;
 	protected int propertyRent5;
 	protected int propertyRent6;
-	protected int propertyUser=0;
-	protected boolean propertyOwned=true;
+	protected int propertyUser=1;
+	protected boolean propertyOwned=false;
 	protected int housePrice;
 	protected int mortgageValue;
 	protected String propertyColour;
@@ -74,7 +74,7 @@ public class Property extends BankAccount{
 	}
 	
 	void buyProperty(int rand){
-		if(properties.get(rand).propertyOwned=false)
+		if(properties.get(rand).propertyUser==0)
 		{
 		propertyNo++;
 		switch(UserChooser)
@@ -110,14 +110,16 @@ public class Property extends BankAccount{
 		
 	}
 	
-	void payRent(){
-		if(properties.get(MovesA).propertyOwned=true)
+	void payRent(int rand){
+		if(properties.get(rand).propertyUser==1||properties.get(rand).propertyUser==2||properties.get(rand).propertyUser==3||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==5||properties.get(rand).propertyUser==6)
 		{
-			int positionToRent=0;
+			int positionToRent=rand;
+			System.out.println(properties.get(UserA).propertyPrice);
+			System.out.println(properties.get(UserB).propertyPrice);
 			switch(UserChooser)
 			{
-			case 1:balanceA.withdraw(properties.get(MovesA).propertyPrice);positionToRent=MovesA;break;
-			case 2:balanceB.withdraw(properties.get(MovesB).propertyPrice);positionToRent=MovesB;break;
+			case 1:balanceA.withdraw(properties.get(rand).propertyPrice);break;
+			case 2:balanceB.withdraw(properties.get(rand).propertyPrice);break;
 			case 3:balanceC.withdraw(properties.get(MovesC).propertyPrice);positionToRent=MovesC;break;
 			case 4:balanceX.withdraw(properties.get(MovesX).propertyPrice);positionToRent=MovesX;break;
 			case 5:balanceY.withdraw(properties.get(MovesY).propertyPrice);positionToRent=MovesY;break;
@@ -133,6 +135,7 @@ public class Property extends BankAccount{
 			case 5:balanceY.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameY+"\n\n"+command;break;
 			case 6:balanceZ.deposit(properties.get(positionToRent).propertyPrice);command=properties.get(positionToRent).propertyPrice+" payed to "+UserNameZ+"\n\n"+command;break;
 			}
+			txtpnInfo.setText(command);
 		}
 		
 		
