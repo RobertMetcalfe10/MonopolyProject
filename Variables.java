@@ -51,7 +51,7 @@ public class Variables {
 	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
 	protected static int propertyNo=0;
 	protected static BankAccount balanceA=new BankAccount(1200);
-	protected static BankAccount balanceB=new BankAccount(1500);
+	protected static BankAccount balanceB=new BankAccount(1300);
 	protected static BankAccount balanceC=new BankAccount(1500);
 	protected static BankAccount balanceX=new BankAccount(1500);
 	protected static BankAccount balanceY=new BankAccount(1500);

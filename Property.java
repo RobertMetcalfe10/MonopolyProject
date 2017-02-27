@@ -14,7 +14,6 @@ public class Property extends BankAccount{
 	protected int propertyRent5;
 	protected int propertyRent6;
 	protected int propertyUser=0;
-	protected boolean propertyOwned=false;
 	protected int housePrice;
 	protected int mortgageValue;
 	protected String propertyColour;
@@ -43,19 +42,13 @@ public class Property extends BankAccount{
 	
 	
 	void propertyDisplayAll (ArrayList<Property> propertiesUser){
-		int r=propertiesUser.size();
-		System.out.println(r);
+		
 		for(int i = 0; i < propertiesUser.size(); i++)
 		{
 			propertyDets+="propertyID "+propertiesUser.get(i).propertyID+"\n";
 			propertyDets+="propertyName "+propertiesUser.get(i).propertyName+"\n";
 			propertyDets+="propertyPrice "+propertiesUser.get(i).propertyPrice+"\n\n";
 			PropertyPane.setText(propertyDets);
-		}
-		while(r!=0)
-		{
-			System.out.println(propertiesUser.toString());
-			r--;
 		}
 			
 		
@@ -81,25 +74,20 @@ public class Property extends BankAccount{
 		{
 		case 1:balanceA.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=1;propertiesUserA.add(properties.get(rand));break;
 
-		case 2: balanceB.withdraw(propertyPrice); properties.get(rand).propertyOwned=true;command=("You have just bought "+properties.get(rand).propertyName+"\n\n")+command;
-		properties.get(rand).propertyUser=2;
-		txtpnInfo.setText(command);
-		propertiesUserB.add(properties.get(rand));
-		break;
-		case 3: balanceC.withdraw(propertyPrice);
-		break;
-		case 4: balanceX.withdraw(propertyPrice);
-		break;
-		case 5: balanceY.withdraw(propertyPrice);
-		break;
-		case 6: balanceZ.withdraw(propertyPrice);
-		break;
+		case 2:balanceB.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=2;propertiesUserB.add(properties.get(rand));break;
+		
+
+		case 3:balanceC.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=3;propertiesUserC.add(properties.get(rand));break;
+
+		case 4:balanceX.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=4;propertiesUserX.add(properties.get(rand));break;
+	
+		case 5: balanceY.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=5;propertiesUserY.add(properties.get(rand));break;
+		
+		case 6: balanceZ.withdraw(properties.get(rand).propertyPrice);properties.get(rand).propertyUser=6;propertiesUserZ.add(properties.get(rand));break;
 		}
 		
 		command=("You have just bought "+properties.get(rand).propertyName+"\n\n")+command;
 		txtpnInfo.setText(command);
-		System.out.println(balanceA.getBalance());
-		
 		}
 		else
 		{
@@ -111,18 +99,16 @@ public class Property extends BankAccount{
 	
 	void payRent(int rand){
 		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser)
-		{//properties.get(rand).propertyUser==1||properties.get(rand).propertyUser==2||properties.get(rand).propertyUser==3||properties.get(rand).propertyUser==4||properties.get(rand).propertyUser==5||properties.get(rand).propertyUser==6
+		{
 			int positionToRent=rand;
-			System.out.println(properties.get(UserA).propertyPrice);
-			System.out.println(properties.get(UserB).propertyPrice);
 			switch(UserChooser)
 			{
 			case 1:balanceA.withdraw(properties.get(rand).propertyPrice);break;
 			case 2:balanceB.withdraw(properties.get(rand).propertyPrice);break;
-			case 3:balanceC.withdraw(properties.get(MovesC).propertyPrice);positionToRent=MovesC;break;
-			case 4:balanceX.withdraw(properties.get(MovesX).propertyPrice);positionToRent=MovesX;break;
-			case 5:balanceY.withdraw(properties.get(MovesY).propertyPrice);positionToRent=MovesY;break;
-			case 6:balanceZ.withdraw(properties.get(MovesZ).propertyPrice);positionToRent=MovesZ;break;
+			case 3:balanceC.withdraw(properties.get(rand).propertyPrice);break;
+			case 4:balanceX.withdraw(properties.get(rand).propertyPrice);break;
+			case 5:balanceY.withdraw(properties.get(rand).propertyPrice);break;
+			case 6:balanceZ.withdraw(properties.get(rand).propertyPrice);break;
 			}
 			
 			switch(properties.get(rand).propertyUser)
@@ -138,12 +124,13 @@ public class Property extends BankAccount{
 		}
 		else
 		{
-			command="You dont't owe rent\n"+command;
+			command="You dont't owe rent\n\n"+command;
 			txtpnInfo.setText(command);
 		}
 		
 		
 	}
+
 	
 	void buildHouse(){
 		propertyHouseNo++;

@@ -9,7 +9,7 @@ public class BankAccount extends Variables{
 	   @param amount the amount to deposit
 	*/
 	public void deposit(int amount) {  
-	   balance = balance + amount;
+	   balance+= amount;
 	}
 
 	/**
@@ -17,7 +17,7 @@ public class BankAccount extends Variables{
 	   @param amount the amount to withdraw
 	*/ 
 	public void withdraw(int amount) {  
-	   balance = balance - amount;
+	   balance-= amount;
 	}
 
 	/**
