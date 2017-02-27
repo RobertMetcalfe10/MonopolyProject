@@ -1,3 +1,5 @@
+// A class containing all of the variables used in our monopoly game
+
 package Monopoly;
 
 import java.util.ArrayList;
@@ -50,8 +52,10 @@ public class Variables {
 	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
 	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
 	protected static int propertyNo=0;
-	protected static BankAccount balanceA=new BankAccount(1200);
-	protected static BankAccount balanceB=new BankAccount(1300);
+	
+	// Setting the balance of all users
+	protected static BankAccount balanceA=new BankAccount(1500);
+	protected static BankAccount balanceB=new BankAccount(1500);
 	protected static BankAccount balanceC=new BankAccount(1500);
 	protected static BankAccount balanceX=new BankAccount(1500);
 	protected static BankAccount balanceY=new BankAccount(1500);
@@ -60,7 +64,7 @@ public class Variables {
 	protected static int xCoOrdinate=614;
 	protected static int yCoOrdinate=661;
 	
-
+	// Array filled with all of the property information
 	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
 	protected static void fillProperties()
 	{
@@ -114,4 +118,3 @@ public class Variables {
 	protected static ArrayList<Property> propertiesUserZ = new ArrayList<Property>();
 
 }
-

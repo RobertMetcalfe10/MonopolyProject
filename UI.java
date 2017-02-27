@@ -1,3 +1,4 @@
+// The class for the UI of our monopoly board
 package Monopoly;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,7 +27,7 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Property
 {
-	
+	// Sets the writing to set colours in the information panel 
 	Color randColour()
 	{
 		Color SWColour = null;
@@ -45,7 +46,7 @@ public class UI extends Property
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
-		
+		// Switch statement in which 200 is deposited when user passes go, and which allows movement of tokens
 		 switch(UserChooser)
 	     {
 	     case 1:UserA+=randomNum;if(UserA>40){UserA-=40;balanceA.deposit(200);}
@@ -69,7 +70,7 @@ public class UI extends Property
 	     }
 		 randomNum=0;
 	}
-	
+	// Function which asks for the number of users and their names
 	void addUser()
 	{
 	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
@@ -116,7 +117,7 @@ public class UI extends Property
 		}
 		UserChooser=1;
 	}
-	
+	// Function which determines who rolls first 
 	void firstRoll()
 	{
 		Random rand = new Random();
@@ -174,7 +175,7 @@ public class UI extends Property
 			UserChooser = 6;
 		}
 	}
-	
+// Initializing other functions, creating panels, buttons, inputting images
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -331,7 +332,7 @@ public class UI extends Property
 		    
 		});
 		
-		//random num generator
+		// Roll dice button
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -369,7 +370,7 @@ public class UI extends Property
 		    }
 		});
 		
-		
+		// Where commands are recognised 
 		EnterText.addActionListener( new ActionListener()
 		{
 			
@@ -377,6 +378,7 @@ public class UI extends Property
 		    {
 				switch(EnterText.getText())
 				{
+				// When the player writes the roll command, the dice rolls
 				case "roll":
 					Random rand = new Random();
 					 randomNum=rand.nextInt(6)+1;
@@ -409,6 +411,7 @@ public class UI extends Property
 					}
 					break;
 					
+					// When the player writes the help command, a list of commands pops up
 				case "help":
 					
 					String HelpInfo="'roll' = Die are rolled \n\n"
@@ -438,6 +441,7 @@ public class UI extends Property
 	    		HelpFrame.getContentPane().add(HelpPane);
 	    		break;
 	    		
+	    		// If player enters property command their properties are displayed
 				case "property":
 					
 					PropertyFrame.setBounds(1000, 0, 350, 500);
@@ -471,6 +475,7 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
+		    		// Ends turn when player writes done
 				case "done":
 					
 		    		UserChooser++;
@@ -499,6 +504,7 @@ public class UI extends Property
 			        txtpnInfo.setText(command);
 					break;
 					
+					// Allows the user to buy unowned property
 				case "buy":
 					
 					switch(UserChooser)
@@ -514,7 +520,7 @@ public class UI extends Property
 					break;
 					
 				
-					
+					// Checks the users balance
 				case "balance": 
 					
 					int display = 0;
@@ -537,6 +543,7 @@ public class UI extends Property
 			        txtpnInfo.setText(command);
 			        break;
 			        
+			        // Allows the player to pay rent
 				case "pay rent":
 					switch(UserChooser)
 					{
@@ -544,10 +551,19 @@ public class UI extends Property
 						break;
 					case 2:payRent(MovesB);
 						break;
+					case 3:payRent(MovesC);
+						break;
+					case 4:payRent(MovesX);
+						break;
+					case 5:payRent(MovesY);
+						break;
+					case 6:payRent(MovesZ);
+						break;
 					}
 					
 					break;
 					
+					// Allows the player to quit the game
 				case "quit":
 					switch(NumOfUsers)
 			    	{
@@ -684,7 +700,7 @@ public class UI extends Property
 						break;
 					
 					
-					
+					// If the command is invalid a message pops up
 				default:
 					command+="Error, Invalid command\n";
 					txtpnInfo.setText(command);

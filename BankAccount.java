@@ -1,3 +1,5 @@
+// The class for the bank account information //
+
 package Monopoly;
 
 public class BankAccount extends Variables{
@@ -43,6 +45,7 @@ public class BankAccount extends Variables{
 	   balance = initialBalance;
 	}
 	
+	// A function which eliminates a user if their balance is 0 or less 
 	public void LoseGame(){
 		switch(UserChooser)
 		{

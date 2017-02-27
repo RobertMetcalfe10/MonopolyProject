@@ -1,40 +1,11 @@
 package Monopoly;
-
-import javax.swing.JLabel;
-
+// The class for our switch statements which allows the movement of our tokens across the board
 public class Switch extends UI
 {
 	
-	
-//	void switchUser (JLabel label, int places)
-//	{
-//
-//		
-//	 	for(int i=0; i<places;i++)
-//	 	{
-//	 		if(xCoOrdinate > 50 && yCoOrdinate  == 661){ //bottom row works
-//	 			xCoOrdinate = xCoOrdinate - 55;	
-//		 		label.setBounds(xCoOrdinate,yCoOrdinate,15,15);
-//	 		}
-//	 		else if(yCoOrdinate > 60 && xCoOrdinate < 614){
-//	 			yCoOrdinate = yCoOrdinate - 55;
-//		 		label.setBounds( xCoOrdinate,yCoOrdinate,15,15);
-//	 		}
-//	 		else if (xCoOrdinate < 614 && yCoOrdinate <= 156 ){//moves along top row
-//	 			xCoOrdinate = xCoOrdinate +55;
-//		 		label.setBounds(xCoOrdinate,yCoOrdinate,15,15);
-//	 		}
-//	 		else if(xCoOrdinate == 614 && yCoOrdinate < 661){
-//	 			yCoOrdinate = yCoOrdinate + 55;	
-//		 		label.setBounds(xCoOrdinate,yCoOrdinate,15,15);
-//
-//	 		}
-//	 	}
-	
 	void switchUser (int User)
 	{
-		
-		 		
+	
 	switch(User)
 	{
     case 1:	
