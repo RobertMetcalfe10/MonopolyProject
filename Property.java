@@ -1,12 +1,8 @@
-// The class for all of the property information and functions
-
-package Monopoly;
 
 import java.util.ArrayList;
 
 public class Property extends BankAccount{
 	
-	// Declaring all property variables 
 	protected int propertyID;
 	protected String propertyName;
 	protected int propertyPrice;
@@ -26,7 +22,6 @@ public class Property extends BankAccount{
 	{
 		
 	}
-	// Property constructor
 	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6)
 	{
 		propertyID=ID;
@@ -44,7 +39,7 @@ public class Property extends BankAccount{
 	
 	
 	
-	// Function which displays all the properties a user owns
+	
 	void propertyDisplayAll (ArrayList<Property> propertiesUser){
 		
 		for(int i = 0; i < propertiesUser.size(); i++)
@@ -57,8 +52,8 @@ public class Property extends BankAccount{
 			
 		
 	}
-	// Function which displays the information on the current property the user stands on
-	void propertyDisplayCurrent(int rand)
+	
+	String propertyDisplayCurrent(int rand)
 	{
 			
 		propertyDets+="propertyID "+properties.get(rand).propertyID+"\n";
@@ -67,9 +62,9 @@ public class Property extends BankAccount{
 		propertyDets+="propertyUser"+properties.get(rand).propertyUser+"\n";
 		command="\n\n"+propertyDets+command;
 		propertyDets="";
-		
+		return propertyDets;
 	}
-	// A function which allows the user to buy unowned property
+	
 	void buyProperty(int rand){
 		if(properties.get(rand).propertyUser==0)
 		{
@@ -100,7 +95,7 @@ public class Property extends BankAccount{
 		}
 		
 	}
-	// Function which allows a user to pay rent if they land on an owned property
+	
 	void payRent(int rand){
 		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser)
 		{
@@ -135,6 +130,7 @@ public class Property extends BankAccount{
 		
 	}
 
+	
 	void buildHouse(){
 		propertyHouseNo++;
 //		BankAccount WD=new BankAccount();

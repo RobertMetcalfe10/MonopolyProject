@@ -1,11 +1,13 @@
-package Monopoly;
-// The class for our switch statements which allows the movement of our tokens across the board
+
+import javax.swing.JLabel;
+
 public class Switch extends UI
 {
 	
 	void switchUser (int User)
 	{
-	
+		
+		 		
 	switch(User)
 	{
     case 1:	

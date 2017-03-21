@@ -1,5 +1,3 @@
-// The class for the UI of our monopoly board
-package Monopoly;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -27,7 +25,7 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Property
 {
-	// Sets the writing to set colours in the information panel 
+	
 	Color randColour()
 	{
 		Color SWColour = null;
@@ -46,7 +44,7 @@ public class UI extends Property
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
-		// Switch statement in which 200 is deposited when user passes go, and which allows movement of tokens
+		
 		 switch(UserChooser)
 	     {
 	     case 1:UserA+=randomNum;if(UserA>40){UserA-=40;balanceA.deposit(200);}
@@ -70,7 +68,7 @@ public class UI extends Property
 	     }
 		 randomNum=0;
 	}
-	// Function which asks for the number of users and their names
+	
 	void addUser()
 	{
 	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
@@ -117,7 +115,7 @@ public class UI extends Property
 		}
 		UserChooser=1;
 	}
-	// Function which determines who rolls first 
+	
 	void firstRoll()
 	{
 		Random rand = new Random();
@@ -175,7 +173,7 @@ public class UI extends Property
 			UserChooser = 6;
 		}
 	}
-// Initializing other functions, creating panels, buttons, inputting images
+	
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -187,8 +185,8 @@ public class UI extends Property
 		addUser();
 		firstRoll();
 		fillProperties();
-		
-		
+		fillCards();
+		fillLoseUser();
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
 		infoFrame.setBounds(660, 0, 300, 500);
@@ -277,16 +275,16 @@ public class UI extends Property
 		
 		JButton btnRollDice = new JButton("Roll Dice");
 		internalFrame.getContentPane().add(btnRollDice, BorderLayout.NORTH);
+
 		
-		
-		Icon monopoly=new ImageIcon(getClass().getResource("monopoly.png"));
+		Icon monopoly=new ImageIcon(getClass().getResource("Monopoly.PNG"));
 		JLabel label = new JLabel();
 		label.setBounds(0, 0, 660, 731);
 		frame.getContentPane().add(label);
 		label.setForeground(Color.BLACK);
 		label.setIcon(monopoly);//add icon to JLabel
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
-		label.setVerticalTextPosition(SwingConstants.BOTTOM);
+		label.setVerticalTextPosition(SwingConstants.BOTTOM);		
 		
 		Icon monopoly2=new ImageIcon(getClass().getResource("background.jpg"));
 		JLabel label2 = new JLabel();
@@ -297,12 +295,13 @@ public class UI extends Property
 		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
 		
+		
 		btnEndTurn.addActionListener( new ActionListener()
 		{
 			
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	
+		    	CardUsed=false;
 		    	UserChooser++;
 		    	LoseGame();
 		    	if(UserChooser>NumOfUsers)
@@ -327,12 +326,12 @@ public class UI extends Property
 		    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 		        txtpnInfo.setText(command);
 		    	
-		    	
+		        CardPane.setText("");
 		    }
 		    
 		});
 		
-		// Roll dice button
+		//random num generator
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -353,6 +352,8 @@ public class UI extends Property
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			        
 			        randNumAddition();
+			        
+//			        txtpnInfo.setText(propertyDisplayCurrent(randomNum));
 					}
 				
 				else{
@@ -366,11 +367,13 @@ public class UI extends Property
 		        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		        
 		        randNumAddition();
+		        
+//		        txtpnInfo.setText(propertyDisplayCurrent(randomNum));
 				}
 		    }
 		});
 		
-		// Where commands are recognised 
+		
 		EnterText.addActionListener( new ActionListener()
 		{
 			
@@ -378,12 +381,10 @@ public class UI extends Property
 		    {
 				switch(EnterText.getText())
 				{
-				// When the player writes the roll command, the dice rolls
 				case "roll":
 					Random rand = new Random();
 					 randomNum=rand.nextInt(6)+1;
 					int randomNum2=rand.nextInt(6)+1;
-					
 					if(randomNum==randomNum2){
 						randomNum+=randomNum2;
 						command=" looks like you rolled a double, go ahead and roll again!\n\n"+command;
@@ -393,8 +394,9 @@ public class UI extends Property
 				        txtpnInfo.setText(command);
 				        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 				        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-				        
+				        //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
 				        randNumAddition();
+				        
 						}
 					
 					else{
@@ -406,12 +408,12 @@ public class UI extends Property
 			        txtpnInfo.setText(command);
 			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-			        
+			       //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
 			        randNumAddition();
+			        
 					}
 					break;
 					
-					// When the player writes the help command, a list of commands pops up
 				case "help":
 					
 					String HelpInfo="'roll' = Die are rolled \n\n"
@@ -441,7 +443,6 @@ public class UI extends Property
 	    		HelpFrame.getContentPane().add(HelpPane);
 	    		break;
 	    		
-	    		// If player enters property command their properties are displayed
 				case "property":
 					
 					PropertyFrame.setBounds(1000, 0, 350, 500);
@@ -458,7 +459,7 @@ public class UI extends Property
 		    		PropertyFrame.getContentPane().add(scrollBar2, BorderLayout.CENTER);
 		    		
 		    		PropertyPane.setFont(new Font("Verdana", Font.BOLD, 14));
-		    		//HelpPane.setText(propertyDisplayCurrent());
+		    		
 		    		propertyDets="";
 		    		PropertyPane.setEditable(false);
 		    		PropertyFrame.getContentPane().add(PropertyPane);
@@ -475,15 +476,17 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-		    		// Ends turn when player writes done
 				case "done":
 					
-		    		UserChooser++;
-		    		LoseGame();
+					CardUsed=false;
+					LoseGame();
+		    		//UserChooser++;
+		    		
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
 			    	}
+			    	
 			    	try {
 						HelpFrame.setClosed(true);
 						PropertyFrame.setClosed(true);
@@ -502,9 +505,11 @@ public class UI extends Property
 			    	txtpnInfo.setForeground(Color.RED);
 			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 			        txtpnInfo.setText(command);
+			        
+			        CardPane.setText("");
+			        
 					break;
 					
-					// Allows the user to buy unowned property
 				case "buy":
 					
 					switch(UserChooser)
@@ -520,7 +525,7 @@ public class UI extends Property
 					break;
 					
 				
-					// Checks the users balance
+					
 				case "balance": 
 					
 					int display = 0;
@@ -543,7 +548,6 @@ public class UI extends Property
 			        txtpnInfo.setText(command);
 			        break;
 			        
-			        // Allows the player to pay rent
 				case "pay rent":
 					switch(UserChooser)
 					{
@@ -563,7 +567,54 @@ public class UI extends Property
 					
 					break;
 					
-					// Allows the player to quit the game
+				case "draw":
+					
+						CardFrame.setBounds(200, 130, 300, 150);
+			    		frame.getContentPane().add(CardFrame);
+			    		CardFrame.getContentPane().add(CardPane);
+			    		CardPane.setEditable(false);
+						CardFrame.setVisible(false);
+			    		boolean check=false;
+			    		int Chance_Chest=0;
+			    		
+			    		switch(UserChooser)
+						{
+						case 1:check=AllowCardPickUp(MovesA);Chance_Chest=MovesA;
+							break;
+						case 2:check=AllowCardPickUp(MovesB);Chance_Chest=MovesB;
+							break;
+						case 3:check=AllowCardPickUp(MovesC);Chance_Chest=MovesC;
+							break;
+						case 4:check=AllowCardPickUp(MovesX);Chance_Chest=MovesX;
+							break;
+						case 5:check=AllowCardPickUp(MovesY);Chance_Chest=MovesY;
+							break;
+						case 6:check=AllowCardPickUp(MovesZ);Chance_Chest=MovesZ;
+							break;
+						}
+			    		
+						if(check)
+						{
+							if(!CardUsed)
+							{
+								CardUsed=true;
+								CardFrame.setVisible(true);
+								DisplayCard(Chance_Chest);
+							}
+							else
+							{
+								CardFrame.setVisible(true);
+								CardPane.setText("Card already picked up");
+							}
+						}
+						else
+						{
+							CardFrame.setVisible(true);
+				    		CardPane.setText("You haven't landed on a chance tile");
+						}
+					
+					break;
+					
 				case "quit":
 					switch(NumOfUsers)
 			    	{
@@ -699,8 +750,6 @@ public class UI extends Property
 						frame.dispose();
 						break;
 					
-					
-					// If the command is invalid a message pops up
 				default:
 					command+="Error, Invalid command\n";
 					txtpnInfo.setText(command);

@@ -1,8 +1,6 @@
-// A class containing all of the variables used in our monopoly game
-
-package Monopoly;
-
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -39,6 +37,7 @@ public class Variables {
 	protected static int colour;
 	protected static int UserChooser=1;
 	protected static int NumOfUsers=1;
+	protected static boolean CardUsed=false;
 	protected static JLabel lblA = new JLabel("A");
 	protected static JLabel lblB = new JLabel("B");
 	protected static JLabel lblC = new JLabel("C");
@@ -47,24 +46,32 @@ public class Variables {
 	protected static JLabel lblZ = new JLabel("Z");
 	protected static JTextPane txtpnInfo = new JTextPane();
 	protected static JTextPane PropertyPane=new JTextPane();
+	protected static JTextPane CardPane=new JTextPane();
 	protected static JButton btnRollDice = new JButton("Roll Dice");
+	protected static JInternalFrame CardFrame=new JInternalFrame();
 	protected static JInternalFrame HelpFrame = new JInternalFrame("List Of Commands");
 	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
-	// http://www.java2s.com/Tutorial/Java/0240__Swing/CustomizingaJInternalFrameLookandFeel.htm //
+
 	protected static int propertyNo=0;
-	
-	// Setting the balance of all users
 	protected static BankAccount balanceA=new BankAccount(1500);
 	protected static BankAccount balanceB=new BankAccount(1500);
 	protected static BankAccount balanceC=new BankAccount(1500);
 	protected static BankAccount balanceX=new BankAccount(1500);
 	protected static BankAccount balanceY=new BankAccount(1500);
 	protected static BankAccount balanceZ=new BankAccount(1500);
-
-	protected static int xCoOrdinate=614;
-	protected static int yCoOrdinate=661;
 	
-	// Array filled with all of the property information
+	protected static int array[]={1,2,3,4,5,6};
+	protected static ArrayList<Integer> LoseUser=new ArrayList<Integer>(6);
+	protected static void fillLoseUser()
+	{
+		LoseUser.add(1);
+		LoseUser.add(2);
+		LoseUser.add(3);
+		LoseUser.add(4);
+		LoseUser.add(5);
+		LoseUser.add(6);
+	}
+
 	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
 	protected static void fillProperties()
 	{
@@ -116,5 +123,37 @@ public class Variables {
 	protected static ArrayList<Property> propertiesUserX = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserY = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserZ = new ArrayList<Property>();
+	
+	
+	protected static ArrayList<Card> ChanceCard = new ArrayList<Card>();
+	protected static ArrayList<Card> CommunityCard = new ArrayList<Card>();
+	protected static void fillCards()
+	{
+		ChanceCard.add(new Card(0,"test chance"));
+		CommunityCard.add(new Card(0,"test chest"));
+	}
 
+	protected static int a=0,b=0,c=0,d=0,e=0,f=0;
+	protected static String userString2="1 2";
+	protected static String userString3="1 2 3";
+	protected static String userString4="1 2 3 4";
+	protected static String userString5="1 2 3 4 5";
+	protected static String userString6="1 2 3 4 5 6";
+	
+	public StringTokenizer NumOfUsersStringSelection()
+	{
+		switch(NumOfUsers)
+		{
+		case 2:StringTokenizer Token2 = new StringTokenizer(userString2);return Token2;
+		case 3:StringTokenizer Token3 = new StringTokenizer(userString2);return Token3;
+		case 4:StringTokenizer Token4 = new StringTokenizer(userString2);return Token4;
+		case 5:StringTokenizer Token5 = new StringTokenizer(userString2);return Token5;
+		case 6:StringTokenizer Token6 = new StringTokenizer(userString2);return Token6;
+		}
+		return null;
+	}
+	
+	
+	
 }
+
