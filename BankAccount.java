@@ -1,8 +1,8 @@
-// The class for the bank account information //
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-package Monopoly;
-
-public class BankAccount extends Variables{
+public class BankAccount extends Card{
 	protected int balance=0;
 	
 	
@@ -45,16 +45,23 @@ public class BankAccount extends Variables{
 	   balance = initialBalance;
 	}
 	
-	// A function which eliminates a user if their balance is 0 or less 
 	public void LoseGame(){
+		
 		switch(UserChooser)
 		{
-		case 1:if(balanceA.getBalance()<=0){lblA.setVisible(false);	UserChooser++;}break;
-		case 2:if(balanceB.getBalance()<=0){lblB.setVisible(false);	UserChooser++;}break;
-		case 3:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserChooser++;}break;
-		case 4:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserChooser++;}break;
-		case 5:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserChooser++;}break;
-		case 6:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserChooser++;}break;
-		} 
+		case 1:if(balanceA.getBalance()<=0){lblA.setVisible(false);UserChooser=Integer.parseInt(NumOfUsersStringSelection().nextToken());NumOfUsers--;}break;
+		case 2:if(balanceB.getBalance()<=0){lblB.setVisible(false);UserChooser=Integer.parseInt(NumOfUsersStringSelection().nextToken());NumOfUsers--;}break;
+		case 3:if(balanceC.getBalance()<=0){lblC.setVisible(false);UserChooser=Integer.parseInt(NumOfUsersStringSelection().nextToken());NumOfUsers--;}break;
+		case 4:if(balanceC.getBalance()<=0){lblC.setVisible(false);	LoseUser.remove(3);NumOfUsers--;}break;
+		case 5:if(balanceC.getBalance()<=0){lblC.setVisible(false);	LoseUser.remove(4);NumOfUsers--;}break;
+		case 6:if(balanceC.getBalance()<=0){lblC.setVisible(false);	LoseUser.remove(5);NumOfUsers--;}break;
+		}
+		UserChooser=Integer.parseInt(NumOfUsersStringSelection().nextToken());
+		System.out.println(UserChooser);
+		if(!NumOfUsersStringSelection().hasMoreTokens())
+		{
+			NumOfUsersStringSelection();
+		}
+		//UserChooser++;
 	}
 }
