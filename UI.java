@@ -213,7 +213,6 @@ public class UI extends Property
 		internalFrame.setFrameIcon(null); 
 				
 
-		JTextField EnterText = new JTextField();
 		EnterText.setToolTipText("Enter Command Here");
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
@@ -749,6 +748,15 @@ public class UI extends Property
 						frame.setVisible(false);
 						frame.dispose();
 						break;
+						
+						
+				case "build":
+					buildHouse();
+					break;
+				
+				case "demolish":
+					demolishHouse();
+					break;
 					
 				default:
 					command+="Error, Invalid command\n";

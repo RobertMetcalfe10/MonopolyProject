@@ -75,46 +75,46 @@ public class Variables {
 	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
 	protected static void fillProperties()
 	{
-		properties.add(new Property(0,"Start",0,0,0,0,0,0,0));
-		properties.add(new Property(1,"OldKentRd",60,2,10,30,90,160,250));
-		properties.add(new Property(2,"CommunityChest",0,0,0,0,0,0,0));
-		properties.add(new Property(3,"WhiteChapelRoad",60,4,20,60,180,320,450));
-		properties.add(new Property(4,"IncomeTax",0,0,0,0,0,0,0));
-		properties.add(new Property(5,"KingsCrossStation",200,25,50,100,200,0,0));
-		properties.add(new Property(6,"TheAngelIslington",100,6,30,90,270,400,550));
-		properties.add(new Property(7,"Chance",0,0,0,0,0,0,0));
-		properties.add(new Property(8,"EustonRoad",100,6,30,90,270,400,550));
-		properties.add(new Property(9,"PentovilleRoad",120,8,40,100,300,450,600));
-		properties.add(new Property(10,"Jail",0,0,0,0,0,0,0));
-		properties.add(new Property(11,"PallMall",140,10,50,150,450,625,750));
-		properties.add(new Property(12,"ElectricCompany",150,0,0,0,0,0,0));
-		properties.add(new Property(13,"WhiteHall",140,10,50,150,450,625,750));
-		properties.add(new Property(14,"NorthumberlandAvenue",160,12,60,180,500,700,900));
-		properties.add(new Property(15,"MaryleboneStation",200,25,50,100,200,0,0));
-		properties.add(new Property(16,"BowStreet",180,14,70,200,550,750,950));
-		properties.add(new Property(17,"CommunityChest",0,0,0,0,0,0,0));
-		properties.add(new Property(18,"MarlboroughStreet",180,14,70,200,550,750,950));
-		properties.add(new Property(19,"VineStreet",200,16,80,220,600,800,1000));
-		properties.add(new Property(20,"FreeParking",0,0,0,0,0,0,0));
-		properties.add(new Property(21,"Strand",220,18,90,250,700,875,1050));
-		properties.add(new Property(22,"Chance",0,0,0,0,0,0,0));
-		properties.add(new Property(23,"FleetSteet",220,18,90,250,700,875,1050));
-		properties.add(new Property(24,"TrafalgarSquare",240,18,90,250,700,875,1050));
-		properties.add(new Property(25,"FrenchurchStStation",200,25,50,100,200,0,0));
-		properties.add(new Property(26,"LeicesterSquare",260,20,100,300,750,925,1100));
-		properties.add(new Property(27,"CoventrySteet",260,20,100,300,750,925,1100));
-		properties.add(new Property(28,"WaterWorks",0,0,0,0,0,0,0));
-		properties.add(new Property(29,"Piccadilly",280,22,110,330,800,975,1150));
-		properties.add(new Property(30,"Go2Jail",0,0,0,0,0,0,0));
-		properties.add(new Property(31,"RegentStreet",300,26,130,390,900,1100,1275));
-		properties.add(new Property(32,"OxfordStreet",300,26,130,390,900,1100,1275));
-		properties.add(new Property(33,"CommunityChest",0,0,0,0,0,0,0));
-		properties.add(new Property(34,"BondStreet",320,28,150,450,1000,1200,1400));
-		properties.add(new Property(35,"LiverpoolStreetStation",200,25,50,100,200,0,0));
-		properties.add(new Property(36,"Chance",0,0,0,0,0,0,0));
-		properties.add(new Property(37,"ParkLane",350,35,175,500,1100,1300,1500));
-		properties.add(new Property(38,"Supertax",100,0,0,0,0,0,0));
-		properties.add(new Property(39,"Mayfair",400,50,200,600,1400,1700,2000));
+//		properties.add(new Property(0,"Start",0,0,0,0,0,0,0,"white"));
+		properties.add(new Property(1,"OldKentRoad",60,2,10,30,90,160,250,"brown",50));
+//		properties.add(new Property(2,"CommunityChest",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(3,"WhiteChapelRoad",60,4,20,60,180,320,450,"brown"));
+//		properties.add(new Property(4,"IncomeTax",0,0,0,0,0,0,0,"tax"));
+//		properties.add(new Property(5,"KingsCrossStation",200,25,50,100,200,0,0,"station"));
+//		properties.add(new Property(6,"TheAngelIslington",100,6,30,90,270,400,550,"blue"));
+//		properties.add(new Property(7,"Chance",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(8,"EustonRoad",100,6,30,90,270,400,550,"blue"));
+//		properties.add(new Property(9,"PentovilleRoad",120,8,40,100,300,450,600,"blue"));
+//		properties.add(new Property(10,"Jail",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(11,"PallMall",140,10,50,150,450,625,750,"purple"));
+//		properties.add(new Property(12,"ElectricCompany",150,0,0,0,0,0,0,"ecww"));
+//		properties.add(new Property(13,"WhiteHall",140,10,50,150,450,625,750,"purple"));
+//		properties.add(new Property(14,"NorthumberlandAvenue",160,12,60,180,500,700,900,"purple"));
+//		properties.add(new Property(15,"MaryleboneStation",200,25,50,100,200,0,0,"station"));
+//		properties.add(new Property(16,"BowStreet",180,14,70,200,550,750,950,"orange"));
+//		properties.add(new Property(17,"CommunityChest",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(18,"MarlboroughStreet",180,14,70,200,550,750,950,"orange"));
+//		properties.add(new Property(19,"VineStreet",200,16,80,220,600,800,1000,"orange"));
+//		properties.add(new Property(20,"FreeParking",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(21,"Strand",220,18,90,250,700,875,1050,"red"));
+//		properties.add(new Property(22,"Chance",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(23,"FleetSteet",220,18,90,250,700,875,1050,"red"));
+//		properties.add(new Property(24,"TrafalgarSquare",240,18,90,250,700,875,1050,"red"));
+//		properties.add(new Property(25,"FrenchurchStStation",200,25,50,100,200,0,0,"station"));
+//		properties.add(new Property(26,"LeicesterSquare",260,20,100,300,750,925,1100,"yellow"));
+//		properties.add(new Property(27,"CoventrySteet",260,20,100,300,750,925,1100,"yellow"));
+//		properties.add(new Property(28,"WaterWorks",0,0,0,0,0,0,0,"ecww"));
+//		properties.add(new Property(29,"Piccadilly",280,22,110,330,800,975,1150,"yellow"));
+//		properties.add(new Property(30,"Go2Jail",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(31,"RegentStreet",300,26,130,390,900,1100,1275,"green"));
+//		properties.add(new Property(32,"OxfordStreet",300,26,130,390,900,1100,1275,"green"));
+//		properties.add(new Property(33,"CommunityChest",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(34,"BondStreet",320,28,150,450,1000,1200,1400,"green"));
+//		properties.add(new Property(35,"LiverpoolStreetStation",200,25,50,100,200,0,0,"station"));
+//		properties.add(new Property(36,"Chance",0,0,0,0,0,0,0,"white"));
+//		properties.add(new Property(37,"ParkLane",350,35,175,500,1100,1300,1500,"navy"));
+//		properties.add(new Property(38,"Supertax",100,0,0,0,0,0,0,"tax"));
+//		properties.add(new Property(39,"Mayfair",400,50,200,600,1400,1700,2000,"navy"));
 	}	
 	
 	protected static ArrayList<Property> propertiesUserA = new ArrayList<Property>();
@@ -153,7 +153,8 @@ public class Variables {
 		return null;
 	}
 	
-	
+	JTextField EnterText = new JTextField();
+	protected int houses=0;
 	
 }
 
