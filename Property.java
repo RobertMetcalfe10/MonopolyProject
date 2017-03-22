@@ -20,12 +20,14 @@ public class Property extends BankAccount{
 	protected int mortgageValue;
 	protected String propertyColour;
 	protected int propertyHouseNo=1;
+	protected int mortgaged=0;
+	protected int mortgageprice=0;
 	
 	Property()
 	{
 		
 	}
-	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house)
+	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house, int mort, int mortPrice)
 	{
 		propertyID=ID;
 		propertyName=Name;
@@ -38,6 +40,8 @@ public class Property extends BankAccount{
 		propertyRent6=Rent6;
 		propertyColour=colour;
 		housePrice=house;
+		mortgaged=mort;
+		mortgageprice=mortPrice;
 	}
 	
 	
@@ -241,7 +245,7 @@ public class Property extends BankAccount{
 					}
 					else
 					{
-						System.out.println("didnt worked");
+						System.out.println("didnt worke");
 						return;
 					}
 				}
@@ -341,7 +345,36 @@ public class Property extends BankAccount{
 	}
 
 	
-	
+void mortgage(){
+		
+		propertiesUserA.add(properties.get(0));
+		
+		command="What property would you like to mortgage?"+command;
+		txtpnInfo.setText(command);
+		
+		EnterText.addActionListener( new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				String location=EnterText.getText();
+				
+				
+				switch(UserChooser)
+				{
+				case 1:if(match(propertiesUserA,location) && (propertiesUserA.get(0).mortgaged == 0) ){
+						
+						propertiesUserA.get(0).mortgaged = 1;
+						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
+				
+					}
+				else {
+					command="This property is already mortgaged"+command;
+					txtpnInfo.setText(command);
+				}
+				}
+		    }
+		});
+	}
 	
 	
 	
