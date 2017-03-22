@@ -1,3 +1,4 @@
+package Monopoly;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -186,7 +187,7 @@ public class UI extends Property
 		firstRoll();
 		fillProperties();
 		fillCards();
-		fillLoseUser();
+		fillUserLoser();
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
 		infoFrame.setBounds(660, 0, 300, 500);
@@ -475,17 +476,14 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-				case "done":
+					case "done":
 					
-					CardUsed=false;
-					LoseGame();
-		    		//UserChooser++;
-		    		
+		    		UserChooser++;
+		    		LoseGame();
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
 			    	}
-			    	
 			    	try {
 						HelpFrame.setClosed(true);
 						PropertyFrame.setClosed(true);
@@ -504,9 +502,6 @@ public class UI extends Property
 			    	txtpnInfo.setForeground(Color.RED);
 			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 			        txtpnInfo.setText(command);
-			        
-			        CardPane.setText("");
-			        
 					break;
 					
 				case "buy":
