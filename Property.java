@@ -132,60 +132,60 @@ public class Property extends BankAccount{
 		
 	}
 
-	void demolishHouse()
-	{
-		command="What location would you like to demolish a house at\n\n"+command;
-		txtpnInfo.setText(command);
-		
-		EnterText.addActionListener( new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent e)
-		    {
-				String location=EnterText.getText();
-				
-				switch(UserChooser)
-				{
-				case 1:if(match(propertiesUserA,location)!=null)
-				{
-					command="How many houses would you like to demolish\n\n"+command;
-					txtpnInfo.setText(command);
-
-					EnterText.addActionListener( new ActionListener()
-					{
-						
-						public void actionPerformed(ActionEvent e)
-					    {
-							
-							houses=Integer.parseInt(EnterText.getText());
-							propertiesUserA.get(0).propertyHouseNo-=houses;
-							if(propertiesUserA.get(0).propertyHouseNo<0)
-							{
-								command="You can only demolish houses you have\n\n"+command;
-								txtpnInfo.setText(command);
-							}
-					    }
-					});
-					
-					
-					int a=(propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo)/2;
-					balanceA.deposit(a);
-					System.out.println(balanceA.balance);
-					return;
-				}
-				else
-				{
-					System.out.println("worked");
-					return;
-				}
-				}
-				
-				
-		    }
-		});
-		
-		
-	}
+//	void demolishHouse()
+//	{
+//		command="What location would you like to demolish a house at\n\n"+command;
+//		txtpnInfo.setText(command);
+//		
+//		EnterText.addActionListener( new ActionListener()
+//		{
+//			
+//			public void actionPerformed(ActionEvent e)
+//		    {
+//				String location=EnterText.getText();
+//				
+//				switch(UserChooser)
+//				{
+//				case 1:if(match(propertiesUserA,location)!=null)
+//				{
+//					command="How many houses would you like to demolish\n\n"+command;
+//					txtpnInfo.setText(command);
+//
+//					EnterText.addActionListener( new ActionListener()
+//					{
+//						
+//						public void actionPerformed(ActionEvent e)
+//					    {
+//							
+//							houses=Integer.parseInt(EnterText.getText());
+//							propertiesUserA.get(0).propertyHouseNo-=houses;
+//							if(propertiesUserA.get(0).propertyHouseNo<0)
+//							{
+//								command="You can only demolish houses you have\n\n"+command;
+//								txtpnInfo.setText(command);
+//							}
+//					    }
+//					});
+//					
+//					
+//					int a=(propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo)/2;
+//					balanceA.deposit(a);
+//					System.out.println(balanceA.balance);
+//					return;
+//				}
+//				else
+//				{
+//					System.out.println("worked");
+//					return;
+//				}
+//				}
+//				
+//				
+//		    }
+//		});
+//		
+//		
+//	}
 	
 	void buildHouse(){
 		
@@ -195,6 +195,9 @@ public class Property extends BankAccount{
 		txtpnInfo.setText(command);
 		
 		houses=0;
+		
+		
+		
 		EnterText.addActionListener( new ActionListener()
 		{
 			
@@ -204,38 +207,43 @@ public class Property extends BankAccount{
 				
 				switch(UserChooser)
 				{
-				case 1:if(matchColour(match(propertiesUserA,location),propertiesUserA))
-				{
-					command="How many houses would you like to build\n\n"+command;
-					txtpnInfo.setText(command);
-
-					EnterText.addActionListener( new ActionListener()
+				case 1:
+					if(match(propertiesUserA,location))
 					{
 						
-						public void actionPerformed(ActionEvent e)
-					    {
-							
-							houses=Integer.parseInt(EnterText.getText());
-							propertiesUserA.get(0).propertyHouseNo+=houses;
-							if(propertiesUserA.get(0).propertyHouseNo>5)
-							{
-								command="You can only have 4 houses and 1 hotel\n\n"+command;
-								txtpnInfo.setText(command);
-							}
-					    }
-					});
-					
-					
-					int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
-					balanceA.withdraw(a);
-					System.out.println(balanceA.balance);
-					return;
-				}
-				else
-				{
-					System.out.println("worked");
-					return;
-				}
+						System.out.println("worked");
+						return;
+//						command="How many houses would you like to build\n\n"+command;
+//						txtpnInfo.setText(command);
+//	
+//						EnterText.addActionListener( new ActionListener()
+//						{
+//							
+//							public void actionPerformed(ActionEvent e)
+//						    {
+//								
+//								houses=Integer.parseInt(EnterText.getText());
+//								propertiesUserA.get(0).propertyHouseNo+=houses;
+//								if(propertiesUserA.get(0).propertyHouseNo>5)
+//								{
+//									command="You can only have 4 houses and 1 hotel\n\n"+command;
+//									txtpnInfo.setText(command);
+//								}
+//								int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
+//								balanceA.withdraw(a);
+//								System.out.println(balanceA.balance);
+//								return;
+//						    }
+//						});
+						
+						
+						
+					}
+					else
+					{
+						System.out.println("didnt worked");
+						return;
+					}
 				}
 				
 				
@@ -254,6 +262,14 @@ public class Property extends BankAccount{
 	
 	public boolean matchColour(Property prop,ArrayList<Property> propertiesUser)
 	{
+		if(prop==null)
+		{
+			System.out.println("R");
+			System.out.println(prop.propertyName);
+			command="You dont't own this property\n\n"+command;
+			txtpnInfo.setText(command);
+			return false;
+		}
 		String colour=prop.propertyColour;
 		int coloursOwned=1;
 		for(int i=0;i<propertiesUser.size();i++)
@@ -277,20 +293,57 @@ public class Property extends BankAccount{
 		return false;
 	}
 	
-	public Property match(ArrayList<Property> propertiesUser, String location)
+	
+	public boolean check(String location, ArrayList<Property> propertiesUser)
 	{
-		String check="";
-		for(int i=0;i<propertiesUser.size();i++)
+		String t="";
+		for(int r=0;r<propertiesUser.size();r++)
 		{
-			check=propertiesUser.get(i).propertyName;
-			if(location.equals(check))
+			for(int i=0; i<location.length(); i++)
 			{
-				return propertiesUser.get(i);
+				char a=location.charAt(i);
+				char b=propertiesUser.get(r).propertyName.charAt(i);
+				if(a==b)
+				{
+					t+=Character.toString(a) ;
+				}
 			}
 		}
-		return null;
+		if(t.equals(location))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	
+	public boolean match(ArrayList<Property> propertiesUser, String location)
+	{
+		String check="";
+		String UserLocation="";
+		boolean colour=false;
+		for(int i=0;i<propertiesUser.size();i++)
+		{
+			if(check(location,propertiesUser))
+			{
+				if(matchColour(propertiesUser.get(i),propertiesUserA))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 		
 	}
 
+	
+	
+	
+	
+	
 	
 }
