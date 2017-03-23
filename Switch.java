@@ -1,4 +1,4 @@
-package Monopoly;
+
 import javax.swing.JLabel;
 
 public class Switch extends UI

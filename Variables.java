@@ -1,4 +1,3 @@
-package Monopoly;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -57,27 +56,27 @@ public class Variables {
 	protected static BankAccount balanceA=new BankAccount(1500);
 	protected static BankAccount balanceB=new BankAccount(0);
 	protected static BankAccount balanceC=new BankAccount(1500);
-	protected static BankAccount balanceX=new BankAccount(0);
-	protected static BankAccount balanceY=new BankAccount(0);
-	protected static BankAccount balanceZ=new BankAccount(0);
+	protected static BankAccount balanceX=new BankAccount(1500);
+	protected static BankAccount balanceY=new BankAccount(1500);
+	protected static BankAccount balanceZ=new BankAccount(1500);
 	
 	protected static int array[]={1,2,3,4,5,6};
-	protected static ArrayList<Integer> UserLoser=new ArrayList<Integer>(6);
-	protected static void fillUserLoser()
+	protected static ArrayList<Integer> LoseUser=new ArrayList<Integer>(6);
+	protected static void fillLoseUser()
 	{
-		UserLoser.add(1);
-		UserLoser.add(2);
-		UserLoser.add(3);
-		UserLoser.add(4);
-		UserLoser.add(5);
-		UserLoser.add(6);
+		LoseUser.add(1);
+		LoseUser.add(2);
+		LoseUser.add(3);
+		LoseUser.add(4);
+		LoseUser.add(5);
+		LoseUser.add(6);
 	}
 
 	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
 	protected static void fillProperties()
 	{
 //		properties.add(new Property(0,"Start",0,0,0,0,0,0,0,"white"));
-		properties.add(new Property(1,"OldKentRoad",60,2,10,30,90,160,250,"brown",50));
+		properties.add(new Property(1,"OldKentRoad",60,2,10,30,90,160,250,"brown",50,0,100));
 //		properties.add(new Property(2,"CommunityChest",0,0,0,0,0,0,0,"white"));
 //		properties.add(new Property(3,"WhiteChapelRoad",60,4,20,60,180,320,450,"brown"));
 //		properties.add(new Property(4,"IncomeTax",0,0,0,0,0,0,0,"tax"));
@@ -133,17 +132,26 @@ public class Variables {
 		ChanceCard.add(new Card(0,"test chance"));
 		CommunityCard.add(new Card(0,"test chest"));
 	}
+
 	
 	JTextField EnterText = new JTextField();
 	protected int houses=0;
 	
-	protected static boolean a = false;
-	protected static boolean b = false;
-	protected static boolean c = false;
-	protected static boolean d = false;
-	protected static boolean e = false;
-	protected static boolean f = false;
+	protected static boolean a=false;
+	protected static boolean b=true;
+	protected static boolean c=false;
+	protected static boolean x=false;
+	protected static boolean y=false;
+	protected static boolean z=false;
+
+	protected static int user1=0;
+	protected static int user2=0;
+	protected static int user3=0;
+	protected static int user4=0;
+	protected static int user5=0;
+	protected static int user6=0;
 	
 	
+	protected static boolean EIC=false;
 }
 

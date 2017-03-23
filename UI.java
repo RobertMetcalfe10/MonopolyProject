@@ -1,4 +1,3 @@
-package Monopoly;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -187,7 +186,7 @@ public class UI extends Property
 		firstRoll();
 		fillProperties();
 		fillCards();
-		fillUserLoser();
+		fillLoseUser();
 		
 		JInternalFrame infoFrame = new JInternalFrame("Information Panel");
 		infoFrame.setBounds(660, 0, 300, 500);
@@ -302,8 +301,7 @@ public class UI extends Property
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	CardUsed=false;
-		    	UserChooser++;
-		    	LoseGame();
+		    	
 		    	if(UserChooser>NumOfUsers)
 		    	{
 		    		UserChooser%=NumOfUsers;
@@ -476,14 +474,15 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-					case "done":
+				case "done":
 					
+					CardUsed=false;
 		    		UserChooser++;
-		    		LoseGame();
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
 			    	}
+			    	
 			    	try {
 						HelpFrame.setClosed(true);
 						PropertyFrame.setClosed(true);
@@ -492,16 +491,58 @@ public class UI extends Property
 					}
 			    	switch(UserChooser)
 			    	{
-			    	case 1:print=UserNameA;break;
-			    	case 2:print=UserNameB;break;
-			    	case 3:print=UserNameC;break;
-			    	case 4:print=UserNameX;break;
-			    	case 5:print=UserNameY;break;
-			    	case 6:print=UserNameZ;break;
+			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameA;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
 			    	}
-			    	txtpnInfo.setForeground(Color.RED);
-			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
-			        txtpnInfo.setText(command);
+			    	break;
+			    	case 2:if(UserChooser==2&&b){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameB;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 3:if(UserChooser==3&&c){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameC;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 4:if(UserChooser==4&&x){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameX;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 5:if(UserChooser==5&&y){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameY;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 6:if(UserChooser==6&&z){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameZ;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	}
+			    	txtpnInfo.setForeground(Color.RED);			        
+			        CardPane.setText("");
+			        
 					break;
 					
 				case "buy":
@@ -523,10 +564,10 @@ public class UI extends Property
 				case "balance": 
 					
 					int display = 0;
-					if(UserChooser>NumOfUsers)
-			    	{
-			    		UserChooser%=NumOfUsers;
-			    	}
+//					if(UserChooser>NumOfUsers)
+//			    	{
+//			    		UserChooser%=NumOfUsers;
+//			    	}
 			    	
 		    		switch(UserChooser){
 		    		
@@ -747,14 +788,22 @@ public class UI extends Property
 						
 				case "build":
 					buildHouse();
+					EIC=true;
 					break;
 				
-				case "demolish":
-					demolishHouse();
-					break;
+//				case "demolish":
+//					demolishHouse();
+//					break;
 					
 				default:
 					command+="Error, Invalid command\n";
+					if(EIC)
+					{
+						String regex = "\\s*\\bError, Invalid command\\b\\s*";
+						command = command.replaceAll(regex, "");
+					}
+					EIC=false;
+					
 					txtpnInfo.setText(command);
 				} 	
 			}

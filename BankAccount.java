@@ -1,4 +1,3 @@
-package Monopoly;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -46,50 +45,5 @@ public class BankAccount extends Card{
 	   balance = initialBalance;
 	}
 	
-	public void LoseGame(){
-		switch(UserChooser)
-		{
-		case 1:if(balanceA.getBalance()<=0){lblA.setVisible(false); UserLoser.remove(0);a = true;}break;
-		case 2:if(balanceB.getBalance()<=0){lblB.setVisible(false);	UserLoser.remove(1);b = true;}break;
-		case 3:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserLoser.remove(2);c = true;}break;
-		case 4:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserLoser.remove(3);d = true;}break;
-		case 5:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserLoser.remove(4);e = true;}break;
-		case 6:if(balanceC.getBalance()<=0){lblC.setVisible(false);	UserLoser.remove(5);f = true;}break;
-		} 
-		
-		if(a)
-		{
-			UserChooser = 2;
-			
-		}
-		if(b)
-		{
-			UserChooser = 3;
-			
-		}
-		if(c)
-		{
-			UserChooser = 4;
-			
-		}
-		if(d)
-		{
-			UserChooser = 5;
-			
-		}
-		if(e)
-		{
-			UserChooser = 6;
-			
-		}
-		if(f)
-		{
-			UserChooser = 1;
-			
-		}
-		
-		
-		
-		UserChooser++;
-	}
+	
 }
