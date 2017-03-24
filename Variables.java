@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -54,7 +56,7 @@ public class Variables {
 
 	protected static int propertyNo=0;
 	protected static BankAccount balanceA=new BankAccount(1500);
-	protected static BankAccount balanceB=new BankAccount(0);
+	protected static BankAccount balanceB=new BankAccount(1500);
 	protected static BankAccount balanceC=new BankAccount(1500);
 	protected static BankAccount balanceX=new BankAccount(1500);
 	protected static BankAccount balanceY=new BankAccount(1500);
@@ -153,5 +155,9 @@ public class Variables {
 	
 	
 	protected static boolean EIC=false;
+	protected static boolean loc=true;
+	protected static String location="";
+	protected static String str="";
+	
 }
 

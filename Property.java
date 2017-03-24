@@ -191,11 +191,11 @@ public class Property extends BankAccount{
 //		
 //	}
 	
-	void buildHouse(){
+void buildHouse(){
 		
 		propertiesUserA.add(properties.get(0));
 		
-		command="What location would you like to build at?\nEnter location as a single word(CamelCase)\n\n"+command;
+		command="What location would you like to build at?\nEnter location as a single word(CamelCase) and how many houses would you like to build? (space between location and number)\n\n"+command;
 		txtpnInfo.setText(command);
 		
 		houses=0;
@@ -212,40 +212,24 @@ public class Property extends BankAccount{
 				switch(UserChooser)
 				{
 				case 1:
-					if(match(propertiesUserA,location))
+					if(matchnumber(propertiesUserA,location)!=null)
 					{
-						
-						System.out.println("worked");
-						return;
-//						command="How many houses would you like to build\n\n"+command;
-//						txtpnInfo.setText(command);
-//	
-//						EnterText.addActionListener( new ActionListener()
-//						{
-//							
-//							public void actionPerformed(ActionEvent e)
-//						    {
-//								
-//								houses=Integer.parseInt(EnterText.getText());
-//								propertiesUserA.get(0).propertyHouseNo+=houses;
-//								if(propertiesUserA.get(0).propertyHouseNo>5)
-//								{
-//									command="You can only have 4 houses and 1 hotel\n\n"+command;
-//									txtpnInfo.setText(command);
-//								}
-//								int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
-//								balanceA.withdraw(a);
-//								System.out.println(balanceA.balance);
-//								return;
-//						    }
-//						});
-						
-						
-						
+								String num=matchnumber(propertiesUserA,location);
+								houses=Integer.parseInt(num);
+								propertiesUserA.get(0).propertyHouseNo+=houses;
+								if(propertiesUserA.get(0).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserA.get(0).housePrice*houses;
+								balanceA.withdraw(a);
+								System.out.println(balanceA.balance);
+								return;
 					}
 					else
 					{
-						System.out.println("didnt worke");
+						System.out.println("didnt work");
 						return;
 					}
 				}
@@ -338,48 +322,6 @@ public class Property extends BankAccount{
 	}
 
 	
-void mortgage(){
-		
-		propertiesUserA.add(properties.get(0));
-		
-		command="What property would you like to mortgage?\n\n"+command;
-		txtpnInfo.setText(command);
-		
-		EnterText.addActionListener( new ActionListener(){
-			
-			public void actionPerformed(ActionEvent e){
-				
-				String location=EnterText.getText();
-				
-				switch(UserChooser)
-				{
-				case 1:if(propertiesUserA.get(0).mortgaged == 1)
-					{
-						command="This property is already mortgaged\n\n"+command;
-						txtpnInfo.setText(command);
-					}
-				break;
-				}
-				
-				switch(UserChooser)
-				{
-				case 1:if(match(propertiesUserA,location) && (propertiesUserA.get(0).mortgaged == 0) ){
-						
-						propertiesUserA.get(0).mortgaged = 1;
-						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-						
-						command="The property you mortgaged is :"+location +"\n\n" +command;
-						txtpnInfo.setText(command);
-						
-				
-					}
-				break;
-				}
-				
-				
-		    }
-		});
-	}
 
 void redeem(){
 	
@@ -413,8 +355,103 @@ void redeem(){
 	    }
 	});
 }
+
+public String checknumber(String location, Property propertiesUser)
+{
+	String t="";
+	String num="";
+	String sub=location.substring(0, location.length()-2);
 	
+		for(int i=0; i<sub.length(); i++)
+		{
+			char a=location.charAt(i);
+			char b=propertiesUser.propertyName.charAt(i);
+			if(a==b)
+			{
+				t+=Character.toString(a) ;
+			}
+		
+		}
+		num=Character.toString(location.charAt(location.length()-1));
+	if(t.equals(sub))
+	{
+		return num;
+	}
+	else
+	{
+		return null;
+	}
 	
+}
 	
+public String matchnumber(ArrayList<Property> propertiesUser, String location)
+{
+	for(int i=0;i<propertiesUser.size();i++)
+	{
+		if(checknumber(location,propertiesUser.get(i))!=null)
+		{
+			return checknumber(location,propertiesUser.get(i));
+		}
+	}
+	return null;
+	
+}
+
+
+//new function finds location in main properties array, sets that property to mortgaged
+
+	public void mortgaging(ArrayList<Property> properties, String location, int User)
+	{
+		for (int i=0;i<properties.size();i++)
+		{
+			if(check(location,properties.get(i))){
+				properties.get(i).mortgaged = User;
+			}
+		}
+	}
+
+	
+void mortgage(){
+		
+		propertiesUserA.add(properties.get(0));
+		
+		command="What property would you like to mortgage?\n\n"+command;
+		txtpnInfo.setText(command);
+		
+		EnterText.addActionListener( new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				String location=EnterText.getText();
+				
+//				if(propertiesUserA.get(0).mortgaged == 1)
+//					{
+//						command="This property is already mortgaged\n\n"+command;
+//						txtpnInfo.setText(command);
+//					}
+				switch(UserChooser)
+				{
+				case 1:if(match(propertiesUserA,location) && (propertiesUserA.get(0).mortgaged == 0) ){
+						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
+						propertiesUserA.remove(0);
+						mortgaging(properties, location,UserChooser);
+						
+						
+						command="The property you mortgaged is :"+location +"\n\n" +command;
+						txtpnInfo.setText(command);
+						
+				
+					}
+				break;
+				}
+				
+				
+		    }
+		});
+	}
+
+
+
+
 	
 }

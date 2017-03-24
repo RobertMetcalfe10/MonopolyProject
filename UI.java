@@ -790,6 +790,11 @@ public class UI extends Property
 					buildHouse();
 					EIC=true;
 					break;
+					
+				case "mortgage":
+					mortgage();
+					EIC=true;
+					break;
 				
 //				case "demolish":
 //					demolishHouse();
