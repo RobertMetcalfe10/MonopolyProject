@@ -1,3 +1,5 @@
+package Monopoly;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -293,6 +295,8 @@ public class UI extends Property
 		label2.setHorizontalTextPosition(SwingConstants.CENTER);
 		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
+
+		
 		
 		
 		btnEndTurn.addActionListener( new ActionListener()
@@ -474,7 +478,24 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-				case "done":
+				case "bankrupt":
+					
+					switch(UserChooser)
+					{
+					case 1: a = true;int i=0;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
+					case 2: b = true; command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
+					case 3: c = true; command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
+					case 4: x = true; command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
+					case 5: y = true; command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
+					case 6: z = true; command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
+					}
+					
+				
+					
+				
+				break;
+		    		
+		    		case "done":
 					
 					CardUsed=false;
 		    		UserChooser++;
@@ -790,11 +811,6 @@ public class UI extends Property
 					buildHouse();
 					EIC=true;
 					break;
-					
-				case "mortgage":
-					mortgage();
-					EIC=true;
-					break;
 				
 //				case "demolish":
 //					demolishHouse();
@@ -813,6 +829,7 @@ public class UI extends Property
 				} 	
 			}
 		});
-	}
 	
+	}
 }
+	

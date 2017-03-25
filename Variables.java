@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package Monopoly;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -140,7 +139,7 @@ public class Variables {
 	protected int houses=0;
 	
 	protected static boolean a=false;
-	protected static boolean b=true;
+	protected static boolean b=false;
 	protected static boolean c=false;
 	protected static boolean x=false;
 	protected static boolean y=false;
@@ -155,9 +154,5 @@ public class Variables {
 	
 	
 	protected static boolean EIC=false;
-	protected static boolean loc=true;
-	protected static String location="";
-	protected static String str="";
-	
 }
 
