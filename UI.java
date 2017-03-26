@@ -1,5 +1,3 @@
-package Monopoly;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -216,17 +214,9 @@ public class UI extends Property
 				
 
 		EnterText.setToolTipText("Enter Command Here");
-		EnterText.setText(null);
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
 		EnterText.setForeground(randColour());
-		
-		EnterText.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				EnterText.setText(null);
-				}			
-		});
 		
 		
 
@@ -484,6 +474,7 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
+		    		
 				case "bankrupt":
 					switch(UserChooser)
 					{
@@ -496,7 +487,7 @@ public class UI extends Property
 					}
 					winner();					
 					break;
-		    		
+					
 				case "done":
 					
 					CardUsed=false;
@@ -863,6 +854,26 @@ public class UI extends Property
 					case 5:demolishHouse(MovesY);
 						break;
 					case 6:demolishHouse(MovesZ);
+						break;
+					}
+					EIC=true;
+					break;
+					
+				case "redeem":
+					
+					switch(UserChooser)
+					{
+					case 1:redeem(MovesA);
+						break;
+					case 2:redeem(MovesB);
+						break;
+					case 3:redeem(MovesC);
+						break;
+					case 4:redeem(MovesX);
+						break;
+					case 5:redeem(MovesY);
+						break;
+					case 6:redeem(MovesZ);
 						break;
 					}
 					EIC=true;
