@@ -1,3 +1,4 @@
+package Monopoly;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -213,20 +214,10 @@ public class Property extends BankAccount{
 void demolishHouse(int rand){
 		
 		//propertiesUserA.add(properties.get(3));
-		
-		command="What location would you like to demolish a house at?\nEnter location as a single word(CamelCase) and how many houses would you like to demolish? (space between location and number)\n\n"+command;
-		txtpnInfo.setText(command);
-		
+			
 		houses=0;
 		
-		
-		
-		EnterText.addActionListener( new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent e)
-		    {
-				String location=EnterText.getText();
+		String location = JOptionPane.showInputDialog(null, "What location would you like to demolish a house at?\nEnter location as a single word(CamelCase) and how many houses would you like to demolish? (space between location and number)\n\n");
 				
 				switch(UserChooser)
 				{
@@ -376,8 +367,7 @@ void demolishHouse(int rand){
 					}
 				}
 				
-		    }
-		});
+		  
 	}
 
 
@@ -385,19 +375,9 @@ void buildHouse(int rand){
 		
 		//propertiesUserA.add(properties.get(3));
 		
-		command="What location would you like to build at?\nEnter location as a single word(CamelCase) and how many houses would you like to build? (space between location and number)\n\n"+command;
-		txtpnInfo.setText(command);
-		
 		houses=0;
 		
-		
-		
-		EnterText.addActionListener( new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent e)
-		    {
-				String location=EnterText.getText();
+		String location = JOptionPane.showInputDialog(null, "What location would you like to build at?\nEnter location as a single word(CamelCase) and how many houses would you like to build? (space between location and number)");
 				
 				switch(UserChooser)
 				{
@@ -618,12 +598,6 @@ void buildHouse(int rand){
 						return;
 					}
 				}
-				
-				
-		    }
-		});
-		
-		
 		
 	}
 	
@@ -796,14 +770,7 @@ void mortgage(int rand){
 		
 //		propertiesUserA.add(properties.get(3));
 		
-		command="What property would you like to mortgage?\n\n"+command;
-		txtpnInfo.setText(command);
-		
-		EnterText.addActionListener( new ActionListener(){
-			
-			public void actionPerformed(ActionEvent e){
-				
-				String location=EnterText.getText();
+		String location = JOptionPane.showInputDialog(null, "What property would you like to redeem??\nEnter Property as a single word(CamelCase)");
 				
 				switch(UserChooser)
 				{
@@ -896,10 +863,6 @@ void mortgage(int rand){
 				}
 				break;
 				}
-				
-				
-		    }
-		});
 	}
 
 
@@ -923,12 +886,8 @@ void redeem(int rand){
 	command="What property would you like to redeem?"+command;
 	txtpnInfo.setText(command);
 	
-	EnterText.addActionListener( new ActionListener(){
-		
-		public void actionPerformed(ActionEvent e){
-			
-			String location=EnterText.getText();
-			
+	String location = JOptionPane.showInputDialog(null, "What property would you like to mortgage??\nEnter Property as a single word(CamelCase)");
+	
 			
 			switch(UserChooser)
 			{
@@ -945,8 +904,7 @@ void redeem(int rand){
 				txtpnInfo.setText(command);
 			}
 			}
-	    }
-	});
+	  
 }
 
 
