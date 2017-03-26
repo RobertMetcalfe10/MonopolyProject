@@ -419,12 +419,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserA.get(r).housePrice*houses;
 									balanceA.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
@@ -452,12 +455,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserB.get(r).housePrice*houses;
 									balanceB.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
@@ -485,12 +491,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserC.get(r).housePrice*houses;
 									balanceC.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
@@ -518,12 +527,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserX.get(r).housePrice*houses;
 									balanceX.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
@@ -551,12 +563,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserY.get(r).housePrice*houses;
 									balanceY.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
@@ -584,12 +599,15 @@ void buildHouse(int rand){
 									}
 									int a=propertiesUserZ.get(r).housePrice*houses;
 									balanceZ.withdraw(a);
+									command="You built "+ houses+" houses\n\n"+command;
+									txtpnInfo.setText(command);
 									return;
 								}
 								else
 								{
 									command="You don't own all the properties in this colour group\n\n"+command;
 									txtpnInfo.setText(command);
+									return;
 								}
 								
 					}
