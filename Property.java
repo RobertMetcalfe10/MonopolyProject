@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
+
 public class Property extends BankAccount{
 	
 	protected int propertyID;
@@ -192,11 +194,11 @@ public class Property extends BankAccount{
 //		
 //	}
 	
-void buildHouse(){
+	void buildHouse(){
 		
 		propertiesUserA.add(properties.get(0));
 		
-		command="What location would you like to build at?\nEnter location as a single word(CamelCase) and how many houses would you like to build? (space between location and number)\n\n"+command;
+		command="What location would you like to build at?\nEnter location as a single word(CamelCase)\n\n"+command;
 		txtpnInfo.setText(command);
 		
 		houses=0;
@@ -213,24 +215,40 @@ void buildHouse(){
 				switch(UserChooser)
 				{
 				case 1:
-					if(matchnumber(propertiesUserA,location)!=null)
+					if(match(propertiesUserA,location))
 					{
-								String num=matchnumber(propertiesUserA,location);
-								houses=Integer.parseInt(num);
-								propertiesUserA.get(0).propertyHouseNo+=houses;
-								if(propertiesUserA.get(0).propertyHouseNo>5)
-								{
-									command="You can only have 4 houses and 1 hotel\n\n"+command;
-									txtpnInfo.setText(command);
-								}
-								int a=propertiesUserA.get(0).housePrice*houses;
-								balanceA.withdraw(a);
-								System.out.println(balanceA.balance);
-								return;
+						
+						System.out.println("worked");
+						return;
+//						command="How many houses would you like to build\n\n"+command;
+//						txtpnInfo.setText(command);
+//	
+//						EnterText.addActionListener( new ActionListener()
+//						{
+//							
+//							public void actionPerformed(ActionEvent e)
+//						    {
+//								
+//								houses=Integer.parseInt(EnterText.getText());
+//								propertiesUserA.get(0).propertyHouseNo+=houses;
+//								if(propertiesUserA.get(0).propertyHouseNo>5)
+//								{
+//									command="You can only have 4 houses and 1 hotel\n\n"+command;
+//									txtpnInfo.setText(command);
+//								}
+//								int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
+//								balanceA.withdraw(a);
+//								System.out.println(balanceA.balance);
+//								return;
+//						    }
+//						});
+						
+						
+						
 					}
 					else
 					{
-						System.out.println("didnt work");
+						System.out.println("didnt worke");
 						return;
 					}
 				}
@@ -323,75 +341,6 @@ void buildHouse(){
 	}
 
 	
-
-public String checknumber(String location, Property propertiesUser)
-{
-	String t="";
-	String num="";
-	String sub=location.substring(0, location.length()-2);
-	
-		for(int i=0; i<sub.length(); i++)
-		{
-			char a=location.charAt(i);
-			char b=propertiesUser.propertyName.charAt(i);
-			if(a==b)
-			{
-				t+=Character.toString(a) ;
-			}
-		
-		}
-		num=Character.toString(location.charAt(location.length()-1));
-	if(t.equals(sub))
-	{
-		return num;
-	}
-	else
-	{
-		return null;
-	}
-	
-}
-	
-public String matchnumber(ArrayList<Property> propertiesUser, String location)
-{
-	for(int i=0;i<propertiesUser.size();i++)
-	{
-		if(checknumber(location,propertiesUser.get(i))!=null)
-		{
-			return checknumber(location,propertiesUser.get(i));
-		}
-	}
-	return null;
-	
-}
-
-
-//new function finds location in main properties array, sets that property to mortgaged
-
-	public void mortgaging(ArrayList<Property> properties, String location, int User)
-	{
-		for (int i=0;i<properties.size();i++)
-		{
-			if(check(location,properties.get(i))){
-				properties.get(i).mortgaged = User;
-			}
-		}
-	}
-	
-	public void redeeming(ArrayList<Property> properties, String location)
-	{
-		for (int i=0;i<properties.size();i++)
-		{
-			if(check(location,properties.get(i))){
-				
-				properties.get(i).mortgaged = 0;
-				
-			}
-		}
-	}
-
-
-	
 void mortgage(){
 		
 		propertiesUserA.add(properties.get(0));
@@ -405,18 +354,22 @@ void mortgage(){
 				
 				String location=EnterText.getText();
 				
-//				if(propertiesUserA.get(0).mortgaged == 1)
-//					{
-//						command="This property is already mortgaged\n\n"+command;
-//						txtpnInfo.setText(command);
-//					}
+				switch(UserChooser)
+				{
+				case 1:if(propertiesUserA.get(0).mortgaged == 1)
+					{
+						command="This property is already mortgaged\n\n"+command;
+						txtpnInfo.setText(command);
+					}
+				break;
+				}
+				
 				switch(UserChooser)
 				{
 				case 1:if(match(propertiesUserA,location) && (propertiesUserA.get(0).mortgaged == 0) ){
-						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-						propertiesUserA.remove(0);
-						mortgaging(properties, location,UserChooser);
 						
+						propertiesUserA.get(0).mortgaged = 1;
+						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
 						
 						command="The property you mortgaged is :"+location +"\n\n" +command;
 						txtpnInfo.setText(command);
@@ -435,7 +388,7 @@ void redeem(){
 	
 	propertiesUserA.add(properties.get(0));
 	
-	command="What property would you like to redeem?\n\n"+command;
+	command="What property would you like to redeem?"+command;
 	txtpnInfo.setText(command);
 	
 	EnterText.addActionListener( new ActionListener(){
@@ -447,23 +400,47 @@ void redeem(){
 			
 			switch(UserChooser)
 			{
-			case 1:if(match(properties,location) &&(propertiesUserA.get(0).mortgaged == 1)){
+			case 1:if(propertiesUserA.get(0).mortgaged == 1){
 					
-				balanceA.withdraw(propertiesUserA.get(0).mortgageprice);
-				propertiesUserA.add(0, null);
-				redeeming(properties, location);
-				
+					propertiesUserA.get(0).mortgaged = 0;
+					balanceA.deposit(propertiesUserA.get(0).mortgageprice);
 					command="You now own property"+location+"\n\n"+command;
 					txtpnInfo.setText(command);
 			
 				}
-			break;
+			else {
+				command="This property is not mortgaged"+command;
+				txtpnInfo.setText(command);
+			}
 			}
 	    }
 	});
 }
 
-
-
+void winner(){
+	switch (NumOfUsers){
 	
+	case 2: if(!a && b){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 3: if(!a && b && c){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+		    if(!b && a && c){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+		    if(!c && a && b){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 4: if(!a && b && c && x){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 5: if(!a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x && y){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x && y){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!y && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 6: if(!a && b && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x && y && z){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!y && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!z && a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameZ + " has won the game");frame.setVisible(false);frame.dispose();}break;
+
+}
+}
 }

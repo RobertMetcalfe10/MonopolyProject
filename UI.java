@@ -214,11 +214,19 @@ public class UI extends Property
 		internalFrame.setVisible(true);
 		internalFrame.setFrameIcon(null); 
 				
-
 		EnterText.setToolTipText("Enter Command Here");
+		EnterText.setText(null);
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
 		EnterText.setForeground(randColour());
+		
+		EnterText.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EnterText.setText(null);
+				}			
+		});
+		
 		
 		
 
@@ -376,6 +384,8 @@ public class UI extends Property
 		});
 		
 		
+		
+		
 		EnterText.addActionListener( new ActionListener()
 		{
 			
@@ -479,7 +489,6 @@ public class UI extends Property
 		    		break;
 		    		
 				case "bankrupt":
-					
 					switch(UserChooser)
 					{
 					case 1: a = true;int i=0;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
@@ -489,11 +498,8 @@ public class UI extends Property
 					case 5: y = true; command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
 					case 6: z = true; command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
 					}
-					
-				
-					
-				
-				break;
+					winner();					
+					break;
 		    		
 		    		case "done":
 					
@@ -512,7 +518,7 @@ public class UI extends Property
 					}
 			    	switch(UserChooser)
 			    	{
-			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
 			    	else
 			    	{
 			    		print=UserNameA;
