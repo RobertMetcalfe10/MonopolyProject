@@ -1,3 +1,5 @@
+package Monopoly;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -671,32 +673,32 @@ void mortgage(int rand){
 //}
 //
 //
-//void winner(){
-//	switch (NumOfUsers){
-//	
-//	case 2: if(!a && b){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!b && a){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}break;
-//	case 3: if(!a && b && c){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-//		    if(!b && a && c){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-//		    if(!c && a && b){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}break;
-//	case 4: if(!a && b && c && x){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!b && a && c && x){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!c && a && b && x){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!x && a && b && c){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}break;
-//	case 5: if(!a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!b && a && c && x && y){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!c && a && b && x && y){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!x && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!y && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}break;
-//	case 6: if(!a && b && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!b && a && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!c && a && b && x && y && z){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!x && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!y && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}
-//			if(!z && a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameZ + " has won the game");frame.setVisible(false);frame.dispose();}break;
-//
-//}
-//}
+void winner(){
+	switch (NumOfUsers){
+	
+	case 2: if(!a && b){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 3: if(!a && b && c){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+		    if(!b && a && c){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+		    if(!c && a && b){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 4: if(!a && b && c && x){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 5: if(!a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x && y){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x && y){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!y && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}break;
+	case 6: if(!a && b && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!b && a && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!c && a && b && x && y && z){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!x && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!y && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}
+			if(!z && a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameZ + " has won the game");frame.setVisible(false);frame.dispose();}break;
+
+}
+}
 
 	
 }
