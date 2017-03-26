@@ -1,4 +1,3 @@
-package Monopoly;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +21,7 @@ public class Property extends BankAccount{
 	protected int housePrice;
 	protected int mortgageValue;
 	protected String propertyColour;
-	protected int propertyHouseNo=1;
+	protected int propertyHouseNo=0;
 	protected int mortgaged=0;
 	protected int mortgageprice=0;
 	
@@ -139,66 +138,12 @@ public class Property extends BankAccount{
 		
 	}
 
-//	void demolishHouse()
-//	{
-//		command="What location would you like to demolish a house at\n\n"+command;
-//		txtpnInfo.setText(command);
-//		
-//		EnterText.addActionListener( new ActionListener()
-//		{
-//			
-//			public void actionPerformed(ActionEvent e)
-//		    {
-//				String location=EnterText.getText();
-//				
-//				switch(UserChooser)
-//				{
-//				case 1:if(match(propertiesUserA,location)!=null)
-//				{
-//					command="How many houses would you like to demolish\n\n"+command;
-//					txtpnInfo.setText(command);
-//
-//					EnterText.addActionListener( new ActionListener()
-//					{
-//						
-//						public void actionPerformed(ActionEvent e)
-//					    {
-//							
-//							houses=Integer.parseInt(EnterText.getText());
-//							propertiesUserA.get(0).propertyHouseNo-=houses;
-//							if(propertiesUserA.get(0).propertyHouseNo<0)
-//							{
-//								command="You can only demolish houses you have\n\n"+command;
-//								txtpnInfo.setText(command);
-//							}
-//					    }
-//					});
-//					
-//					
-//					int a=(propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo)/2;
-//					balanceA.deposit(a);
-//					System.out.println(balanceA.balance);
-//					return;
-//				}
-//				else
-//				{
-//					System.out.println("worked");
-//					return;
-//				}
-//				}
-//				
-//				
-//		    }
-//		});
-//		
-//		
-//	}
 	
-	void buildHouse(){
+void demolishHouse(int rand){
 		
-		propertiesUserA.add(properties.get(0));
+		//propertiesUserA.add(properties.get(3));
 		
-		command="What location would you like to build at?\nEnter location as a single word(CamelCase)\n\n"+command;
+		command="What location would you like to demolish a house at?\nEnter location as a single word(CamelCase) and how many houses would you like to demolish? (space between location and number)\n\n"+command;
 		txtpnInfo.setText(command);
 		
 		houses=0;
@@ -215,40 +160,188 @@ public class Property extends BankAccount{
 				switch(UserChooser)
 				{
 				case 1:
-					if(match(propertiesUserA,location))
+					if(matchnumber(propertiesUserA,location)!=null)
 					{
-						
-						System.out.println("worked");
-						return;
-//						command="How many houses would you like to build\n\n"+command;
-//						txtpnInfo.setText(command);
-//	
-//						EnterText.addActionListener( new ActionListener()
-//						{
-//							
-//							public void actionPerformed(ActionEvent e)
-//						    {
-//								
-//								houses=Integer.parseInt(EnterText.getText());
-//								propertiesUserA.get(0).propertyHouseNo+=houses;
-//								if(propertiesUserA.get(0).propertyHouseNo>5)
-//								{
-//									command="You can only have 4 houses and 1 hotel\n\n"+command;
-//									txtpnInfo.setText(command);
-//								}
-//								int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
-//								balanceA.withdraw(a);
-//								System.out.println(balanceA.balance);
-//								return;
-//						    }
-//						});
-						
-						
-						
+								String num=matchnumber(propertiesUserA,location);
+								int r=houseNo(location,propertiesUserA);
+								houses=Integer.parseInt(num);
+								propertiesUserA.get(r).propertyHouseNo-=houses;
+								if(propertiesUserA.get(r).propertyHouseNo<0)
+								{
+									command="You cannot have a negative amount of houses\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=((propertiesUserA.get(r).housePrice)/2)*houses;
+								balanceA.deposit(a);
+								command="You demolished "+houses+" houses\n\n"+command;
+								txtpnInfo.setText(command);
+								return;
 					}
 					else
 					{
-						System.out.println("didnt worke");
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				}
+				
+		    }
+		});
+	}
+
+
+void buildHouse(int rand){
+		
+		propertiesUserA.add(properties.get(3));
+		
+		command="What location would you like to build at?\nEnter location as a single word(CamelCase) and how many houses would you like to build? (space between location and number)\n\n"+command;
+		txtpnInfo.setText(command);
+		
+		houses=0;
+		
+		
+		
+		EnterText.addActionListener( new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+		    {
+				String location=EnterText.getText();
+				
+				switch(UserChooser)
+				{
+				case 1:
+					if(matchnumber(propertiesUserA,location)!=null)
+					{
+								String num=matchnumber(propertiesUserA,location);
+								int r=houseNo(location,propertiesUserA);
+								houses=Integer.parseInt(num);
+								propertiesUserA.get(r).propertyHouseNo+=houses;
+								if(propertiesUserA.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserA.get(r).housePrice*houses;
+								balanceA.withdraw(a);
+								command="You built "+houses+" houses\n\n"+command;
+								txtpnInfo.setText(command);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				case 2:
+					if(matchnumber(propertiesUserB,location)!=null)
+					{
+								String num=matchnumber(propertiesUserB,location);
+								int r=houseNo(location,propertiesUserB);
+								houses=Integer.parseInt(num);
+								propertiesUserB.get(r).propertyHouseNo+=houses;
+								if(propertiesUserB.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserB.get(r).housePrice*houses;
+								balanceB.withdraw(a);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				case 3:
+					if(matchnumber(propertiesUserC,location)!=null)
+					{
+								String num=matchnumber(propertiesUserC,location);
+								int r=houseNo(location,propertiesUserC);
+								houses=Integer.parseInt(num);
+								propertiesUserC.get(r).propertyHouseNo+=houses;
+								if(propertiesUserC.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserC.get(r).housePrice*houses;
+								balanceC.withdraw(a);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				case 4:
+					if(matchnumber(propertiesUserX,location)!=null)
+					{
+								String num=matchnumber(propertiesUserX,location);
+								int r=houseNo(location,propertiesUserX);
+								houses=Integer.parseInt(num);
+								propertiesUserX.get(r).propertyHouseNo+=houses;
+								if(propertiesUserX.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserX.get(r).housePrice*houses;
+								balanceX.withdraw(a);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				case 5:
+					if(matchnumber(propertiesUserY,location)!=null)
+					{
+								String num=matchnumber(propertiesUserY,location);
+								int r=houseNo(location,propertiesUserY);
+								houses=Integer.parseInt(num);
+								propertiesUserY.get(r).propertyHouseNo+=houses;
+								if(propertiesUserY.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserY.get(r).housePrice*houses;
+								balanceY.withdraw(a);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
+						return;
+					}
+				case 6:
+					if(matchnumber(propertiesUserZ,location)!=null)
+					{
+								String num=matchnumber(propertiesUserZ,location);
+								int r=houseNo(location,propertiesUserZ);
+								houses=Integer.parseInt(num);
+								propertiesUserZ.get(r).propertyHouseNo+=houses;
+								if(propertiesUserZ.get(r).propertyHouseNo>5)
+								{
+									command="You can only have 4 houses and 1 hotel\n\n"+command;
+									txtpnInfo.setText(command);
+								}
+								int a=propertiesUserZ.get(r).housePrice*houses;
+								balanceZ.withdraw(a);
+								return;
+					}
+					else
+					{
+						command="You don't own this property\n\n"+command;
+						txtpnInfo.setText(command);
 						return;
 					}
 				}
@@ -265,6 +358,31 @@ public class Property extends BankAccount{
 	public String toString()
 	{
 		return this.propertyName;
+	}
+	
+	
+	public int houseNo(String location, ArrayList<Property> propertiesUser)
+	{
+		String t="";
+		String f=location.substring(0,location.length()-2);
+		for(int r=0;r<propertiesUser.size();r++)
+		{	
+			if(f.equals(propertiesUser.get(r).propertyName))
+			{
+				t=location;
+			}
+			
+		}
+		
+	for(int r=0; r<propertiesUser.size();r++)
+	{
+		if(t.equals(propertiesUser.get(r).propertyName))
+		{
+			return r;
+		}
+	}
+	return 0;
+		
 	}
 	
 	public boolean matchColour(Property prop,ArrayList<Property> propertiesUser)
@@ -341,9 +459,69 @@ public class Property extends BankAccount{
 	}
 
 	
-void mortgage(){
+
+
+
+public String checknumber(String location, Property propertiesUser)
+{
+	String t="";
+	String num="";
+	String sub=location.substring(0, location.length()-2);
+	
+		for(int i=0; i<sub.length(); i++)
+		{
+			char a=location.charAt(i);
+			char b=propertiesUser.propertyName.charAt(i);
+			if(a==b)
+			{
+				t+=Character.toString(a) ;
+			}
 		
-		propertiesUserA.add(properties.get(0));
+		}
+		num=location.substring(location.length()-1,location.length());
+	if(t.equals(sub))
+	{
+		return num;
+	}
+	else
+	{
+		return null;
+	}
+	
+}
+	
+public String matchnumber(ArrayList<Property> propertiesUser, String location)
+{
+	for(int i=0;i<propertiesUser.size();i++)
+	{
+		if(checknumber(location,propertiesUser.get(i))!=null)
+		{
+			return checknumber(location,propertiesUser.get(i));
+		}
+	}
+	return null;
+	
+}
+
+
+//new function finds location in main properties array, sets that property to mortgaged
+
+	public boolean mortgaging(ArrayList<Property> properties, String location, int User)
+	{
+		for (int i=0;i<properties.size();i++)
+		{
+			if(check(location,properties.get(i))){
+				properties.get(i).mortgaged = User;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+void mortgage(int rand){
+		
+//		propertiesUserA.add(properties.get(3));
 		
 		command="What property would you like to mortgage?\n\n"+command;
 		txtpnInfo.setText(command);
@@ -356,26 +534,87 @@ void mortgage(){
 				
 				switch(UserChooser)
 				{
-				case 1:if(propertiesUserA.get(0).mortgaged == 1)
+				case 1:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
 					{
 						command="This property is already mortgaged\n\n"+command;
 						txtpnInfo.setText(command);
 					}
 				break;
+				case 2:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
+				{
+					command="This property is already mortgaged\n\n"+command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 3:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
+				{
+					command="This property is already mortgaged\n\n"+command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 4:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
+				{
+					command="This property is already mortgaged\n\n"+command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 5:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
+				{
+					command="This property is already mortgaged\n\n"+command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 6:if(properties.get(rand).mortgaged == 1||properties.get(rand).mortgaged == 2||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 3||properties.get(rand).mortgaged == 4||properties.get(rand).mortgaged == 5||properties.get(rand).mortgaged == 6)
+				{
+					command="This property is already mortgaged\n\n"+command;
+					txtpnInfo.setText(command);
+				}
+				break;
 				}
 				
 				switch(UserChooser)
 				{
-				case 1:if(match(propertiesUserA,location) && (propertiesUserA.get(0).mortgaged == 0) ){
-						
-						propertiesUserA.get(0).mortgaged = 1;
-						balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-						
+				case 1:if(mortgaging(propertiesUserA,location,UserChooser)){
+						balanceA.deposit(propertiesUserA.get(rand).mortgageprice);
+						propertiesUserA.remove(rand);
 						command="The property you mortgaged is :"+location +"\n\n" +command;
 						txtpnInfo.setText(command);
-						
-				
 					}
+				break;
+				case 2:if(mortgaging(propertiesUserB,location,UserChooser)){
+					balanceB.deposit(propertiesUserB.get(rand).mortgageprice);
+					propertiesUserB.remove(rand);
+					command="The property you mortgaged is :"+location +"\n\n" +command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 3:if(mortgaging(propertiesUserC,location,UserChooser)){
+					balanceC.deposit(propertiesUserC.get(rand).mortgageprice);
+					propertiesUserC.remove(rand);
+					command="The property you mortgaged is :"+location +"\n\n" +command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 4:if(mortgaging(propertiesUserX,location,UserChooser)){
+					balanceX.deposit(propertiesUserX.get(rand).mortgageprice);
+					propertiesUserX.remove(rand);
+					command="The property you mortgaged is :"+location +"\n\n" +command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 5:if(mortgaging(propertiesUserY,location,UserChooser)){
+					balanceY.deposit(propertiesUserY.get(rand).mortgageprice);
+					propertiesUserY.remove(rand);
+					command="The property you mortgaged is :"+location +"\n\n" +command;
+					txtpnInfo.setText(command);
+				}
+				break;
+				case 6:if(mortgaging(propertiesUserZ,location,UserChooser)){
+					balanceZ.deposit(propertiesUserZ.get(rand).mortgageprice);
+					propertiesUserZ.remove(rand);
+					command="The property you mortgaged is :"+location +"\n\n" +command;
+					txtpnInfo.setText(command);
+				}
 				break;
 				}
 				
@@ -384,63 +623,80 @@ void mortgage(){
 		});
 	}
 
-void redeem(){
-	
-	propertiesUserA.add(properties.get(0));
-	
-	command="What property would you like to redeem?"+command;
-	txtpnInfo.setText(command);
-	
-	EnterText.addActionListener( new ActionListener(){
-		
-		public void actionPerformed(ActionEvent e){
-			
-			String location=EnterText.getText();
-			
-			
-			switch(UserChooser)
-			{
-			case 1:if(propertiesUserA.get(0).mortgaged == 1){
-					
-					propertiesUserA.get(0).mortgaged = 0;
-					balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-					command="You now own property"+location+"\n\n"+command;
-					txtpnInfo.setText(command);
-			
-				}
-			else {
-				command="This property is not mortgaged"+command;
-				txtpnInfo.setText(command);
-			}
-			}
-	    }
-	});
-}
+//
+//public void redeeming(ArrayList<Property> properties, String location)
+//{
+//	for (int i=0;i<properties.size();i++)
+//	{
+//		if(check(location,properties.get(i))){
+//			
+//			properties.get(i).mortgaged = 0;
+//			
+//		}
+//	}
+//}
+//
+//
+//void redeem(){
+//	
+//	propertiesUserA.add(properties.get(0));
+//	
+//	command="What property would you like to redeem?"+command;
+//	txtpnInfo.setText(command);
+//	
+//	EnterText.addActionListener( new ActionListener(){
+//		
+//		public void actionPerformed(ActionEvent e){
+//			
+//			String location=EnterText.getText();
+//			
+//			
+//			switch(UserChooser)
+//			{
+//			case 1:if(propertiesUserA.get(0).mortgaged == 1){
+//					
+//					propertiesUserA.get(0).mortgaged = 0;
+//					balanceA.deposit(propertiesUserA.get(0).mortgageprice);
+//					command="You now own property"+location+"\n\n"+command;
+//					txtpnInfo.setText(command);
+//			
+//				}
+//			else {
+//				command="This property is not mortgaged"+command;
+//				txtpnInfo.setText(command);
+//			}
+//			}
+//	    }
+//	});
+//}
+//
+//
+//void winner(){
+//	switch (NumOfUsers){
+//	
+//	case 2: if(!a && b){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!b && a){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}break;
+//	case 3: if(!a && b && c){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+//		    if(!b && a && c){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+//		    if(!c && a && b){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}break;
+//	case 4: if(!a && b && c && x){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!b && a && c && x){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!c && a && b && x){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!x && a && b && c){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}break;
+//	case 5: if(!a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!b && a && c && x && y){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!c && a && b && x && y){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!x && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!y && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}break;
+//	case 6: if(!a && b && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!b && a && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!c && a && b && x && y && z){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!x && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!y && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}
+//			if(!z && a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameZ + " has won the game");frame.setVisible(false);frame.dispose();}break;
+//
+//}
+//}
 
-void winner(){
-	switch (NumOfUsers){
 	
-	case 2: if(!a && b){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!b && a){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}break;
-	case 3: if(!a && b && c){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-		    if(!b && a && c){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-		    if(!c && a && b){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}break;
-	case 4: if(!a && b && c && x){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!b && a && c && x){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!c && a && b && x){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!x && a && b && c){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}break;
-	case 5: if(!a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!b && a && c && x && y){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!c && a && b && x && y){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!x && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!y && a && b && c && y){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}break;
-	case 6: if(!a && b && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameA + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!b && a && c && x && y && z){JOptionPane.showMessageDialog(null,UserNameB + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!c && a && b && x && y && z){JOptionPane.showMessageDialog(null,UserNameC + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!x && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameX + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!y && a && b && c && y && z){JOptionPane.showMessageDialog(null,UserNameY + " has won the game");frame.setVisible(false);frame.dispose();}
-			if(!z && a && b && c && x && y){JOptionPane.showMessageDialog(null,UserNameZ + " has won the game");frame.setVisible(false);frame.dispose();}break;
-
-}
-}
 }

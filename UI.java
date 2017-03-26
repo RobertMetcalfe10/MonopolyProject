@@ -1,5 +1,3 @@
-package Monopoly;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -214,19 +212,11 @@ public class UI extends Property
 		internalFrame.setVisible(true);
 		internalFrame.setFrameIcon(null); 
 				
+
 		EnterText.setToolTipText("Enter Command Here");
-		EnterText.setText(null);
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
 		EnterText.setForeground(randColour());
-		
-		EnterText.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				EnterText.setText(null);
-				}			
-		});
-		
 		
 		
 
@@ -302,8 +292,6 @@ public class UI extends Property
 		label2.setIcon(monopoly2);//add icon to JLabel
 		label2.setHorizontalTextPosition(SwingConstants.CENTER);
 		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
-		
-
 		
 		
 		
@@ -382,8 +370,6 @@ public class UI extends Property
 				}
 		    }
 		});
-		
-		
 		
 		
 		EnterText.addActionListener( new ActionListener()
@@ -488,20 +474,7 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-				case "bankrupt":
-					switch(UserChooser)
-					{
-					case 1: a = true;int i=0;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
-					case 2: b = true; command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
-					case 3: c = true; command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
-					case 4: x = true; command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
-					case 5: y = true; command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
-					case 6: z = true; command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
-					}
-					winner();					
-					break;
-		    		
-		    		case "done":
+				case "done":
 					
 					CardUsed=false;
 		    		UserChooser++;
@@ -518,7 +491,7 @@ public class UI extends Property
 					}
 			    	switch(UserChooser)
 			    	{
-			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
 			    	else
 			    	{
 			    		print=UserNameA;
@@ -591,10 +564,6 @@ public class UI extends Property
 				case "balance": 
 					
 					int display = 0;
-//					if(UserChooser>NumOfUsers)
-//			    	{
-//			    		UserChooser%=NumOfUsers;
-//			    	}
 			    	
 		    		switch(UserChooser){
 		    		
@@ -814,13 +783,67 @@ public class UI extends Property
 						
 						
 				case "build":
-					buildHouse();
+					
+					switch(UserChooser)
+					{
+					case 1:buildHouse(MovesA);
+						break;
+					case 2:buildHouse(MovesB);
+						break;
+					case 3:buildHouse(MovesC);
+						break;
+					case 4:buildHouse(MovesX);
+						break;
+					case 5:buildHouse(MovesY);
+						break;
+					case 6:buildHouse(MovesZ);
+						break;
+					}
+					
+					
+					EIC=true;
+					break;
+					
+				case "mortgage":
+					
+					switch(UserChooser)
+					{
+					case 1:mortgage(MovesA);
+						break;
+					case 2:mortgage(MovesB);
+						break;
+					case 3:mortgage(MovesC);
+						break;
+					case 4:mortgage(MovesX);
+						break;
+					case 5:mortgage(MovesY);
+						break;
+					case 6:mortgage(MovesZ);
+						break;
+					}
+					
 					EIC=true;
 					break;
 				
-//				case "demolish":
-//					demolishHouse();
-//					break;
+				case "demolish":
+					
+					switch(UserChooser)
+					{
+					case 1:demolishHouse(MovesA);
+						break;
+					case 2:demolishHouse(MovesB);
+						break;
+					case 3:demolishHouse(MovesC);
+						break;
+					case 4:demolishHouse(MovesX);
+						break;
+					case 5:demolishHouse(MovesY);
+						break;
+					case 6:demolishHouse(MovesZ);
+						break;
+					}
+					EIC=true;
+					break;
 					
 				default:
 					command+="Error, Invalid command\n";
@@ -835,7 +858,6 @@ public class UI extends Property
 				} 	
 			}
 		});
-	
 	}
-}
 	
+}
