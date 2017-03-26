@@ -1,3 +1,4 @@
+package Monopoly;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -323,39 +324,6 @@ void buildHouse(){
 
 	
 
-void redeem(){
-	
-	propertiesUserA.add(properties.get(0));
-	
-	command="What property would you like to redeem?"+command;
-	txtpnInfo.setText(command);
-	
-	EnterText.addActionListener( new ActionListener(){
-		
-		public void actionPerformed(ActionEvent e){
-			
-			String location=EnterText.getText();
-			
-			
-			switch(UserChooser)
-			{
-			case 1:if(propertiesUserA.get(0).mortgaged == 1){
-					
-					propertiesUserA.get(0).mortgaged = 0;
-					balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-					command="You now own property"+location+"\n\n"+command;
-					txtpnInfo.setText(command);
-			
-				}
-			else {
-				command="This property is not mortgaged"+command;
-				txtpnInfo.setText(command);
-			}
-			}
-	    }
-	});
-}
-
 public String checknumber(String location, Property propertiesUser)
 {
 	String t="";
@@ -409,6 +377,19 @@ public String matchnumber(ArrayList<Property> propertiesUser, String location)
 			}
 		}
 	}
+	
+	public void redeeming(ArrayList<Property> properties, String location)
+	{
+		for (int i=0;i<properties.size();i++)
+		{
+			if(check(location,properties.get(i))){
+				
+				properties.get(i).mortgaged = 0;
+				
+			}
+		}
+	}
+
 
 	
 void mortgage(){
@@ -450,6 +431,37 @@ void mortgage(){
 		});
 	}
 
+void redeem(){
+	
+	propertiesUserA.add(properties.get(0));
+	
+	command="What property would you like to redeem?\n\n"+command;
+	txtpnInfo.setText(command);
+	
+	EnterText.addActionListener( new ActionListener(){
+		
+		public void actionPerformed(ActionEvent e){
+			
+			String location=EnterText.getText();
+			
+			
+			switch(UserChooser)
+			{
+			case 1:if(match(properties,location) &&(propertiesUserA.get(0).mortgaged == 1)){
+					
+				balanceA.withdraw(propertiesUserA.get(0).mortgageprice);
+				propertiesUserA.add(0, null);
+				redeeming(properties, location);
+				
+					command="You now own property"+location+"\n\n"+command;
+					txtpnInfo.setText(command);
+			
+				}
+			break;
+			}
+	    }
+	});
+}
 
 
 
