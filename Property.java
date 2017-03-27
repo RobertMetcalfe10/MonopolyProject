@@ -755,11 +755,12 @@ public String matchnumber(ArrayList<Property> propertiesUser, String location)
 	{
 		for (int i=0;i<properties.size();i++)
 		{
-			if(check(location,properties.get(i))){
+			if(location.equals(properties.get(i).propertyName)){
 				properties.get(i).mortgaged = User;
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
@@ -813,7 +814,7 @@ void mortgage(int rand){
 				switch(UserChooser)
 				{
 				case 1:if(mortgaging(propertiesUserA,location,UserChooser)){
-						int r=houseNo(location,propertiesUserA);
+						int r=redeemingnumber(propertiesUserA,location);
 						balanceA.deposit(propertiesUserA.get(r).mortgageprice);
 						propertiesUserA.remove(r);
 						command="The property you mortgaged is :"+location +"\n\n" +command;
@@ -821,7 +822,7 @@ void mortgage(int rand){
 					}
 				break;
 				case 2:if(mortgaging(propertiesUserB,location,UserChooser)){
-					int r=houseNo(location,propertiesUserB);
+					int r=redeemingnumber(propertiesUserB,location);
 					balanceB.deposit(propertiesUserB.get(r).mortgageprice);
 					propertiesUserB.remove(r);
 					command="The property you mortgaged is :"+location +"\n\n" +command;
@@ -829,7 +830,7 @@ void mortgage(int rand){
 				}
 				break;
 				case 3:if(mortgaging(propertiesUserC,location,UserChooser)){
-					int r=houseNo(location,propertiesUserC);
+					int r=redeemingnumber(propertiesUserC,location);
 					balanceC.deposit(propertiesUserC.get(r).mortgageprice);
 					propertiesUserC.remove(r);
 					command="The property you mortgaged is :"+location +"\n\n" +command;
@@ -837,7 +838,7 @@ void mortgage(int rand){
 				}
 				break;
 				case 4:if(mortgaging(propertiesUserX,location,UserChooser)){
-					int r=houseNo(location,propertiesUserX);
+					int r=redeemingnumber(propertiesUserX,location);
 					balanceX.deposit(propertiesUserX.get(r).mortgageprice);
 					propertiesUserX.remove(r);
 					command="The property you mortgaged is :"+location +"\n\n" +command;
@@ -845,7 +846,7 @@ void mortgage(int rand){
 				}
 				break;
 				case 5:if(mortgaging(propertiesUserY,location,UserChooser)){
-					int r=houseNo(location,propertiesUserY);
+					int r=redeemingnumber(propertiesUserY,location);
 					balanceY.deposit(propertiesUserY.get(r).mortgageprice);
 					propertiesUserY.remove(r);
 					command="The property you mortgaged is :"+location +"\n\n" +command;
@@ -853,7 +854,7 @@ void mortgage(int rand){
 				}
 				break;
 				case 6:if(mortgaging(propertiesUserZ,location,UserChooser)){
-					int r=houseNo(location,propertiesUserZ);
+					int r=redeemingnumber(propertiesUserZ,location);
 					balanceZ.deposit(propertiesUserZ.get(r).mortgageprice);
 					propertiesUserZ.remove(r);
 					command="The property you mortgaged is :"+location +"\n\n" +command;

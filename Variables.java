@@ -86,7 +86,7 @@ public class Variables {
 		properties.add(new Property(6,"TheAngelIslington",100,6,30,90,270,400,550,"blue",50,0,100));
 		properties.add(new Property(7,"Chance",0,0,0,0,0,0,0,"white",0,0,0));
 		properties.add(new Property(8,"EustonRoad",100,6,30,90,270,400,550,"blue",50,0,100));
-		properties.add(new Property(9,"PentovilleRoad",120,8,40,100,300,450,600,"blue",50,0,100));
+		properties.add(new Property(9,"PentonvilleRoad",120,8,40,100,300,450,600,"blue",50,0,100));
 		properties.add(new Property(10,"Jail",0,0,0,0,0,0,0,"white",0,0,0));
 		properties.add(new Property(11,"PallMall",140,10,50,150,450,625,750,"purple",50,0,100));
 		properties.add(new Property(12,"ElectricCompany",150,0,0,0,0,0,0,"ecww",50,0,100));
@@ -100,9 +100,9 @@ public class Variables {
 		properties.add(new Property(20,"FreeParking",0,0,0,0,0,0,0,"white",0,0,0));
 		properties.add(new Property(21,"Strand",220,18,90,250,700,875,1050,"red",50,0,100));
 		properties.add(new Property(22,"Chance",0,0,0,0,0,0,0,"white",0,0,0));
-		properties.add(new Property(23,"FleetSteet",220,18,90,250,700,875,1050,"red",50,0,100));
+		properties.add(new Property(23,"FleetStreet",220,18,90,250,700,875,1050,"red",50,0,100));
 		properties.add(new Property(24,"TrafalgarSquare",240,18,90,250,700,875,1050,"red",50,0,100));
-		properties.add(new Property(25,"FrenchurchStStation",200,25,50,100,200,0,0,"station",0,0,0));
+		properties.add(new Property(25,"FenchurchStStation",200,25,50,100,200,0,0,"station",0,0,0));
 		properties.add(new Property(26,"LeicesterSquare",260,20,100,300,750,925,1100,"yellow",50,0,100));
 		properties.add(new Property(27,"CoventrySteet",260,20,100,300,750,925,1100,"yellow",50,0,100));
 		properties.add(new Property(28,"WaterWorks",0,0,0,0,0,0,0,"ecww",50,0,100));
