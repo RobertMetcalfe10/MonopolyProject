@@ -1,3 +1,5 @@
+package Monopoly;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,7 +27,7 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Property
 {
-	
+	// Function for change of colour
 	Color randColour()
 	{
 		Color SWColour = null;
@@ -41,6 +43,7 @@ public class UI extends Property
 		return SWColour;
 		
 	}
+	// Money collecting after passing go and movement
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
@@ -69,6 +72,7 @@ public class UI extends Property
 		 randomNum=0;
 	}
 	
+	// Function which asks us for the amount of players playing and their names
 	void addUser()
 	{
 	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
@@ -116,6 +120,7 @@ public class UI extends Property
 		UserChooser=1;
 	}
 	
+	// Function which determines who rolls first based on highest roll
 	void firstRoll()
 	{
 		Random rand = new Random();
@@ -174,6 +179,7 @@ public class UI extends Property
 		}
 	}
 	
+	// Initializing functions, JFrames, JPanes, tokens , information and user panel
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -329,7 +335,7 @@ public class UI extends Property
 		    
 		});
 		
-		//random num generator
+		// Function for rolling dice
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -375,6 +381,7 @@ public class UI extends Property
 		EnterText.addActionListener( new ActionListener()
 		{
 			
+			// Action listener which performs actions based on specific user input into the user panel
 			public void actionPerformed(ActionEvent e)
 		    {
 				switch(EnterText.getText())

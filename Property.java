@@ -1,3 +1,5 @@
+package Monopoly;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Property extends BankAccount{
 	
+	// Declaring our property variables
 	protected int propertyID;
 	protected String propertyName;
 	protected int propertyPrice;
@@ -23,12 +26,14 @@ public class Property extends BankAccount{
 	protected int propertyHouseNo=0;
 	protected int mortgaged=0;
 	protected int mortgageprice=0;
+	protected boolean buyable;
 	
 	Property()
 	{
 		
 	}
-	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house, int mort, int mortPrice)
+	// List of variables to do with each property
+	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house, int mort, int mortPrice, boolean buy)
 	{
 		propertyID=ID;
 		propertyName=Name;
@@ -43,10 +48,11 @@ public class Property extends BankAccount{
 		housePrice=house;
 		mortgaged=mort;
 		mortgageprice=mortPrice;
+		buyable=buy;
 	}
 	
 	
-	
+	// Displays a list of all the properties a user owns 
 	void propertyDisplayAll (ArrayList<Property> propertiesUser){
 		
 		for(int i = 0; i < propertiesUser.size(); i++)
@@ -60,6 +66,7 @@ public class Property extends BankAccount{
 		
 	}
 	
+	// Displays the current property
 	String propertyDisplayCurrent(int rand)
 	{
 			
@@ -72,8 +79,10 @@ public class Property extends BankAccount{
 		return propertyDets;
 	}
 	
+	// Function for buying property which is buy-able
 	void buyProperty(int rand){
-		if(properties.get(rand).propertyUser==0)
+		
+		if(properties.get(rand).propertyUser==0 && properties.get(rand).buyable == true)
 		{
 		propertyNo++;
 		switch(UserChooser)
@@ -97,15 +106,21 @@ public class Property extends BankAccount{
 		}
 		else
 		{
-			command="Property already owned\n"+command;
+			if(properties.get(rand).buyable == false){
+				command="Property is not buyable\n\n"+command;
+				txtpnInfo.setText(command);
+			}else{
+			command="Property already owned\n\n"+command;
 			txtpnInfo.setText(command);
+			}
 		}
 		
 	}
 	
+	// Function which allows the user to pay rent, can not pay rent on a property that is mortgaged or that is owned by yourself
 	void payRent(int rand){
 		stations();
-		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser)
+		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser && properties.get(rand).mortgaged==0)
 		{
 			int positionToRent=rand;
 			switch(UserChooser)
@@ -208,7 +223,7 @@ public class Property extends BankAccount{
 		
 	}
 
-	
+	// Function which asks a user at which property they would like to remove houses or hotels
 void demolishHouse(int rand){
 		
 		//propertiesUserA.add(properties.get(3));
@@ -368,7 +383,7 @@ void demolishHouse(int rand){
 		  
 	}
 
-
+// Function which allows the user to build a house once he owns all property of a certain colour
 void buildHouse(int rand){
 		
 		propertiesUserA.add(properties.get(3));
@@ -630,6 +645,7 @@ void buildHouse(int rand){
 		
 	}
 	
+
 	public boolean matchColour(Property prop,ArrayList<Property> propertiesUser)
 	{
 		if(prop==null)
@@ -661,7 +677,7 @@ void buildHouse(int rand){
 		return false;
 	}
 	
-	
+
 	public boolean check(String location, Property propertiesUser)
 	{
 		String t="";
@@ -749,7 +765,7 @@ public String matchnumber(ArrayList<Property> propertiesUser, String location)
 }
 
 
-//new function finds location in main properties array, sets that property to mortgaged
+//Function finds the property asked in main properties array, sets that property to mortgaged
 
 	public boolean mortgaging(ArrayList<Property> properties, String location, int User)
 	{
@@ -764,7 +780,7 @@ public String matchnumber(ArrayList<Property> propertiesUser, String location)
 		return false;
 	}
 
-	
+	// Function which allows a user to mortgage a property that they own
 void mortgage(int rand){
 		
 //		propertiesUserA.add(properties.get(3));
@@ -864,7 +880,7 @@ void mortgage(int rand){
 				}
 	}
 
-
+// Function finds the property asked in properties array and redeems the mortgage
 public boolean redeeming(ArrayList<Property> properties, String location)
 {
 	for (int i=0;i<properties.size();i++)
@@ -893,7 +909,7 @@ public int redeemingnumber(ArrayList<Property> properties,String location)
 return 0;
 }
 
-
+// Function in which a user is able to redeem the mortgage they have on a property
 void redeem(int rand){
 	
 	//propertiesUserA.add(properties.get(1));
@@ -920,7 +936,7 @@ void redeem(int rand){
 	  
 }
 
-
+// Function which tells us who the winner of the game is
 void winner(){
 	switch (NumOfUsers){
 	
@@ -948,7 +964,7 @@ void winner(){
 }
 }
 
-
+// Function which deals with stations and their rent multiplier depending on the amount of stations owned by a user
 void stations(){
 	
 	switch(UserChooser)

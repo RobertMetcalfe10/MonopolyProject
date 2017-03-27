@@ -1,3 +1,4 @@
+package Monopoly;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -44,6 +45,4 @@ public class BankAccount extends Card{
 	public BankAccount(int initialBalance){  
 	   balance = initialBalance;
 	}
-	
-	
 }
