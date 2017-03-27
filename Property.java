@@ -1,5 +1,3 @@
-package Monopoly;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -373,7 +371,7 @@ void demolishHouse(int rand){
 
 void buildHouse(int rand){
 		
-		//propertiesUserA.add(properties.get(3));
+		propertiesUserA.add(properties.get(3));
 		
 		houses=0;
 		
@@ -866,43 +864,57 @@ void mortgage(int rand){
 	}
 
 
-public void redeeming(ArrayList<Property> properties, String location)
+public boolean redeeming(ArrayList<Property> properties, String location)
 {
 	for (int i=0;i<properties.size();i++)
 	{
-		if(check(location,properties.get(i))){
+		if(location.equals(properties.get(i).propertyName)){
 			
 			properties.get(i).mortgaged = 0;
-			
+			return true;
 		}
 	}
+	return false;
+}
+
+public int redeemingnumber(ArrayList<Property> properties,String location)
+{
+	String t=location;
+	for(int r=0;r<properties.size();r++)
+	{	
+		if(t.equals(properties.get(r).propertyName))
+		{
+			return r;
+		}
+		
+	}
+
+return 0;
 }
 
 
 void redeem(int rand){
 	
-	propertiesUserA.add(properties.get(0));
+	//propertiesUserA.add(properties.get(1));
 	
-	command="What property would you like to redeem?"+command;
-	txtpnInfo.setText(command);
-	
-	String location = JOptionPane.showInputDialog(null, "What property would you like to mortgage??\nEnter Property as a single word(CamelCase)");
+	String location = JOptionPane.showInputDialog(null, "What property would you like to redeem?\nEnter Property as a single word(CamelCase)");
 	
 			
 			switch(UserChooser)
 			{
-			case 1:if(propertiesUserA.get(0).mortgaged == 1){
-					
-					propertiesUserA.get(0).mortgaged = 0;
-					balanceA.deposit(propertiesUserA.get(0).mortgageprice);
-					command="You now own property"+location+"\n\n"+command;
-					txtpnInfo.setText(command);
-			
-				}
-			else {
-				command="This property is not mortgaged"+command;
-				txtpnInfo.setText(command);
-			}
+			case 1:if(redeeming(properties, location))
+						{
+							command=location+" has just been redeemed\n\n" +command;
+							txtpnInfo.setText(command);
+							int r=redeemingnumber(properties,location);
+							balanceA.withdraw(properties.get(r).mortgageprice);
+							propertiesUserA.add(properties.get(r));
+						}
+					else
+					{
+						command="This property is not mortgaged"+command;
+						txtpnInfo.setText(command);
+					}
 			}
 	  
 }
