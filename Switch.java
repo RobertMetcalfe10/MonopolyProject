@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+=======
+package Monopoly;
+>>>>>>> origin/master
 
 import javax.swing.JLabel;
 
 public class Switch extends UI
 {
-	
+	// Switch statement which allows our tokens to move around the board for all users
 	void switchUser (int User)
 	{
 		

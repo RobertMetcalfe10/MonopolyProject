@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+package Monopoly;
+
+>>>>>>> origin/master
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,7 +30,11 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Property
 {
+<<<<<<< HEAD
 	
+=======
+	// Function for change of colour
+>>>>>>> origin/master
 	Color randColour()
 	{
 		Color SWColour = null;
@@ -41,6 +50,7 @@ public class UI extends Property
 		return SWColour;
 		
 	}
+	// Money collecting after passing go and movement
 	void randNumAddition()
 	{
 		 Switch SW=new Switch();
@@ -69,6 +79,10 @@ public class UI extends Property
 		 randomNum=0;
 	}
 	
+<<<<<<< HEAD
+=======
+	// Function which asks us for the amount of players playing and their names
+>>>>>>> origin/master
 	void addUser()
 	{
 	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
@@ -116,6 +130,10 @@ public class UI extends Property
 		UserChooser=1;
 	}
 	
+<<<<<<< HEAD
+=======
+	// Function which determines who rolls first based on highest roll
+>>>>>>> origin/master
 	void firstRoll()
 	{
 		Random rand = new Random();
@@ -174,6 +192,10 @@ public class UI extends Property
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	// Initializing functions, JFrames, JPanes, tokens , information and user panel
+>>>>>>> origin/master
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -301,8 +323,12 @@ public class UI extends Property
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	CardUsed=false;
+<<<<<<< HEAD
 		    	UserChooser++;
 		    	LoseGame();
+=======
+		    	
+>>>>>>> origin/master
 		    	if(UserChooser>NumOfUsers)
 		    	{
 		    		UserChooser%=NumOfUsers;
@@ -330,7 +356,11 @@ public class UI extends Property
 		    
 		});
 		
+<<<<<<< HEAD
 		//random num generator
+=======
+		// Function for rolling dice
+>>>>>>> origin/master
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -376,6 +406,7 @@ public class UI extends Property
 		EnterText.addActionListener( new ActionListener()
 		{
 			
+			// Action listener which performs actions based on specific user input into the user panel
 			public void actionPerformed(ActionEvent e)
 		    {
 				switch(EnterText.getText())
@@ -475,12 +506,33 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
+<<<<<<< HEAD
 				case "done":
 					
 					CardUsed=false;
 					LoseGame();
 		    		//UserChooser++;
 		    		
+=======
+		    		
+				case "bankrupt":
+					switch(UserChooser)
+					{
+					case 1: a = true;int i=0;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
+					case 2: b = true; command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
+					case 3: c = true; command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
+					case 4: x = true; command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
+					case 5: y = true; command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
+					case 6: z = true; command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
+					}
+					winner();					
+					break;
+					
+				case "done":
+					
+					CardUsed=false;
+		    		UserChooser++;
+>>>>>>> origin/master
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
@@ -494,17 +546,63 @@ public class UI extends Property
 					}
 			    	switch(UserChooser)
 			    	{
-			    	case 1:print=UserNameA;break;
-			    	case 2:print=UserNameB;break;
-			    	case 3:print=UserNameC;break;
-			    	case 4:print=UserNameX;break;
-			    	case 5:print=UserNameY;break;
-			    	case 6:print=UserNameZ;break;
+			    	case 1:if(UserChooser==1&&a){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameA;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
 			    	}
+<<<<<<< HEAD
 			    	txtpnInfo.setForeground(Color.RED);
 			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 			        txtpnInfo.setText(command);
 			        
+=======
+			    	break;
+			    	case 2:if(UserChooser==2&&b){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameB;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 3:if(UserChooser==3&&c){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameC;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 4:if(UserChooser==4&&x){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameX;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 5:if(UserChooser==5&&y){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameY;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	case 6:if(UserChooser==6&&z){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
+			    	else
+			    	{
+			    		print=UserNameZ;
+			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
+				        txtpnInfo.setText(command);
+			    	}
+			    	break;
+			    	}
+			    	txtpnInfo.setForeground(Color.RED);			        
+>>>>>>> origin/master
 			        CardPane.setText("");
 			        
 					break;
@@ -528,10 +626,6 @@ public class UI extends Property
 				case "balance": 
 					
 					int display = 0;
-					if(UserChooser>NumOfUsers)
-			    	{
-			    		UserChooser%=NumOfUsers;
-			    	}
 			    	
 		    		switch(UserChooser){
 		    		
@@ -751,6 +845,7 @@ public class UI extends Property
 						
 						
 				case "build":
+<<<<<<< HEAD
 					buildHouse();
 					break;
 				
@@ -758,8 +853,99 @@ public class UI extends Property
 					demolishHouse();
 					break;
 					
+=======
+					
+					switch(UserChooser)
+					{
+					case 1:buildHouse(MovesA);
+						break;
+					case 2:buildHouse(MovesB);
+						break;
+					case 3:buildHouse(MovesC);
+						break;
+					case 4:buildHouse(MovesX);
+						break;
+					case 5:buildHouse(MovesY);
+						break;
+					case 6:buildHouse(MovesZ);
+						break;
+					}
+					
+					
+					EIC=true;
+					break;
+					
+				case "mortgage":
+					
+					switch(UserChooser)
+					{
+					case 1:mortgage(MovesA);
+						break;
+					case 2:mortgage(MovesB);
+						break;
+					case 3:mortgage(MovesC);
+						break;
+					case 4:mortgage(MovesX);
+						break;
+					case 5:mortgage(MovesY);
+						break;
+					case 6:mortgage(MovesZ);
+						break;
+					}
+					
+					EIC=true;
+					break;
+				
+				case "demolish":
+					
+					switch(UserChooser)
+					{
+					case 1:demolishHouse(MovesA);
+						break;
+					case 2:demolishHouse(MovesB);
+						break;
+					case 3:demolishHouse(MovesC);
+						break;
+					case 4:demolishHouse(MovesX);
+						break;
+					case 5:demolishHouse(MovesY);
+						break;
+					case 6:demolishHouse(MovesZ);
+						break;
+					}
+					EIC=true;
+					break;
+					
+				case "redeem":
+					
+					switch(UserChooser)
+					{
+					case 1:redeem(MovesA);
+						break;
+					case 2:redeem(MovesB);
+						break;
+					case 3:redeem(MovesC);
+						break;
+					case 4:redeem(MovesX);
+						break;
+					case 5:redeem(MovesY);
+						break;
+					case 6:redeem(MovesZ);
+						break;
+					}
+					EIC=true;
+					break;
+					
+>>>>>>> origin/master
 				default:
 					command+="Error, Invalid command\n";
+					if(EIC)
+					{
+						String regex = "\\s*\\bError, Invalid command\\b\\s*";
+						command = command.replaceAll(regex, "");
+					}
+					EIC=false;
+					
 					txtpnInfo.setText(command);
 				} 	
 			}

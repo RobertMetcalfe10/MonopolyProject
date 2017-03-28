@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+package Monopoly;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -8,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+// Class containing many variables used amongst our other classes, neatness and order purposes.
 public class Variables {
 	
 	protected JFrame frame;
@@ -53,6 +61,11 @@ public class Variables {
 	protected static JInternalFrame PropertyFrame = new JInternalFrame("Your Property Details");
 
 	protected static int propertyNo=0;
+<<<<<<< HEAD
+=======
+	
+	// Assigning each user with a bank balance of 1500
+>>>>>>> origin/master
 	protected static BankAccount balanceA=new BankAccount(1500);
 	protected static BankAccount balanceB=new BankAccount(1500);
 	protected static BankAccount balanceC=new BankAccount(1500);
@@ -72,6 +85,7 @@ public class Variables {
 		LoseUser.add(6);
 	}
 
+<<<<<<< HEAD
 	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
 	protected static void fillProperties()
 	{
@@ -116,6 +130,53 @@ public class Variables {
 //		properties.add(new Property(38,"Supertax",100,0,0,0,0,0,0,"tax"));
 //		properties.add(new Property(39,"Mayfair",400,50,200,600,1400,1700,2000,"navy"));
 	}	
+=======
+	// Filling in our array list of properties with information on each square of the monopoly board
+	protected static ArrayList<Property> properties = new ArrayList<Property>(40);
+	protected static void fillProperties()
+	{
+		properties.add(new Property(0,"Start",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(1,"OldKentRoad",60,2,10,30,90,160,250,"brown",50,0,100,true));
+		properties.add(new Property(2,"CommunityChest",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(3,"WhitechapelRoad",60,4,20,60,180,320,450,"brown",50,0,100,true));
+		properties.add(new Property(4,"IncomeTax",0,0,0,0,0,0,0,"tax",0,0,0,false));
+		properties.add(new Property(5,"KingsCrossStation",200,25,50,100,200,0,0,"station",50,0,100,true));
+		properties.add(new Property(6,"TheAngelIslington",100,6,30,90,270,400,550,"blue",50,0,100,true));
+		properties.add(new Property(7,"Chance",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(8,"EustonRoad",100,6,30,90,270,400,550,"blue",50,0,100,true));
+		properties.add(new Property(9,"PentovilleRoad",120,8,40,100,300,450,600,"blue",50,0,100,true));
+		properties.add(new Property(10,"Jail",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(11,"PallMall",140,10,50,150,450,625,750,"purple",50,0,100,true));
+		properties.add(new Property(12,"ElectricCompany",150,0,0,0,0,0,0,"ecww",50,0,100,true));
+		properties.add(new Property(13,"WhiteHall",140,10,50,150,450,625,750,"purple",50,0,100,true));
+		properties.add(new Property(14,"NorthumberlandAvenue",160,12,60,180,500,700,900,"purple",50,0,100,true));
+		properties.add(new Property(15,"MaryleboneStation",200,25,50,100,200,0,0,"station",50,0,100,true));
+		properties.add(new Property(16,"BowStreet",180,14,70,200,550,750,950,"orange",50,0,100,true));
+		properties.add(new Property(17,"CommunityChest",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(18,"MarlboroughStreet",180,14,70,200,550,750,950,"orange",50,0,100,true));
+		properties.add(new Property(19,"VineStreet",200,16,80,220,600,800,1000,"orange",50,0,100,true));
+		properties.add(new Property(20,"FreeParking",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(21,"Strand",220,18,90,250,700,875,1050,"red",50,0,100,true));
+		properties.add(new Property(22,"Chance",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(23,"FleetSteet",220,18,90,250,700,875,1050,"red",50,0,100,true));
+		properties.add(new Property(24,"TrafalgarSquare",240,18,90,250,700,875,1050,"red",50,0,100,true));
+		properties.add(new Property(25,"FrenchurchStStation",200,25,50,100,200,0,0,"station",0,0,0,false));
+		properties.add(new Property(26,"LeicesterSquare",260,20,100,300,750,925,1100,"yellow",50,0,100,true));
+		properties.add(new Property(27,"CoventrySteet",260,20,100,300,750,925,1100,"yellow",50,0,100,true));
+		properties.add(new Property(28,"WaterWorks",0,0,0,0,0,0,0,"ecww",50,0,100,false));
+		properties.add(new Property(29,"Piccadilly",280,22,110,330,800,975,1150,"yellow",50,0,100,true));
+		properties.add(new Property(30,"Go2Jail",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(31,"RegentStreet",300,26,130,390,900,1100,1275,"green",50,0,100,true));
+		properties.add(new Property(32,"OxfordStreet",300,26,130,390,900,1100,1275,"green",50,0,100,true));
+		properties.add(new Property(33,"CommunityChest",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(34,"BondStreet",320,28,150,450,1000,1200,1400,"green",50,0,100,true));
+		properties.add(new Property(35,"LiverpoolStreetStation",200,25,50,100,200,0,0,"station",50,0,100,true));
+		properties.add(new Property(36,"Chance",0,0,0,0,0,0,0,"white",0,0,0,false));
+		properties.add(new Property(37,"ParkLane",350,35,175,500,1100,1300,1500,"navy",50,0,100,true));
+		properties.add(new Property(38,"Supertax",100,0,0,0,0,0,0,"tax",0,0,0,false));
+		properties.add(new Property(39,"Mayfair",400,50,200,600,1400,1700,2000,"navy",50,0,100,true));
+	}
+>>>>>>> origin/master
 	
 	protected static ArrayList<Property> propertiesUserA = new ArrayList<Property>();
 	protected static ArrayList<Property> propertiesUserB = new ArrayList<Property>();
@@ -133,6 +194,7 @@ public class Variables {
 		CommunityCard.add(new Card(0,"test chest"));
 	}
 
+<<<<<<< HEAD
 	protected static int a=0,b=0,c=0,d=0,e=0,f=0;
 	protected static String userString2="1 2";
 	protected static String userString3="1 2 3";
@@ -152,9 +214,35 @@ public class Variables {
 		}
 		return null;
 	}
+=======
+>>>>>>> origin/master
 	
 	JTextField EnterText = new JTextField();
 	protected int houses=0;
 	
+<<<<<<< HEAD
 }
 
+=======
+	protected static boolean a=false;
+	protected static boolean b=false;
+	protected static boolean c=false;
+	protected static boolean x=false;
+	protected static boolean y=false;
+	protected static boolean z=false;
+
+	protected static int user1=0;
+	protected static int user2=0;
+	protected static int user3=0;
+	protected static int user4=0;
+	protected static int user5=0;
+	protected static int user6=0;
+	
+	
+	protected static boolean EIC=false;
+	protected static boolean loc=true;
+	protected static String location="";
+	protected static String str="";
+	
+}
+>>>>>>> origin/master
