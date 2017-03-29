@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-=======
-package Monopoly;
->>>>>>> origin/master
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
-<<<<<<< HEAD
-
-public class Property extends BankAccount{
-	
-=======
 
 import javax.swing.JOptionPane;
 
 public class Property extends BankAccount{
 	
 	// Declaring our property variables
->>>>>>> origin/master
 	protected int propertyID;
 	protected String propertyName;
 	protected int propertyPrice;
@@ -32,25 +21,17 @@ public class Property extends BankAccount{
 	protected int housePrice;
 	protected int mortgageValue;
 	protected String propertyColour;
-<<<<<<< HEAD
-	protected int propertyHouseNo=1;
-=======
 	protected int propertyHouseNo=0;
 	protected int mortgaged=0;
 	protected int mortgageprice=0;
 	protected boolean buyable;
->>>>>>> origin/master
 	
 	Property()
 	{
 		
 	}
-<<<<<<< HEAD
-	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house)
-=======
 	// List of variables to do with each property
 	Property(int ID, String Name,int Price,int Rent1,int Rent2,int Rent3,int Rent4,int Rent5,int Rent6, String colour,int house, int mort, int mortPrice, boolean buy)
->>>>>>> origin/master
 	{
 		propertyID=ID;
 		propertyName=Name;
@@ -63,12 +44,6 @@ public class Property extends BankAccount{
 		propertyRent6=Rent6;
 		propertyColour=colour;
 		housePrice=house;
-<<<<<<< HEAD
-	}
-	
-	
-	
-=======
 		mortgaged=mort;
 		mortgageprice=mortPrice;
 		buyable=buy;
@@ -76,7 +51,6 @@ public class Property extends BankAccount{
 	
 	
 	// Displays a list of all the properties a user owns 
->>>>>>> origin/master
 	void propertyDisplayAll (ArrayList<Property> propertiesUser){
 		
 		for(int i = 0; i < propertiesUser.size(); i++)
@@ -90,10 +64,7 @@ public class Property extends BankAccount{
 		
 	}
 	
-<<<<<<< HEAD
-=======
 	// Displays the current property
->>>>>>> origin/master
 	String propertyDisplayCurrent(int rand)
 	{
 			
@@ -106,10 +77,7 @@ public class Property extends BankAccount{
 		return propertyDets;
 	}
 	
-<<<<<<< HEAD
-=======
 	// Function for buying property which is buy-able
->>>>>>> origin/master
 	void buyProperty(int rand){
 		
 		if(properties.get(rand).propertyUser==0 && properties.get(rand).buyable == true)
@@ -147,12 +115,10 @@ public class Property extends BankAccount{
 		
 	}
 	
-<<<<<<< HEAD
-=======
 	// Function which allows the user to pay rent, can not pay rent on a property that is mortgaged or that is owned by yourself
->>>>>>> origin/master
 	void payRent(int rand){
 		stations();
+		
 		if(properties.get(rand).propertyUser!=0 && properties.get(rand).propertyUser!=UserChooser && properties.get(rand).mortgaged==0)
 		{
 			int positionToRent=rand;
@@ -256,119 +222,6 @@ public class Property extends BankAccount{
 		
 	}
 
-<<<<<<< HEAD
-	void demolishHouse()
-	{
-		command="What location would you like to demolish a house at\n\n"+command;
-		txtpnInfo.setText(command);
-		
-		EnterText.addActionListener( new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent e)
-		    {
-				String location=EnterText.getText();
-				
-				switch(UserChooser)
-				{
-				case 1:if(match(propertiesUserA,location)!=null)
-				{
-					command="How many houses would you like to demolish\n\n"+command;
-					txtpnInfo.setText(command);
-
-					EnterText.addActionListener( new ActionListener()
-					{
-						
-						public void actionPerformed(ActionEvent e)
-					    {
-							
-							houses=Integer.parseInt(EnterText.getText());
-							propertiesUserA.get(0).propertyHouseNo-=houses;
-							if(propertiesUserA.get(0).propertyHouseNo<0)
-							{
-								command="You can only demolish houses you have\n\n"+command;
-								txtpnInfo.setText(command);
-							}
-					    }
-					});
-					
-					
-					int a=(propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo)/2;
-					balanceA.deposit(a);
-					System.out.println(balanceA.balance);
-					return;
-				}
-				else
-				{
-					System.out.println("worked");
-					return;
-				}
-				}
-				
-				
-		    }
-		});
-		
-		
-	}
-	
-	void buildHouse(){
-		
-		propertiesUserA.add(properties.get(0));
-		
-		command="What location would you like to build at?\nEnter location as a single word(CamelCase)\n\n"+command;
-		txtpnInfo.setText(command);
-		
-		houses=0;
-		EnterText.addActionListener( new ActionListener()
-		{
-			
-			public void actionPerformed(ActionEvent e)
-		    {
-				String location=EnterText.getText();
-				
-				switch(UserChooser)
-				{
-				case 1:if(matchColour(match(propertiesUserA,location),propertiesUserA))
-				{
-					command="How many houses would you like to build\n\n"+command;
-					txtpnInfo.setText(command);
-
-					EnterText.addActionListener( new ActionListener()
-					{
-						
-						public void actionPerformed(ActionEvent e)
-					    {
-							
-							houses=Integer.parseInt(EnterText.getText());
-							propertiesUserA.get(0).propertyHouseNo+=houses;
-							if(propertiesUserA.get(0).propertyHouseNo>5)
-							{
-								command="You can only have 4 houses and 1 hotel\n\n"+command;
-								txtpnInfo.setText(command);
-							}
-					    }
-					});
-					
-					
-					int a=propertiesUserA.get(0).housePrice*propertiesUserA.get(0).propertyHouseNo;
-					balanceA.withdraw(a);
-					System.out.println(balanceA.balance);
-					return;
-				}
-				else
-				{
-					System.out.println("worked");
-					return;
-				}
-				}
-				
-				
-		    }
-		});
-		
-		
-=======
 	// Function which asks a user at which property they would like to remove houses or hotels
 void demolishHouse(int rand){
 		
@@ -757,7 +610,6 @@ void buildHouse(int rand){
 						return;
 					}
 				}
->>>>>>> origin/master
 		
 	}
 	
@@ -767,46 +619,6 @@ void buildHouse(int rand){
 		return this.propertyName;
 	}
 	
-	public boolean matchColour(Property prop,ArrayList<Property> propertiesUser)
-	{
-		String colour=prop.propertyColour;
-		int coloursOwned=1;
-		for(int i=0;i<propertiesUser.size();i++)
-		{
-			if(colour.equals(propertiesUser.get(i).propertyColour))
-			{
-				coloursOwned++;
-			}
-		}
-		switch(colour)
-		{
-		case "brown": if(coloursOwned==2){return true;}else{return false;}
-		case "blue": if(coloursOwned==3){return true;}else{return false;}
-		case "purple": if(coloursOwned==3){return true;}else{return false;}
-		case "orange": if(coloursOwned==3){return true;}else{return false;}
-		case "red": if(coloursOwned==3){return true;}else{return false;}
-		case "yellow": if(coloursOwned==3){return true;}else{return false;}
-		case "green": if(coloursOwned==3){return true;}else{return false;}
-		case "navy": if(coloursOwned==2){return true;}else{return false;}
-		}
-		return false;
-	}
-	
-	public Property match(ArrayList<Property> propertiesUser, String location)
-	{
-		String check="";
-		for(int i=0;i<propertiesUser.size();i++)
-		{
-			check=propertiesUser.get(i).propertyName;
-			if(location.equals(check))
-			{
-				return propertiesUser.get(i);
-			}
-		}
-		return null;
-		
-	}
-
 	
 	public int houseNo(String location, ArrayList<Property> propertiesUser)
 	{

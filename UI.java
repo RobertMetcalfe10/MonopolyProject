@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-package Monopoly;
-
->>>>>>> origin/master
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,11 +25,7 @@ import javax.swing.text.DefaultCaret;
 
 public class UI extends Property
 {
-<<<<<<< HEAD
-	
-=======
 	// Function for change of colour
->>>>>>> origin/master
 	Color randColour()
 	{
 		Color SWColour = null;
@@ -79,10 +70,7 @@ public class UI extends Property
 		 randomNum=0;
 	}
 	
-<<<<<<< HEAD
-=======
 	// Function which asks us for the amount of players playing and their names
->>>>>>> origin/master
 	void addUser()
 	{
 	NumOfUsers=Integer.parseInt(JOptionPane.showInputDialog("How many Users is there?",NumOfUsers));
@@ -130,10 +118,7 @@ public class UI extends Property
 		UserChooser=1;
 	}
 	
-<<<<<<< HEAD
-=======
 	// Function which determines who rolls first based on highest roll
->>>>>>> origin/master
 	void firstRoll()
 	{
 		Random rand = new Random();
@@ -192,10 +177,7 @@ public class UI extends Property
 		}
 	}
 	
-<<<<<<< HEAD
-=======
 	// Initializing functions, JFrames, JPanes, tokens , information and user panel
->>>>>>> origin/master
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -236,9 +218,17 @@ public class UI extends Property
 				
 
 		EnterText.setToolTipText("Enter Command Here");
+		EnterText.setText(null);
 		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
 		EnterText.setBackground(Color.BLACK);
 		EnterText.setForeground(randColour());
+		
+		EnterText.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EnterText.setText(null);
+				}			
+		});
 		
 		
 
@@ -323,12 +313,7 @@ public class UI extends Property
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	CardUsed=false;
-<<<<<<< HEAD
-		    	UserChooser++;
-		    	LoseGame();
-=======
 		    	
->>>>>>> origin/master
 		    	if(UserChooser>NumOfUsers)
 		    	{
 		    		UserChooser%=NumOfUsers;
@@ -356,11 +341,7 @@ public class UI extends Property
 		    
 		});
 		
-<<<<<<< HEAD
-		//random num generator
-=======
 		// Function for rolling dice
->>>>>>> origin/master
 		btnRollDice.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -506,24 +487,17 @@ public class UI extends Property
 		    		
 		    		break;
 		    		
-<<<<<<< HEAD
-				case "done":
-					
-					CardUsed=false;
-					LoseGame();
-		    		//UserChooser++;
-		    		
-=======
 		    		
 				case "bankrupt":
+					int i=0;
 					switch(UserChooser)
 					{
-					case 1: a = true;int i=0;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
-					case 2: b = true; command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
-					case 3: c = true; command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
-					case 4: x = true; command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
-					case 5: y = true; command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
-					case 6: z = true; command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
+					case 1: a = true;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
+					case 2: b = true;for(i=0;!propertiesUserB.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
+					case 3: c = true;for(i=0;!propertiesUserC.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
+					case 4: x = true;for(i=0;!propertiesUserX.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
+					case 5: y = true;for(i=0;!propertiesUserY.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
+					case 6: z = true;for(i=0;!propertiesUserZ.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
 					}
 					winner();					
 					break;
@@ -532,7 +506,6 @@ public class UI extends Property
 					
 					CardUsed=false;
 		    		UserChooser++;
->>>>>>> origin/master
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
@@ -553,12 +526,6 @@ public class UI extends Property
 			    		command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
 				        txtpnInfo.setText(command);
 			    	}
-<<<<<<< HEAD
-			    	txtpnInfo.setForeground(Color.RED);
-			    	command="It is now "+ print + "'s turn\n** TURN ENDED  **\n\n"+command;
-			        txtpnInfo.setText(command);
-			        
-=======
 			    	break;
 			    	case 2:if(UserChooser==2&&b){command="This user has been eliminated, please type done to continue to the next player\n\n"+command; txtpnInfo.setText(command);}
 			    	else
@@ -602,7 +569,6 @@ public class UI extends Property
 			    	break;
 			    	}
 			    	txtpnInfo.setForeground(Color.RED);			        
->>>>>>> origin/master
 			        CardPane.setText("");
 			        
 					break;
@@ -692,7 +658,8 @@ public class UI extends Property
 							{
 								CardUsed=true;
 								CardFrame.setVisible(true);
-								DisplayCard(Chance_Chest);
+								int R=DisplayCard(Chance_Chest);
+								cards(R);
 							}
 							else
 							{
@@ -703,7 +670,7 @@ public class UI extends Property
 						else
 						{
 							CardFrame.setVisible(true);
-				    		CardPane.setText("You haven't landed on a chance tile");
+				    		CardPane.setText("You haven't landed on a chance/community chest tile");
 						}
 					
 					break;
@@ -845,15 +812,6 @@ public class UI extends Property
 						
 						
 				case "build":
-<<<<<<< HEAD
-					buildHouse();
-					break;
-				
-				case "demolish":
-					demolishHouse();
-					break;
-					
-=======
 					
 					switch(UserChooser)
 					{
@@ -936,15 +894,14 @@ public class UI extends Property
 					EIC=true;
 					break;
 					
->>>>>>> origin/master
 				default:
 					command+="Error, Invalid command\n";
-					if(EIC)
-					{
-						String regex = "\\s*\\bError, Invalid command\\b\\s*";
-						command = command.replaceAll(regex, "");
-					}
-					EIC=false;
+//					if(EIC)
+//					{
+//						String regex = "\\s*\\bError, Invalid command\\b\\s*";
+//						command = command.replaceAll(regex, "");
+//					}
+//					EIC=false;
 					
 					txtpnInfo.setText(command);
 				} 	
