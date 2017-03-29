@@ -1,0 +1,26 @@
+EnterText.setToolTipText("Enter Command Here");
+		EnterText.setText(null);
+		internalFrame.getContentPane().add(EnterText, BorderLayout.CENTER);
+		EnterText.setBackground(Color.BLACK);
+		EnterText.setForeground(randColour());
+		
+		EnterText.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EnterText.setText(null);
+				}			
+		});
+
+case "bankrupt":
+					int i=0;
+					switch(UserChooser)
+					{
+					case 1: a = true;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
+					case 2: b = true;for(i=0;!propertiesUserB.isEmpty();i++){propertiesUserA.remove(i);i++;} command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
+					case 3: c = true;for(i=0;!propertiesUserC.isEmpty();i++){propertiesUserA.remove(i);i++;} command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
+					case 4: x = true;for(i=0;!propertiesUserX.isEmpty();i++){propertiesUserA.remove(i);i++;} command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
+					case 5: y = true;for(i=0;!propertiesUserY.isEmpty();i++){propertiesUserA.remove(i);i++;} command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
+					case 6: z = true;for(i=0;!propertiesUserZ.isEmpty();i++){propertiesUserA.remove(i);i++;} command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
+					}
+					winner();					
+					break;
