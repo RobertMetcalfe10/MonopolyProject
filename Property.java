@@ -1,8 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
-
 import javax.swing.JOptionPane;
 
 public class Property extends BankAccount{
@@ -385,7 +381,7 @@ void demolishHouse(int rand){
 // Function which allows the user to build a house once he owns all property of a certain colour
 void buildHouse(int rand){
 		
-		propertiesUserA.add(properties.get(3));
+		//propertiesUserA.add(properties.get(3));
 		
 		houses=0;
 		

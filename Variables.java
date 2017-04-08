@@ -1,8 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -135,8 +131,39 @@ public class Variables {
 	protected static ArrayList<Card> CommunityCard = new ArrayList<Card>();
 	protected static void fillCards()
 	{
-		ChanceCard.add(new Card(50,"test chance"));
-		CommunityCard.add(new Card(0,"test chest"));
+		CommunityCard.add(new Card(0,"Advance to Go",0,0));
+		CommunityCard.add(new Card(1,"Go Back to Old Kent Road",0,0));
+		CommunityCard.add(new Card(2,"Go to jail",0,0));
+		CommunityCard.add(new Card(3,"Pay hospital",0,100));
+		CommunityCard.add(new Card(4,"Doctor's fee.",0,50));
+		CommunityCard.add(new Card(5,"Insurance premium",0,50));
+		CommunityCard.add(new Card(6,"Bank Error",200,0));
+		CommunityCard.add(new Card(7,"Annuity matures",100,0));
+		CommunityCard.add(new Card(8,"You inherit",100,0));
+		CommunityCard.add(new Card(9,"Sale of stock",50,0));
+		CommunityCard.add(new Card(10,"Interest",25,0));
+		CommunityCard.add(new Card(11,"Income tax refund",20,0));
+		CommunityCard.add(new Card(12,"Second prize in a beauty contest",10,0));
+		CommunityCard.add(new Card(13,"It is your birthday",(NumOfUsers*10),0));
+		CommunityCard.add(new Card(14,"Get out of jail card",0,0));
+		CommunityCard.add(new Card(15,"Pay a £10 fine or take a Chance",0,0));
+		
+		ChanceCard.add(new Card(0,"Advance to Go",0,0));
+		ChanceCard.add(new Card(1,"Go to jail",0,0));
+		ChanceCard.add(new Card(2,"Advance to Pall Mall",0,0));
+		ChanceCard.add(new Card(3,"Take a trip to Marylebone Station",0,0));
+		ChanceCard.add(new Card(4,"Advance to Trafalgar Square",0,0));
+		ChanceCard.add(new Card(5,"Advance to Mayfair",0,0));
+		ChanceCard.add(new Card(6,"Go back three spaces.",0,0));
+		ChanceCard.add(new Card(7,"general house repairs",0,0));
+		ChanceCard.add(new Card(8,"Street repairs",0,0));
+		ChanceCard.add(new Card(9,"Pay school fees",0,150));
+		ChanceCard.add(new Card(10,"Drunk in charge fine",0,20));
+		ChanceCard.add(new Card(11,"Speeding fine",0,15));
+		ChanceCard.add(new Card(12,"Your building loan matures",150,0));
+		ChanceCard.add(new Card(13,"You have won a crossword competition",100,0));
+		ChanceCard.add(new Card(14,"Bank pays you dividend of £50",50,0));
+		ChanceCard.add(new Card(15,"Get out of jail free",0,0));
 	}
 
 	
@@ -157,10 +184,20 @@ public class Variables {
 	protected static int user5=0;
 	protected static int user6=0;
 	
+	protected static boolean roll=true;
+	
 	
 	protected static boolean EIC=false;
 	protected static boolean loc=true;
 	protected static String location="";
 	protected static String str="";
+	
+	
+	protected static int JailedA=0;
+	protected static int JailedB=0;
+	protected static int JailedC=0;
+	protected static int JailedX=0;
+	protected static int JailedY=0;
+	protected static int JailedZ=0;
 	
 }

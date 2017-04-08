@@ -5,8 +5,7 @@ public class Switch extends UI
 	// Switch statement which allows our tokens to move around the board for all users
 	void switchUser (int User)
 	{
-		
-		 		
+//		 		User=31;
 	switch(User)
 	{
     case 1:	
@@ -342,13 +341,16 @@ public class Switch extends UI
     case 31:
     	switch(Variables.UserChooser)
     	{
-    	case 1:UI.lblA.setBounds(614, 111, 10, 10);break;
-    	case 2:UI.lblB.setBounds(625, 111, 10, 10);break;
-    	case 3:UI.lblC.setBounds(636, 111, 10, 10);break;
-    	case 4:UI.lblX.setBounds(614, 62, 10, 10);break;
-    	case 5:UI.lblY.setBounds(625, 62, 10, 10);break;
-    	case 6:UI.lblZ.setBounds(636, 62, 10, 10);break;
+    	case 1:UI.lblA.setBounds(25, 661, 10, 10);UserA=11;/*JailedA=3;*/break;
+    	case 2:UI.lblB.setBounds(36, 661, 10, 10);UserB=11;break;
+    	case 3:UI.lblC.setBounds(47, 661, 10, 10);UserC=11;break;
+    	case 4:UI.lblX.setBounds(25, 612, 10, 10);MovesX=11;break;
+    	case 5:UI.lblY.setBounds(36, 612, 10, 10);MovesY=11;break;
+    	case 6:UI.lblZ.setBounds(47, 612, 10, 10);MovesZ=11;break;
     	}
+    	command="You landed in Jail\n\n"+command;
+    	txtpnInfo.setText(command);
+    	roll=false;
 		break;
 	case 32:
 		switch(Variables.UserChooser)

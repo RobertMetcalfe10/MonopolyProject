@@ -393,36 +393,51 @@ public class UI extends Property
 				switch(EnterText.getText())
 				{
 				case "roll":
-					Random rand = new Random();
-					 randomNum=rand.nextInt(6)+1;
-					int randomNum2=rand.nextInt(6)+1;
-					if(randomNum==randomNum2){
-						randomNum+=randomNum2;
-						command=" looks like you rolled a double, go ahead and roll again!\n\n"+command;
+					if(roll)
+					{
+						roll=false;
+						Random rand = new Random();
+						randomNum=rand.nextInt(6)+1;
+						int randomNum2=rand.nextInt(6)+1;
+						if(randomNum==randomNum2){
+							randomNum+=randomNum2;
+							command=" looks like you rolled a double, go ahead and roll again!\n\n"+command;
+					        txtpnInfo.setForeground(randColour());
+					        EnterText.setForeground(randColour());
+					        command="User "+ UserChooser+ command;
+					        txtpnInfo.setText(command);
+					        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
+					        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+					        //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
+					        randNumAddition();
+					        draw();
+					        tax();
+					        //jailed();
+					        roll=true;
+							}
+
+						
+						else{
+				    	randomNum+=randomNum2;
+				    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
 				        txtpnInfo.setForeground(randColour());
 				        EnterText.setForeground(randColour());
-				        command="User "+ UserChooser+ command;
+				        command="User "+UserChooser+command;
 				        txtpnInfo.setText(command);
 				        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
 				        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-				        //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
+				       //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
 				        randNumAddition();
-				        
+				        draw();
+				        tax();
 						}
-					
-					else{
-			    	randomNum+=randomNum2;
-			    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
-			        txtpnInfo.setForeground(randColour());
-			        EnterText.setForeground(randColour());
-			        command="User "+UserChooser+command;
-			        txtpnInfo.setText(command);
-			        DefaultCaret caret = (DefaultCaret) txtpnInfo.getCaret();
-			        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
-			       //txtpnInfo.setText(propertyDisplayCurrent(randomNum));
-			        randNumAddition();
-			        
 					}
+					else
+					{
+						 command="You have already rolled\n\n"+command;
+					     txtpnInfo.setText(command);
+					}
+					
 					break;
 					
 				case "help":
@@ -462,7 +477,6 @@ public class UI extends Property
 		    		try {
 		    			PropertyFrame.setClosed(false);
 					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 		    		
@@ -493,17 +507,18 @@ public class UI extends Property
 					switch(UserChooser)
 					{
 					case 1: a = true;for(i=0;!propertiesUserA.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 1 has declared bankruptcy enter 'done' to continue\n\n"+command; txtpnInfo.setText(command);break;
-					case 2: b = true;for(i=0;!propertiesUserB.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
-					case 3: c = true;for(i=0;!propertiesUserC.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
-					case 4: x = true;for(i=0;!propertiesUserX.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
-					case 5: y = true;for(i=0;!propertiesUserY.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
-					case 6: z = true;for(i=0;!propertiesUserZ.isEmpty();i++){propertiesUserA.remove(i);i++;};lblA.setVisible(false);command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
+					case 2: b = true;for(i=0;!propertiesUserB.isEmpty();i++){propertiesUserB.remove(i);i++;};lblB.setVisible(false);command="Player 2 has declared bankruptcy enter 'done' to continue\n\n"+command;lblB.setVisible(false);txtpnInfo.setText(command);break;
+					case 3: c = true;for(i=0;!propertiesUserC.isEmpty();i++){propertiesUserC.remove(i);i++;};lblC.setVisible(false);command="Player 3 has declared bankruptcy enter 'done' to continue\n\n"+command;lblC.setVisible(false);txtpnInfo.setText(command);break;
+					case 4: x = true;for(i=0;!propertiesUserX.isEmpty();i++){propertiesUserX.remove(i);i++;};lblX.setVisible(false);command="Player 4 has declared bankruptcy enter 'done' to continue\n\n"+command;lblX.setVisible(false);txtpnInfo.setText(command);break;
+					case 5: y = true;for(i=0;!propertiesUserY.isEmpty();i++){propertiesUserY.remove(i);i++;};lblY.setVisible(false);command="Player 5 has declared bankruptcy enter 'done' to continue\n\n"+command;lblY.setVisible(false); txtpnInfo.setText(command);break;
+					case 6: z = true;for(i=0;!propertiesUserZ.isEmpty();i++){propertiesUserZ.remove(i);i++;};lblZ.setVisible(false);command="Player 6 has declared bankruptcy enter 'done' to continue\n\n"+command;lblZ.setVisible(false); txtpnInfo.setText(command);break;
 					}
 					winner();					
 					break;
 					
 				case "done":
 					
+					roll=true;
 					CardUsed=false;
 		    		UserChooser++;
 			    	if(UserChooser>NumOfUsers)
@@ -626,54 +641,7 @@ public class UI extends Property
 					
 					break;
 					
-				case "draw":
-					
-						CardFrame.setBounds(200, 130, 300, 150);
-			    		frame.getContentPane().add(CardFrame);
-			    		CardFrame.getContentPane().add(CardPane);
-			    		CardPane.setEditable(false);
-						CardFrame.setVisible(false);
-			    		boolean check=false;
-			    		int Chance_Chest=0;
-			    		
-			    		switch(UserChooser)
-						{
-						case 1:check=AllowCardPickUp(MovesA);Chance_Chest=MovesA;
-							break;
-						case 2:check=AllowCardPickUp(MovesB);Chance_Chest=MovesB;
-							break;
-						case 3:check=AllowCardPickUp(MovesC);Chance_Chest=MovesC;
-							break;
-						case 4:check=AllowCardPickUp(MovesX);Chance_Chest=MovesX;
-							break;
-						case 5:check=AllowCardPickUp(MovesY);Chance_Chest=MovesY;
-							break;
-						case 6:check=AllowCardPickUp(MovesZ);Chance_Chest=MovesZ;
-							break;
-						}
-			    		
-						if(check)
-						{
-							if(!CardUsed)
-							{
-								CardUsed=true;
-								CardFrame.setVisible(true);
-								int R=DisplayCard(Chance_Chest);
-								cards(R);
-							}
-							else
-							{
-								CardFrame.setVisible(true);
-								CardPane.setText("Card already picked up");
-							}
-						}
-						else
-						{
-							CardFrame.setVisible(true);
-				    		CardPane.setText("You haven't landed on a chance/community chest tile");
-						}
-					
-					break;
+				
 					
 				case "quit":
 					switch(NumOfUsers)
@@ -895,14 +863,7 @@ public class UI extends Property
 					break;
 					
 				default:
-					command+="Error, Invalid command\n";
-//					if(EIC)
-//					{
-//						String regex = "\\s*\\bError, Invalid command\\b\\s*";
-//						command = command.replaceAll(regex, "");
-//					}
-//					EIC=false;
-					
+					command="Error, Invalid command\n\n"+command;
 					txtpnInfo.setText(command);
 				} 	
 			}
