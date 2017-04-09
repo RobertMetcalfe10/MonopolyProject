@@ -1,4 +1,8 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -13,6 +17,7 @@ public class Variables {
 	protected JTextField textField;
 	protected static String command="";
 	protected static String propertyDets ="";
+	protected static int DoubleRoll = 0;
 	protected static int UserA=1;
 	protected static int UserB=1;
 	protected static int UserC=1;
@@ -165,7 +170,6 @@ public class Variables {
 		ChanceCard.add(new Card(14,"Bank pays you dividend of £50",50,0));
 		ChanceCard.add(new Card(15,"Get out of jail free",0,0));
 	}
-
 	
 	JTextField EnterText = new JTextField();
 	protected int houses=0;
@@ -185,6 +189,7 @@ public class Variables {
 	protected static int user6=0;
 	
 	protected static boolean roll=true;
+	protected static boolean endturn=true;
 	
 	
 	protected static boolean EIC=false;
@@ -192,12 +197,19 @@ public class Variables {
 	protected static String location="";
 	protected static String str="";
 	
+	protected static int jailedA=0;
+	protected static int jailedB=0;
+	protected static int jailedC=0;
+	protected static int jailedX=0;
+	protected static int jailedY=0;
+	protected static int jailedZ=0;
 	
-	protected static int JailedA=0;
-	protected static int JailedB=0;
-	protected static int JailedC=0;
-	protected static int JailedX=0;
-	protected static int JailedY=0;
-	protected static int JailedZ=0;
+	
+	protected static boolean GOJA=false;
+	protected static boolean GOJB=false;
+	protected static boolean GOJC=false;
+	protected static boolean GOJX=false;
+	protected static boolean GOJY=false;
+	protected static boolean GOJZ=false;
 	
 }

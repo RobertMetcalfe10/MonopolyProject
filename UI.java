@@ -305,6 +305,7 @@ public class UI extends Property
 		label2.setHorizontalTextPosition(SwingConstants.CENTER);
 		label2.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
+	
 		
 		
 		btnEndTurn.addActionListener( new ActionListener()
@@ -390,16 +391,32 @@ public class UI extends Property
 			// Action listener which performs actions based on specific user input into the user panel
 			public void actionPerformed(ActionEvent e)
 		    {
+				
 				switch(EnterText.getText())
 				{
 				case "roll":
-					if(roll)
+					if(roll&&jailedA==0||roll&&jailedB==0||roll&&jailedC==0||roll&&jailedX==0||roll&&jailedY==0||roll&&jailedZ==0)
 					{
 						roll=false;
 						Random rand = new Random();
 						randomNum=rand.nextInt(6)+1;
 						int randomNum2=rand.nextInt(6)+1;
 						if(randomNum==randomNum2){
+							DoubleRoll++;
+							if(DoubleRoll == 3){
+								Switch sw=new Switch();
+								switch(UserChooser)
+								{
+								case 1: UserA = 31;sw.switchUser(UserA);DoubleRoll=0;break;
+								case 2:	UserB = 31;sw.switchUser(UserB);DoubleRoll=0;break;
+								case 3: UserC = 31;sw.switchUser(UserC);DoubleRoll=0;break;
+								case 4: UserX = 31;sw.switchUser(UserX);DoubleRoll=0;break;
+								case 5: UserY = 31;sw.switchUser(UserY);DoubleRoll=0;break;
+								case 6: UserZ = 31;sw.switchUser(UserZ);DoubleRoll=0;break;
+								}
+								return;
+							
+							}
 							randomNum+=randomNum2;
 							command=" looks like you rolled a double, go ahead and roll again!\n\n"+command;
 					        txtpnInfo.setForeground(randColour());
@@ -412,11 +429,9 @@ public class UI extends Property
 					        randNumAddition();
 					        draw();
 					        tax();
-					        //jailed();
 					        roll=true;
+					        
 							}
-
-						
 						else{
 				    	randomNum+=randomNum2;
 				    	command=" rolls the dice, they moved "+randomNum+" places!\n\n"+command;
@@ -477,6 +492,7 @@ public class UI extends Property
 		    		try {
 		    			PropertyFrame.setClosed(false);
 					} catch (PropertyVetoException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 		    		
@@ -518,9 +534,11 @@ public class UI extends Property
 					
 				case "done":
 					
+					if (bankruptcy()){
 					roll=true;
 					CardUsed=false;
 		    		UserChooser++;
+		    		DoubleRoll = 0;
 			    	if(UserChooser>NumOfUsers)
 			    	{
 			    		UserChooser%=NumOfUsers;
@@ -585,8 +603,20 @@ public class UI extends Property
 			    	}
 			    	txtpnInfo.setForeground(Color.RED);			        
 			        CardPane.setText("");
-			        
+			        jailed();
+					
+					}
+					
+					else{
+						
+						command="Please sell property or declare bankruptcy\n\n"+command;
+				        txtpnInfo.setText(command);
+				        endturn = true;
+						
+					}
+					
 					break;
+				
 					
 				case "buy":
 					
@@ -869,5 +899,8 @@ public class UI extends Property
 			}
 		});
 	}
+	
+	
+	
 	
 }

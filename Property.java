@@ -45,6 +45,21 @@ public class Property extends BankAccount{
 		buyable=buy;
 	}
 	
+	boolean bankruptcy(){
+		
+		switch(UserChooser)
+		{
+		
+		case 1: if(balanceA.balance<= 0 && !a){JOptionPane.showMessageDialog(null,UserNameA + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;
+		case 2: if(balanceB.balance<= 0 && !b){JOptionPane.showMessageDialog(null,UserNameB + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;
+		case 3: if(balanceC.balance<= 0 && !c){JOptionPane.showMessageDialog(null,UserNameC + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;
+		case 4: if(balanceX.balance<= 0 && !x){JOptionPane.showMessageDialog(null,UserNameX + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;
+		case 5: if(balanceY.balance<= 0 && !y){JOptionPane.showMessageDialog(null,UserNameY + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;
+		case 6: if(balanceZ.balance<= 0 && !z){JOptionPane.showMessageDialog(null,UserNameZ + " Your balance is negative. Please declare bankruptcy or sell property");return false;} break;	
+		}
+		return true;
+	}
+	
 	
 	// Displays a list of all the properties a user owns 
 	void propertyDisplayAll (ArrayList<Property> propertiesUser){
