@@ -31,7 +31,7 @@ public class Card extends Variables{
 		if(CC==7||CC==22||CC==36)//Chance card
 		{
 			String cardText;
-			cardText="\tYou've Pickd Up Card\n";
+			cardText="\tYou've Picked Up Card\n";
 			cardText+=ChanceCard.get(R).text;
 			chanceCards(R);
 			CardPane.setText(cardText);
@@ -40,7 +40,7 @@ public class Card extends Variables{
 		else//community chest card
 		{
 			String cardText;
-			cardText="\tYou've Pickd Up Card\n";
+			cardText="\tYou've Picked Up Card\n";
 			cardText+=CommunityCard.get(R).text;
 			communityCards(R);
 			CardPane.setText(cardText);
